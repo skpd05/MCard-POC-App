@@ -1,0 +1,73 @@
+.dashboard-header .navbar-inverse {
+    background: #666;
+}
+
+.balcls {
+    display: block;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.dashboard-header li a {
+    padding: 15px 30px;
+    font-size: 14px;
+    display: inline-block;
+    color: #fff;
+}
+.dashboard-header li a:hover{
+    text-decoration: none;
+    background: transparent;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+    border-color:none;
+}
+.dashboard-header li .fa {
+    margin: 10px;
+}
+.dashboard-header .form-control {
+    border: none;
+    border-radius: 0;
+    margin-top: 6px;
+}
+
+.dropdown-menu>li>a{
+    color: #333;
+}
+
+.dropdown.dropdown02 {
+    position: inherit;
+}
+
+.topclas li{
+    position: inherit;
+}
+
+.nav>li {
+    position: static;
+    display: block;
+}
+.dropdown-menu{
+    width: 100%;
+    min-width: inherit;;
+}
+/*.dahboard-item-anchor{
+    color: black !important;
+    padding:0px !important;
+    margin: 0px;   
+}*/
+.cata-div1 p {
+    margin: 10px;
+    padding: 10px 0px 0px 10px;
+}
+.cata-div1 a {
+   color:#000 !important;
+}
+.cata-div2 p {
+    margin: 10px;
+    padding: 10px 0px 0px 10px;
+}
+.cata-div2 a {
+   color:#000 !important;
+}

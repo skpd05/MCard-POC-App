@@ -1,0 +1,13 @@
+.modal{
+    top:99px;
+}
+.headerCls{
+    background: #F99D27;
+}
+.orCls{
+    font-size: 15px;
+    font-weight: bold;
+}
+.btnCls button {
+    margin: 0 0 0 245px;
+}

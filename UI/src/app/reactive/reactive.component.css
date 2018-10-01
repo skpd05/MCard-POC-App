@@ -1,0 +1,28 @@
+.navbar-point-dropdown{
+    border-color: red;
+    border-right-width: 1px;
+    border-right-color: red;    
+    border-right-style: solid;    
+    height: 84px;
+}
+.items-style{
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px yellow; 
+      
+}
+
+.input-icon{
+    /*background-image:url(../../assets/search-icon.png); */
+    background-repeat: no-repeat; 
+    background-position: 355px 6px;
+    background-size: 20px 20px; 
+}
+.test > div.dropdown.open .dropdown-menu{
+    width: 100%;
+    border: 1px solid green;
+}
+
+a{
+    padding:0px;
+}

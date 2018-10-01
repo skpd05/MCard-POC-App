@@ -1,0 +1,186 @@
+<div class="container-fluid">            
+	<div class="navbar navbar-expand-lg navbar-dark bg-dark">							  
+		<div class="row"  style="width:100%;">
+			<div class="col-md-2 navbar-point-dropdown">
+				<!-- <div class="navbar-nav" >										 -->
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span style="font-size:30px;margin-bottom:0px;">{{points}}</span>PT
+						<br style="margin-top:0px;margin-bottom:0px;">
+						<span style="margin-top:0px;margin-bottom:0px;">Balance points</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-style" aria-labelledby="navbarDropdown">							
+						<div class="col-md-3">
+							<div>								
+								<a class="dropdown-item">Earn Points</a>
+								<a class="dropdown-item">Redeem Points</a>                
+								<a class="dropdown-item">600 points will be expired by soon.</a>								
+							</div>               									       
+						</div>															
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-2 test">
+				<div class="nav-item dropdown">
+					<span class="text-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Shop By Category
+					</span>
+					<category-component></category-component>
+				</div>				
+			</div>
+			
+			<div class="col-md-4">				
+				<input class=" form-control input-icon" type="text" placeholder="Search" />									
+			</div>
+			<div class="col-md-1 text-danger">
+				<a type="button" class="btn btn-primary" routerLink="/myorders">My Orders</a>					
+			</div>
+			<div class="col-md-2 text-danger text-center">
+				<a type="button" class="btn btn-primary" routerLink="/mypoints">My Points</a>					
+			</div>
+			<div class="col-md-1 text-danger">				
+				<a type="button" class="btn btn-primary" routerLink="/cart">Cart <span class="badge">{{itemsInCart}}</span></a>
+			</div>
+		</div>
+	</div>
+</div>  
+
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!--<div class="container">
+	<div class="row" style="margin-top:5px;">
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/watch_1.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/watch_2.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/watch_3.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/watch_4.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+	</div>
+	<div class="row" style="margin-top:10px;margin-bottom:5px;">
+		<div class="col-md-3 col-sm-12  text-center  items-style items-style">
+			<img src="../../assets/shoe_1.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/shoe_2.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/shoe_3.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		<div class="col-md-3 col-sm-12  text-center  items-style">
+			<img src="../../assets/shoe_3.jpg">
+			<h3>Buy watch</h3>
+			<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+			<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+		</div>
+		</div>
+		<div class="row" style="margin-top:10px;margin-bottom:5px;">
+			<div class="col-md-3 col-sm-12  text-center  items-style">
+				<img src="../../assets/watch_1.jpg">
+				<h3>Buy watch</h3>
+				<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+				<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+			</div>
+			<div class="col-md-3 col-sm-12  text-center  items-style">
+				<img src="../../assets/watch_2.jpg">
+				<h3>Buy watch</h3>
+				<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+				<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+			</div>
+			<div class="col-md-3 col-sm-12  text-center  items-style">
+				<img src="../../assets/watch_3.jpg">
+				<h3>Buy watch</h3>
+				<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+				<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+			</div>
+			<div class="col-md-3 col-sm-12  text-center  items-style">
+				<img src="../../assets/watch_4.jpg">
+				<h3>Buy watch</h3>
+				<button class="btn btn-warning" (click)="addToCart()">Add to Cart</button><br/>
+				<button class="btn btn-warning" style="margin-top:10px;"(click)="addToWishList()">Add to WishList</button>
+			</div>
+		</div>
+</div>
+    -->
+
+
+

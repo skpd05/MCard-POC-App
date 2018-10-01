@@ -1,0 +1,237 @@
+<div class="loginCls">
+  <div class="container">
+    <div class="row">
+      <div class="bgCls" *ngIf="!register">
+        <div class="col-xs-12 col-sm-4">
+          <div class="login-frm">
+            <h2>Login</h2>
+
+            <div class="alert alert-danger" *ngIf="checkUserDetail" >Username password did not match</div> 
+            <form (ngSubmit)="loginUser(loginFrm.value)" #loginFrm="ngForm">
+
+
+              <div class="form-group" *ngIf="SSNContainer">
+                <label for="email">SSN No last 4 digits:</label>
+                <input 
+                type="ssn" 
+                class="form-control" 
+                id="ssn" 
+                placeholder="Enter last 4 digits of your SSN no" 
+                ngModel 
+                name="ssn" 
+                required 
+                #ssn="ngModel">
+                <div class="error" *ngIf="loginSSNError">Please enter valid ssn</div>
+              </div>
+               
+
+              <div class="form-group" *ngIf="loginContainer">
+                <label for="email">Card No / User Id:</label>
+                <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                placeholder="Enter Card No / User Id" 
+                ngModel 
+                name="email" 
+                required 
+                #email="ngModel">
+                <span class="error" *ngIf="!email.valid && email.touched">Please enter valid email</span>
+              </div>
+
+
+
+              <div class="form-group" *ngIf="loginContainer">
+                <label for="pwd">Password:</label>
+                <input 
+                type="password" 
+                class="form-control" 
+                id="pwd" 
+                placeholder="Enter Password here"
+                required
+                ngModel
+                #pass="ngModel"
+                name="pass"
+                >
+                <span class="error" *ngIf="!pass.valid && pass.touched">Please enter password</span>
+              </div>
+              <div class="checkbox" *ngIf="!SSNContainer">
+                <span> <a routerLink="forgotPasswod"><label>Forgot password?</label></a></span>
+                <span class="pull-right"> <a routerLink="forgotUser"><label>Forgot Userid?</label></a></span>
+              </div>
+              <div class="btnSubmitCls">
+                <button type="submit" class="btn btn-primary"  [disabled]="!loginFrm.valid">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+          <div class="registertxt">
+            <div class="register-header">Register to Loyalty Program</div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet
+            </p>
+            <div class="row product-cat">
+              <div class="col-md-3 category">
+                <i class="glyphicon glyphicon glyphicon-shopping-cart category-icon"> </i>
+                <div class="cat-title">Point Purchase</div>
+              </div>
+              <div class="col-md-3 category">
+                <i class="glyphicon glyphicon-gift category-icon"> </i>
+                <div class="cat-title">Gift Vouchers</div>
+              </div>
+              <div class="col-md-3 category">
+                <i class="glyphicon  glyphicon glyphicon-tags category-icon"> </i>
+                <div class="cat-title"> General Merchandise </div>
+              </div>
+              <div class="col-md-3 category">
+                <i class="glyphicon  glyphicon glyphicon-plane category-icon"> </i>
+                <div class="cat-title">Online Travel </div>
+              </div>
+            </div>
+            <div class="btnCls">
+              <button class="btn btn-primary" (click)="showRegister()">Register</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!--Registration Form start-->
+      <form>
+        <!-- start 1st step-->
+        <div class="bgCls" *ngIf="register">
+          <div class="col-xs-12 col-sm-12">
+            <div class="login-frm registration-frm">
+              <h2>Registration</h2>
+              <ul class="list-inline formStep">
+                <li><a href="#" [ngClass]="{'active': firstStep == true}">1<span>Step 1</span></a></li>
+                <li><a href="#" [ngClass]="{'active': secondStep == true}">2<span>Step 2</span></a></li>
+                <!--<li><a href="#" [ngClass]="{'active': thirdStep == true}">3<span>Step 3</span></a></li>-->
+                <li><a href="#" [ngClass]="{'active': fourtStep == true}">3<span>Step 3</span></a></li>
+              </ul>
+              <form  name="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+              <div *ngIf="firstStep" @slidleft>
+
+                <div class="form-group">
+                  <label for="ssnno">SSN Number <span class="red">*</span></label>
+                   <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="\d*" maxlength="9" required name="SSN" [(ngModel)]="userValues.SSN" class="form-control" id="ssnno" placeholder="Enter SSN No">
+            
+                </div>
+                <div class="form-group">
+                  <label for="cardno">Card No<span class="red">*</span></label>
+                  <input type="number" required min="16" name="cardNo" (blur)="validateCardNO($event.target.value)" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="123" [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" placeholder="Enter Card No">
+                   <div class="error" *ngIf="cardNoError">Not a valid card no</div>
+             
+                 
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date Of Birth <span class="red">*</span></label>
+                   <input type="date" (change)="validDate(f.value)" (blur)="validDate(f.value)" required name="dob" [(ngModel)]="userValues.dob" class="form-control" id="dob" placeholder="DD/MM/YYYY">
+                   <div class="error" *ngIf="!dateError">Age should be greater then 18</div>
+                </div>
+
+                <div class="btnSubmitCls">
+                    <button type="button" class="btn btn-primary">Cancle</button>
+                  <button type="button" [disabled]="!f.form.valid || !isValid" class="btn btn-primary" (click)="goToStep(2, f.value)">next</button>
+                </div>
+
+              </div>
+
+              <div *ngIf="secondStep" @slidleft>
+
+                <div class="form-group">
+                  <label for="userid">User ID <span class="red">*</span></label>
+                  <input type="text" required title="Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor "  (blur)="checkUserId($event.target.value)" [(ngModel)]="userValues.userId"  class="form-control" name="userId" id="userId" placeholder="Enter Card No">
+                  <div class="error" *ngIf = "userExist" >{{userError}}</div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password <span class="red">*</span></label>
+                   <input type="password" title="Password must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor " required (blur)="checkPassword($event.target.value)" class="form-control" name="password" [(ngModel)]="userValues.password" id="password" placeholder="Enter Password">
+                   <div class="error" *ngIf = "userPassword" >{{passwordError}}</div>
+                </div>
+                <div class="form-group">
+                  <label for="retypassword">Re-type Password <span class="red">*</span></label>
+                   <input type="password" required class="form-control" (blur)="confirmPassord($event.target.value)" name="re-password" [(ngModel)]="userValues.re-password" id="re-password" placeholder="Retype password">
+                   <div class="error" *ngIf = "confirmError" >Password did not match</div>
+                </div>
+
+                <div class="btnSubmitCls">
+                  <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(1)">Previous</button>
+                  <button type="button" class="btn btn-primary prevCls" >Cancel</button>
+                  <button type="button" class="btn btn-primary" id="userLevel" [disabled]="!f.form.valid || !isValid" (click)="goToStep(4, f.value)">next</button>
+                </div>
+
+              </div>
+
+            <!--  <div *ngIf="thirdStep" @slidleft>
+
+                <div class="form-group">
+                  <label for="ques1">Security Question 1 <span class="red">*</span></label>
+                  <select name="seq1" [(ngModel)]="userValues.seq1" id="seq1" class="form-control" id="ques1">
+                    <option>Select Security Question 1</option>
+                    <option>Select Security Question 1</option>
+                    <option>Select Security Question 1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <input name="seq1Ans" required [(ngModel)]="userValues.seq1Ans" id="seq1Ans"  type="text" class="form-control" id="seq1Ans" placeholder="Seq Ans">
+            
+                </div>
+                <div class="form-group">
+                    <label for="ques2">Security Question 2 <span class="red">*</span></label>
+                    <select (change)="checkSeq($event.target.value)" name="seq2" [(ngModel)]="userValues.seq2" id="seq2" class="form-control">
+                      <option>Select Security Question 1</option>
+                      <option>Select Security Question 2</option>
+                      <option>Select Security Question 2</option>
+                      </select>
+
+                      <div class="error" *ngIf="SeqError">Security Question should not be same as above </div>
+                  </div>
+                  <div class="form-group">
+                       <input type="text" required class="form-control" name="seq2Ans" [(ngModel)]="userValues.seq2Ans" id="seq2Ans" placeholder="Seq 2 Ans">
+                 </div>
+
+                <div class="btnSubmitCls">
+                  <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(2)">Previous</button>
+                  <button type="button" class="btn btn-primary prevCls">Cancel</button>
+                  <button type="button" class="btn btn-primary" [disabled]="!f.form.valid || !isValid" (click)="goToStep(4, f.value)">next</button>
+                </div>
+
+              </div> -->
+
+              <div *ngIf="fourtStep" @slidleft>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                   <input type="text" (blur)="validateEmail($event.target.value)"  class="form-control" name="email" [(ngModel)]="userValues.email"  id="email" placeholder="Enter Email">
+                   <div class="error" *ngIf="emailError">Please enter valid email</div>
+                </div>
+                <div class="form-group">
+                  <label for="mobileno">Mobile Number</label>
+                   <input type="number" min="10" (blur)="validateMobile($event.target.value)" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" class="form-control" name="mobile" [(ngModel)]="userValues.mobile" id="mobile" placeholder="Enter Mobile No">
+                   <div class="error" *ngIf="mobileNoError">Invalid mobile no</div>
+                </div>
+               
+
+                <div class="btnSubmitCls">
+                    <button type="button" class="btn btn-primary prevCls">Cancel</button>
+                  <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(3)">Previous</button>
+                  <button type="button" class="btn btn-primary prevCls" [disabled]="!f.form.valid || !isValid" (click)="goToStep(5, f.value || !isValid)" >Sign Up</button>
+                </div>
+
+              </div>
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!--End registration Form-->
+
+
+    </div>
+  </div>
+</div>
+
+<!--ent register-->

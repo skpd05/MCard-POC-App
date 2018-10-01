@@ -1,0 +1,14 @@
+.dropdown-menu-style{
+    width: 900px; 
+    text-align: left;  
+    /*top: 185%; */
+}
+.dropdown-menu-style .row{
+    padding: 10px;    
+}
+.dropdown-item{
+    padding-left: 0px;  
+}
+code{
+    background-color: red;
+}

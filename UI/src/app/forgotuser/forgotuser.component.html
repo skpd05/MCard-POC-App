@@ -1,0 +1,50 @@
+<div class="loginCls" >
+    <div class="container">
+      <div class="row">
+  
+  
+  <div class="bgCls">
+            <div class="col-xs-12 col-sm-12">
+              <div class="login-frm registration-frm">
+                <h2>Forgot User ID?</h2>
+                
+                <div>
+                  <form  (ngSubmit)="onSubmit(forgotuser)" #forgotuser="ngForm">
+                  <div class="form-group">
+                    <label for="email">Register Email ID</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="email" 
+                    placeholder="Register email id"
+                    ngModel
+                    name="email"
+                    required
+                    email
+                    #email="ngModel"
+                    validateEmail
+                    >
+                    <span class="error" *ngIf="!email.valid && email.touched">Please enter valid email</span>
+                  </div>
+                  <div class="help-block">
+                      <p>Your user Id will be sent to your registered mail id..
+                      </p>
+                  </div>
+                  <div class="btnSubmitCls">
+                    <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                    [disabled]="!forgotuser.valid">Send</button>
+                  </div>
+                  
+                  </form>
+                </div>
+              
+               </div>
+             </div>
+  
+             </div>
+             </div>
+             </div>
+  
+             </div>

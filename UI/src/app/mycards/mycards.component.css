@@ -1,0 +1,80 @@
+.leftPanelCls {
+    background: #fff;
+}
+
+
+
+/* left panel css */
+
+.sidenav {
+    height: 100%;
+    width: 235px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    box-shadow: 1px 1px 1px 1px #cccccc94;
+}
+.sidenav a {
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #333;
+    display: block;
+    border-bottom: solid 1px #eee;
+    margin: 4px;
+}
+
+.sidenav a:hover{
+    background-color: #2b3643; 
+    color: #fff;
+}
+
+
+.posi-rel{
+    position: relative;
+}
+.rght-panal {
+    margin-left: 250px;
+}
+
+.main-cards {
+    background: #ffffcc;
+}
+.tableHeaderCls li {
+    padding: 5px 3px;
+    width: 30%;
+    margin-right: 24px;
+    position: relative;
+}
+
+.tableHeaderCls {
+    background: #eee;
+    padding: 2px 7px;
+    margin-bottom: 18px;
+    margin-left: 0;
+}
+
+.active01{
+    background: #fff !important;
+    color: #333 !important;
+}
+.addcardCls {
+    background: #666666cf;
+    padding: 9px;
+    border-radius: 5%;
+}
+.addcardCls:hover {
+    background: #666;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/* left panel end */

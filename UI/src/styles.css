@@ -1,0 +1,645 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+a {
+    transition: all 0.5s ease-out;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+
+.navbar-default .navbar-brand{
+    color:#fff;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #005B75;
+}
+.headerCls {
+    background: #fff;
+    border-bottom: 2px solid #eee;
+}
+.headLeft {
+    font-size: 17px;
+    padding: 15px;
+    color: #005B75;
+    text-transform: capitalize;
+   
+}
+.headRight {
+    font-size: 16px;
+    padding: 15px;
+    color: #005B75;
+}
+.headRight a{
+    text-align: center;
+    text-decoration: none;
+    color: #005B75;
+}
+.headRight a:hover{
+    color:#F99D27;
+}
+.main-content {
+    width: 100%;
+    background: #f9f9f9;
+    border-bottom: 2px solid #eee;
+}
+.btn-main{padding:15px;}
+.main-text {
+    padding: 10px;
+    color: #005B75;
+    font-size: 23px;
+    border-radius: 2px;
+    margin: 0px;
+    text-transform: uppercase;
+}
+.navbar{margin-bottom: 0;}
+.firstltr{
+    font-weight: 600;
+}
+.btn-main button {
+    border: none;
+    background: #F99D27;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 9px 33px;
+    text-transform: uppercase;
+}
+
+.btn-main button:hover{
+    background: #005B75; color: #fff;
+    transition: all 0.5s ease-out;
+}
+p.someTxt {
+    width: 600px;
+    margin: 15px auto;
+    color: #666;
+    font-style: italic;
+}
+.main-footer {
+    background: #2b3643;
+    padding: 20px;
+    position: relative;
+}
+.explore h4 {
+    color: #fff;
+}
+.explore h4:after {
+    content: '';
+    height: 1px;
+    width: 86px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+}
+
+.ratecharge h4 {
+    color: #fff;
+}
+.ratecharge h4:after {
+    content: '';
+    height: 1px;
+    width: 178px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+}
+
+.initiative h4 {
+    color: #fff;
+}
+.initiative h4:after {
+    content: '';
+    height: 1px;
+    width: 99px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+}
+
+.other h4 {
+    color: #fff;
+}
+.other h4:after {
+    content: '';
+    height: 1px;
+    width: 90px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+}
+
+.carousel-inner .item:after {
+    content: "";
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.4);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+.loginCls{
+    background: url('assets/login-bg2.png');
+    width:100%;
+    background-size: cover; 
+}
+
+.login-frm {
+    margin: 50px auto;
+    border: 1px solid #e6e6e6;
+    border-radius: 11px;
+    padding: 24px;
+    box-shadow: 1px 3px 13px #888888;
+   background: #eec341b3;
+}
+.login-frm h2{
+    margin-top: 0;
+}
+.bgCls2 {
+    padding: 20px;
+}
+.catalog-link li {
+    display: block;
+}
+
+.catalog-link li a {
+    display: block;
+    padding: 5px;
+    color: #2b3643;
+}
+.bgCls2 h2 {
+    text-align: left;
+    display: block;
+    margin-bottom: 28px;
+    padding: 0;
+    font-size: 32px;
+    margin-top: 0px;
+}
+
+.navbar-inverse {
+    background-color: #2b3643;
+    border-color: #2b3643;
+    border-radius: 0px;
+}
+
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+    background-color: #2b3643;
+}
+
+
+.affix + .container {
+    padding-top: 70px;
+}
+.navbar-inverse.affix {
+    /*top: 0;*/
+    width: 100%;
+    z-index: 9999 !important;
+    background-color: #2b3643 !important;
+}
+.navbar-inverse .navbar-nav>li>a{color: #fff;}
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.checkbox label, .radio label {
+    padding-left: 2px;
+}
+
+span.registerCls {
+    margin: 0 0 0 25px;
+}
+.btnCls {
+    padding: 20px;
+    text-align: center;
+}
+.btnCls button {
+    padding: 13px;
+    width: 174px;
+    background: #e87600;
+      border: 1px solid #fff;
+    font-weight: bold;
+    margin: 0 auto !important;
+    
+   
+}
+.btnCls button:hover{
+    background: #f8b966 !important;
+     border: solid 0px #e87600;
+}
+.btnSubmitCls{
+    text-align: center;
+}
+.btnSubmitCls button {
+    padding: 8px 18px;
+    background: #e87600;
+    border: 1px solid #fff;
+    font-weight: bold;
+    margin: 2px;
+}
+.btnSubmitCls .prevCls{
+    background: #b87e40;
+}
+
+.btnSubmitCls button:hover{
+    background: #e87600 !important;
+    
+}
+
+.registertxt {
+    padding: 50px;
+    color: #333;
+    font-size: 16px;
+}
+
+.explore p{
+    color:#fff;
+}
+.ratecharge p a{
+    color:#fff;
+}
+.sqCls label{
+    display: block;
+}
+
+.borderLftandRight{
+    border-right: 2px solid #fff !important;
+    border-left: 2px solid #fff !important;
+}
+.securityQCls{
+    background: #fff;
+    padding-right: 174px;
+    color:#000;
+     border:none;
+}
+.securityQCls:hover{
+    background: #fff;
+    padding-right: 174px;
+    color:#000;
+     border:none;
+}
+.securityQCls:focus{
+    background: #fff;
+    padding-right: 174px;
+    color:#000;
+    border:none;
+}
+
+.registration-frm {
+    
+   width: 400px;
+   position: relative;
+   overflow: hidden;
+   min-height: 310px;
+}
+
+.formStep {
+    position: relative;
+    z-index: 1;
+}
+.formStep:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    top: 25px;
+    background-color: #eee;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.formStep li {
+    margin: 5px 18px;
+    position: relative;
+}
+
+.formStep li a.active {
+    background: #e87600;
+    color: #fff;
+    border: solid 2px #fff;
+}
+
+.formStep li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 38px;
+    border: solid 2px #666;
+    text-decoration: none;
+}
+
+.formStep span {
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.formStep li a:hover {
+    background: #e87600;
+    color: #fff;
+    border: solid 2px #fff;
+}
+
+
+
+/* catalog css*/
+.product-cat img{
+    border-radius: 50%;
+  
+    width: 50%;
+}
+
+.cat-title{
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.category i:hover{
+   
+ border: 1px solid #eee;
+ color: #e87600;
+   
+}
+
+.category{
+    text-align: center;
+    padding-bottom : 30px
+}
+
+.category-icon{    
+    border : 1px solid #000;
+    border-radius: 50%;
+    color: #f79e1b
+   
+}
+
+
+.product-cat{
+    margin-top:10px;
+        position: relative;
+    top: 10px;
+}
+
+.register-header{
+    margin-top:20px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.registertxt .btnCls{
+   padding-top : 0px
+}
+
+
+
+/* Catlog */
+
+
+/*panel*/
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.panel-heading {
+    border-color:#eff2f7 ;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.panel-title {
+    color: #2A3542;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+.error{
+    background: none;
+    color:#ff0000;
+    font-size: 15px;
+}
+
+
+/*product list*/
+
+.prod-cat li a{
+    border-bottom: 1px dashed #d9d9d9;
+}
+
+.prod-cat li a {
+    color: #3b3b3b;
+}
+
+.prod-cat li ul {
+    margin-left: 30px;
+}
+
+.prod-cat li ul li a{
+    border-bottom:none;
+}
+.prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
+    background: none;
+    color: #ff7261;
+}
+
+.pro-lab{
+    margin-right: 20px;
+    font-weight: normal;
+}
+
+.pro-sort {
+    padding-right: 20px;
+    float: left;
+}
+
+.pro-page-list {
+    margin: 5px 0 0 0;
+}
+
+.product-list img{
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.product-list .pro-img-box {
+    position: relative;
+}
+.adtocart {
+    background: #fc5959;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border: 3px solid #fff;
+    left: 45%;
+    bottom: -25px;
+    position: absolute;
+}
+
+.adtocart i{
+    color: #fff;
+    font-size: 25px;
+    line-height: 42px;
+    padding:0px;
+}
+
+.pro-title {
+    color: #5A5A5A;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.product-list .price {
+    color:#fc5959 ;
+    font-size: 15px;
+}
+
+.pro-img-details {
+    margin-left: -15px;
+}
+
+.pro-img-details img {
+    width: 100%;
+}
+
+.pro-d-title {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+.product_meta {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.product_meta span {
+    display: block;
+    margin-bottom: 10px;
+}
+.product_meta a, .pro-price{
+    color:#fc5959 ;
+}
+
+.pro-price, .amount-old {
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.amount-old {
+    text-decoration: line-through;
+}
+
+.quantity {
+    width: 120px;
+}
+
+.pro-img-list {
+    margin: 10px 0 0 -15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.pro-img-list a {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.pro-d-head {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.panel-body  i{
+    font-size:14px !important;
+}
+
+/*.panel:hover{
+    border:1px solid #ccc;
+    transition: 0.5s
+}
+.keywordCls{
+    border:0px solid #ccc;
+    transition: 0.5s
+}*/
+.pro-img-box{
+    padding:10px;
+}
+
+.catolog-bg {
+    background: #eee;
+}
+.catolog-bg h3 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 35px;
+    padding: 10px;
+    margin-top: 10px;
+}
+/*end catalog css*/
+.help-block p {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    color: #545454;
+}
+.form-group{
+    position: relative;
+}
+.error {
+    position: absolute;
+    bottom: -15px;
+    left: 5px;
+    padding: 3px 10px;
+    background: #333;
+    font-size: 11px;
+    color: #fff!important;
+    z-index: 99;
+    white-space: nowrap;
+}
+.login-frm .form-group{
+    margin-bottom: 25px;
+}
+@media only screen and (max-width: 767px) {
+
+    .registertxt {
+        padding: 0;
+
+    }
+
+    .formStep li {
+        margin: 5px 10px;
+    }
+    .registration-frm{
+    width:100%
+}
+
+.login-frm {
+    margin: 13px auto;
+}
+}
+

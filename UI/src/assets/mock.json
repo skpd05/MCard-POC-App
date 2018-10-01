@@ -1,0 +1,101 @@
+
+{
+    "items" : [
+        {
+            "date": "09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "TACO BELL",
+            "trans_amount": 60.23,
+            "earned_points": 100,
+            "card_type": "DB"
+        },
+        {
+            "date": "09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "B&H PHOTO 800-000-096",
+            "trans_amount": 7560,
+            "earned_points": 100,
+            "card_type": "CR"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "WALLGREENS #13162",
+            "trans_amount": 10,
+            "earned_points": 100,
+            "card_type": "CR"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "AEROPOSTLE #1080",
+            "trans_amount": 60,
+            "earned_points": 1210,
+            "card_type": "DB"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "GNC #05217",
+            "trans_amount": 623,
+            "earned_points": 140,
+            "card_type": "CR"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "COLES GROUP #8787-088",
+            "trans_amount": 60,
+            "earned_points": 100,
+            "card_type": "DB"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "AEROPOSTLE #1252",
+            "trans_amount": 65,
+            "earned_points": 103,
+            "card_type": "CR"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "AEROPOSTLE #1231",
+            "trans_amount": 601,
+            "earned_points": 120,
+            "card_type": "DB"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "WALLGREENS #13162",
+            "trans_amount": 60,
+            "earned_points": 100,
+            "card_type": "CR"
+        },{
+            "date":"09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "AEROPOSTLE #2232",
+            "trans_amount": 60,
+            "earned_points": 100,
+            "card_type": "DB"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 89988990,
+            "trans_description": "AEROPOSTLE #22322",
+            "trans_amount": 8923,
+            "earned_points": 100,
+            "card_type": "CR"
+        },
+        {
+            "date":"09/12/2018",
+            "car_number": 11221121,
+            "trans_description": "AEROPOSTLE #22344232",
+            "trans_amount": 39,
+            "earned_points": 100,
+            "card_type": "DB"
+        }
+
+]
+}
