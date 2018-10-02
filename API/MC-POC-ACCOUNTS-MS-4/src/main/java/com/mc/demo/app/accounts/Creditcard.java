@@ -7,7 +7,7 @@ public class Creditcard {
 	 private String bankProductcode;
 	 private String programID;
 	 private String accountStatusID = null;
-	 private String pointsTotal;
+	 private double pointsTotal;
 	 private String houseHoldID;
 	/**
 	 * @return the credicardnumber
@@ -69,18 +69,7 @@ public class Creditcard {
 	public void setAccountStatusID(String accountStatusID) {
 		this.accountStatusID = accountStatusID;
 	}
-	/**
-	 * @return the pointsTotal
-	 */
-	public String getPointsTotal() {
-		return pointsTotal;
-	}
-	/**
-	 * @param pointsTotal the pointsTotal to set
-	 */
-	public void setPointsTotal(String pointsTotal) {
-		this.pointsTotal = pointsTotal;
-	}
+
 	/**
 	 * @return the houseHoldID
 	 */
@@ -92,5 +81,11 @@ public class Creditcard {
 	 */
 	public void setHouseHoldID(String houseHoldID) {
 		this.houseHoldID = houseHoldID;
+	}
+	public double getPointsTotal() {
+		return pointsTotal;
+	}
+	public void setPointsTotal(double pointsTotal) {
+		this.pointsTotal = pointsTotal;
 	}
 }

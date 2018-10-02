@@ -1,24 +1,27 @@
-package com.mc.demo.app.accounts.model;
+package com.example.demo.dummydata.model;
 
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
+
 
 @Entity
 public class Account {
 	
-	
-	private String custid; 
+	 
 	@Id
 	private String accountnumber; 
+	private String custid;
 	private String bankprdcode; 
 	private String programid; 
 	private String accountstatusid; 
 	private double pointsaccured; 
 	private String householdid; 
 	private String accounttype; 
-	private String created_at; 
-	private String updated_at;
+	private Timestamp created_at ;
+	private Timestamp updated_at;
 	/**
 	 * @return the custid
 	 */
@@ -80,7 +83,6 @@ public class Account {
 		this.accountstatusid = accountstatusid;
 	}
 
-	
 	/**
 	 * @return the householdid
 	 */
@@ -105,28 +107,16 @@ public class Account {
 	public void setAccounttype(String accounttype) {
 		this.accounttype = accounttype;
 	}
-	/**
-	 * @return the created_at
-	 */
-	public String getCreated_at() {
+	public Timestamp getCreated_at() {
 		return created_at;
 	}
-	/**
-	 * @param created_at the created_at to set
-	 */
-	public void setCreated_at(String created_at) {
+	public void setCreated_at(Timestamp created_at) {
 		this.created_at = created_at;
 	}
-	/**
-	 * @return the updated_at
-	 */
-	public String getUpdated_at() {
+	public Timestamp getUpdated_at() {
 		return updated_at;
 	}
-	/**
-	 * @param updated_at the updated_at to set
-	 */
-	public void setUpdated_at(String updated_at) {
+	public void setUpdated_at(Timestamp updated_at) {
 		this.updated_at = updated_at;
 	}
 	public double getPointsaccured() {
@@ -135,6 +125,7 @@ public class Account {
 	public void setPointsaccured(double pointsaccured) {
 		this.pointsaccured = pointsaccured;
 	}
+
 	
 	
 	

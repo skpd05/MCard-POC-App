@@ -92,8 +92,9 @@ public class EnrollServiceImpl implements EnrollService {
 	 * demo.app.enrollement.model.UserProfile)
 	 */
 	@Override
-	public boolean createUserProfile(UserProfile userProfile) {
+	public boolean createUserProfile(UserProfile userProfile) throws Exception{
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + userProfile.getAccountNumber());
+		
 		Userprofile userPro = new Userprofile();
 		userPro.setUserid(userProfile.getUserId());
 		userPro.setPswd(userProfile.getPassword());

@@ -69,7 +69,7 @@ public class EnrollmentController {
 			cardEnroll.setCardNumber(userprofile.getAccountNumber());
 			cardEnroll.setEnrolledAlready(false);
 			cardEnroll.setMessage("User creation failed");
-			throw new ApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+		//	throw new ApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 		return new ResponseEntity<CardEnrolled>(cardEnroll, HttpStatus.OK);
 	}

@@ -14,7 +14,7 @@ public class Account {
 	private String bankprdcode; 
 	private String programid; 
 	private String accountstatusid; 
-	private String pointsaccured; 
+	private double pointsaccured; 
 	private String householdid; 
 	private String accounttype; 
 	private String created_at; 
@@ -79,18 +79,7 @@ public class Account {
 	public void setAccountstatusid(String accountstatusid) {
 		this.accountstatusid = accountstatusid;
 	}
-	/**
-	 * @return the pointsaccured
-	 */
-	public String getPointsaccured() {
-		return pointsaccured;
-	}
-	/**
-	 * @param pointsaccured the pointsaccured to set
-	 */
-	public void setPointsaccured(String pointsaccured) {
-		this.pointsaccured = pointsaccured;
-	}
+	
 	/**
 	 * @return the householdid
 	 */
@@ -138,6 +127,12 @@ public class Account {
 	 */
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
+	}
+	public double getPointsaccured() {
+		return pointsaccured;
+	}
+	public void setPointsaccured(double pointsaccured) {
+		this.pointsaccured = pointsaccured;
 	}
 	
 	

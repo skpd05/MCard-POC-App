@@ -4,7 +4,7 @@
 package com.mc.demo.app.enrollement;
 
 /**
- * @author Wipro
+ * @author skpd
  *
  */
 public class CardEnrolled {

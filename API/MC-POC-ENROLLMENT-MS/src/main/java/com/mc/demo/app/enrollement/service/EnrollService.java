@@ -10,7 +10,7 @@ public interface EnrollService {
 	
 	public CardEnrolled validateCard(EnrollCard enrollCard);
 	
-	public boolean createUserProfile(UserProfile userProfile);
+	public boolean createUserProfile(UserProfile userProfile) throws Exception;
 	
 	public boolean isUserIdAvailable(String userid);
 	
