@@ -15,7 +15,7 @@ import com.mc.demo.app.enrollement.service.EnrollService;
 import com.mc.demo.app.enrollment.exception.ApplicationException;
 
 @RestController
-@RequestMapping("/v1/api/loyalty/enroll")
+@RequestMapping("/api/v1/loyalty/enroll")
 public class EnrollmentController {
 
 	@Autowired
@@ -23,9 +23,9 @@ public class EnrollmentController {
 
 	@RequestMapping(value = "/validateCard", method = RequestMethod.POST)
 	public ResponseEntity<CardEnrolled> validateEnrollment(@RequestBody @Validated EnrollCard enrollCard,
-			@RequestHeader(name = "uuid", required = true) String uuid,
-			@RequestHeader(name = "client_id", required = true) String clientId,
-			@RequestHeader(name = "Accept", required = true) String accept) {
+			@RequestHeader(name = "uuid", required = false) String uuid,
+			@RequestHeader(name = "client_id", required = false) String clientId,
+			@RequestHeader(name = "Accept", required = false) String accept) {
 
 		CardEnrolled cardEnrolled;
 		try {
@@ -53,9 +53,9 @@ public class EnrollmentController {
 
 	@RequestMapping(value = "/createProfile", method = RequestMethod.POST)
 	public ResponseEntity<CardEnrolled> createUserProfile(@RequestBody @Validated UserProfile userprofile,
-			@RequestHeader(name = "uuid", required = true) String uuid,
-			@RequestHeader(name = "client_id", required = true) String clientId,
-			@RequestHeader(name = "Accept", required = true) String accept) {
+			@RequestHeader(name = "uuid", required = false) String uuid,
+			@RequestHeader(name = "client_id", required = false) String clientId,
+			@RequestHeader(name = "Accept", required = false) String accept) {
 
 		CardEnrolled cardEnroll = new CardEnrolled();
 		try {
@@ -76,9 +76,9 @@ public class EnrollmentController {
 
 	@RequestMapping(value = "/ulogin", method = RequestMethod.POST)
 	public ResponseEntity<LoginResponse> loginUser(@RequestBody @Validated UserProfile login,
-			@RequestHeader(name = "uuid", required = true) String uuid,
-			@RequestHeader(name = "client_id", required = true) String clientId,
-			@RequestHeader(name = "Accept", required = true) String accept) {
+			@RequestHeader(name = "uuid", required = false) String uuid,
+			@RequestHeader(name = "client_id", required = false) String clientId,
+			@RequestHeader(name = "Accept", required = false) String accept) {
 		return new ResponseEntity<LoginResponse>(enrollService.ulogin(login), HttpStatus.OK);
 	}
 }

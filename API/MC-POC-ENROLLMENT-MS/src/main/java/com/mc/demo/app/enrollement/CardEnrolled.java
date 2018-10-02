@@ -20,6 +20,14 @@ public class CardEnrolled {
 	private String userid;
 
 	
+	public CardEnrolled(String msg){
+		this.message = msg;
+	}
+	
+	public CardEnrolled(){
+
+	}
+	
 	/**
 	 * @return the programID
 	 */

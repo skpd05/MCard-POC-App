@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mc.demo.app.accounts.AccountSummary;
 import com.mc.demo.app.accounts.Address;
 import com.mc.demo.app.accounts.Creditcard;
+import com.mc.demo.app.accounts.Points;
 import com.mc.demo.app.accounts.exception.ObjectNotFoundException;
 import com.mc.demo.app.accounts.model.Account;
 import com.mc.demo.app.accounts.model.AccountRepository;
@@ -67,5 +68,27 @@ public class AccountServiceImpl implements AccountService {
 		accountSummary.setAddress(address);
 		return accountSummary;
 	}
+
+	@Override
+	public boolean adjustPoints(Points points) {
+		try {
+			Account account = accRepo.findByAccountnumber(points.getCardNumber());
+			double pointsTotal = account.getPointsaccured();
+			if ("add".equalsIgnoreCase(points.getOpertaion())) {
+				account.setPointsaccured(pointsTotal + points.getPointsvalue());
+			} else if ("minus".equalsIgnoreCase(points.getOpertaion())) {
+				if(points.getPointsvalue() > pointsTotal){
+					return false;
+				}
+				account.setPointsaccured(pointsTotal - points.getPointsvalue());
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 
 }

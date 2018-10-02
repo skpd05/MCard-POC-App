@@ -22,7 +22,7 @@ import com.mc.demo.app.enrollement.model.Userprofile;
 import com.mc.demo.app.enrollment.exception.ObjectNotFoundException;
 
 /**
- * @author Wipro
+ * @author sk
  *
  */
 @Service("enrollService")
@@ -39,6 +39,8 @@ public class EnrollServiceImpl implements EnrollService {
 
 	@Autowired
 	CustAccRefRepository custAccRefRepo;
+	
+	
 
 	/*
 	 * (non-Javadoc)
@@ -49,9 +51,6 @@ public class EnrollServiceImpl implements EnrollService {
 	 */
 	@Override
 	public CardEnrolled validateCard(EnrollCard enrollCard) {
-
-		System.out.println("***************************          " + enrollCard.getCardnumber());
-
 		String cardNumber = enrollCard.getCardnumber();
 		Account acc = accountRepo.findByAccountnumber(enrollCard.getCardnumber());
 		if (acc == null) {
@@ -61,11 +60,11 @@ public class EnrollServiceImpl implements EnrollService {
 		Customer customer = custRepo.getCustBycustid(acc.getCustid());
 
 		if (!enrollCard.getSsn().equalsIgnoreCase(customer.getSsn())) {
-			throw new ObjectNotFoundException("failed Validation");
+			throw new ObjectNotFoundException("failed SSN Validation");
 		}
 
 		if (enrollCard.getZipcode() != null && !enrollCard.getZipcode().equalsIgnoreCase(customer.getZipcode())) {
-			throw new ObjectNotFoundException("failed Validation");
+			throw new ObjectNotFoundException("failed zipcode Validation");
 		}
 
 		CardEnrolled cardEnrolObj = new CardEnrolled();
@@ -93,8 +92,6 @@ public class EnrollServiceImpl implements EnrollService {
 	 */
 	@Override
 	public boolean createUserProfile(UserProfile userProfile) throws Exception{
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + userProfile.getAccountNumber());
-		
 		Userprofile userPro = new Userprofile();
 		userPro.setUserid(userProfile.getUserId());
 		userPro.setPswd(userProfile.getPassword());
@@ -109,7 +106,7 @@ public class EnrollServiceImpl implements EnrollService {
 		userPro.setSqa2(userProfile.getSQA2());
 		userPro.setSqa3(userProfile.getSQA3());
 		userPro.setCreated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
-		userPro.setUpdated_at(java.sql.Timestamp.valueOf("2018-11-15 15:30:14.332"));
+		userPro.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
 		userRepo.save(userPro);
 		return true;
 	}

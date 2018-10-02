@@ -9,7 +9,7 @@ import com.mc.demo.app.redeem.RedemptionTransaction;
 
 public interface RedemptionService {
 	
-	public boolean save(RedemptionTransaction transcation);
+	public boolean save(RedemptionTransaction transcation) throws Exception;
 	
 	@Query("SELECT * FROM Redemptiontransaction r where r.redeemid = :cardnumber")
 	public List<RedemptionTransaction> getHistoryByCard(@Param("cardnumber") String cardnumber);

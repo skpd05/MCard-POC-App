@@ -17,7 +17,7 @@ import com.mc.demo.app.redeem.exception.ObjectNotFoundException;
 import com.mc.demo.app.redeem.service.RedemptionService;
 
 @RestController
-@RequestMapping("/v1/api/loyalty/redemption")
+@RequestMapping("/api/v1/loyalty/redemption")
 public class RedeemServiceController {
 
 	@Autowired
@@ -29,17 +29,22 @@ public class RedeemServiceController {
 			@RequestHeader(name = "client_id", required = true) String clientId,
 			@RequestHeader(name = "Accept", required = true) String accept) {
 
-		if (redeemService.save(redeem)) {
-			return "succesful";
+		try {
+			if (redeemService.save(redeem)) {
+				return "successful";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return "unsuccessful";
 	}
 
 	@RequestMapping(value = "/historybycard/{cardnumber}", method = RequestMethod.GET)
 	public ResponseEntity<List<RedemptionTransaction>> getHistorybyCardNumber(@PathVariable String cardnumber,
-			@RequestHeader(name = "uuid", required = true) String uuid,
-			@RequestHeader(name = "client_id", required = true) String clientId,
-			@RequestHeader(name = "Accept", required = true) String accept) {
+			@RequestHeader(name = "uuid", required = false) String uuid,
+			@RequestHeader(name = "client_id", required = false) String clientId,
+			@RequestHeader(name = "Accept", required = false) String accept) {
 		List<RedemptionTransaction> historyList = redeemService.getHistoryByCard(cardnumber);
 
 		if (null == historyList) {
@@ -50,9 +55,9 @@ public class RedeemServiceController {
 
 	@RequestMapping(value = "/historybycustId/{custid}", method = RequestMethod.GET)
 	public ResponseEntity<List<RedemptionTransaction>> getHistorybyCustID(@PathVariable(value = "custid") String custId,
-			@RequestHeader(name = "uuid", required = true) String uuid,
-			@RequestHeader(name = "client_id", required = true) String clientId,
-			@RequestHeader(name = "Accept", required = true) String accept) {
+			@RequestHeader(name = "uuid", required = false) String uuid,
+			@RequestHeader(name = "client_id", required = false) String clientId,
+			@RequestHeader(name = "Accept", required = false) String accept) {
 		List<RedemptionTransaction> historyList = redeemService.getHistoryByCustomerID(custId);
 
 		if (null == historyList) {
