@@ -30,20 +30,9 @@ export class LoginComponent implements OnInit {
  userExist : any = false;
  checkUserDetail : any = false ;
  userValues : any = {
-   cardNo : null,
-   SSN : null,
-   DOB :  null,
-   email :null,
-   mobile :null,
-   userId : null,
-   password : null,
-   seq1 : null,
-   seqAns1 : null,
-   seq2 : null,
-   seqAns2 : null
    };
 
-
+   getUserFOrmDetails : any = {}
    dateError : any = true;
    userError : any
    userPassword : any
@@ -273,11 +262,11 @@ export class LoginComponent implements OnInit {
         zipcode : "654321"
       }
 
-      //this.userValues.cardNo  = "";
+      //this.getUserFOrmDetails :.cardNo  = "";
 
-     this.userValues.cardnumber = form.cardNo
-     this.userValues.ssn = form.SSN
-     this.userValues.dob = form.dob
+     this.getUserFOrmDetails.cardnumber = form.cardNo
+     this.getUserFOrmDetails.ssn = form.SSN
+     this.getUserFOrmDetails.dob = form.dob
     
       this.enrolmentService.getvalidateCard(validateData)
 	     .subscribe( data => {
@@ -304,8 +293,8 @@ export class LoginComponent implements OnInit {
     }
     if(step==3){
 
-     this.userValues.userid = form.userId
-     this.userValues.pswd = form.password
+     this.getUserFOrmDetails.userid = form.userId
+     this.getUserFOrmDetails.pswd = form.password
 
       this.firstStep = false;
       this.secondStep = false;
@@ -313,10 +302,12 @@ export class LoginComponent implements OnInit {
     }
     if(step==4){
 
-       this.userValues.seqAns1 = form.seq2Ans
-       this.userValues.seqAns2 = form.seq1Ans
-       this.userValues.seq1 = form.seq1
-       this.userValues.seq2 = form.seq2
+       this.getUserFOrmDetails.userid = form.userId
+       this.getUserFOrmDetails.pswd = form.password
+       this.getUserFOrmDetails.seqAns1 = form.seq2Ans
+       this.getUserFOrmDetails.seqAns2 = form.seq1Ans
+       this.getUserFOrmDetails.seq1 = form.seq1
+       this.getUserFOrmDetails.seq2 = form.seq2
 
       this.firstStep = false;
       this.secondStep = false;
@@ -326,18 +317,24 @@ export class LoginComponent implements OnInit {
 
     if(step==5){
 
-     this.userValues.emailid = form.email
-     this.userValues.mobilenumber = form.mobile
+     this.getUserFOrmDetails.emailid = form.email
+     this.getUserFOrmDetails.mobilenumber = form.mobile
+     this.getUserFOrmDetails.sqa1 = "maiden"
+     this.getUserFOrmDetails.sqa2 = "pet"
+     this.getUserFOrmDetails.sqa3 = "last"
+     this.getUserFOrmDetails.sq1 = "what is your maiden name?"
+     this.getUserFOrmDetails.sq2 = "what is your pet name?"
+     this.getUserFOrmDetails.sq3 = "what is last pet name?"
+     this.getUserFOrmDetails.communicationaddress="SOme address" 
 
 
-
-     this.enrolmentService.createProfile(this.userValues)
+     this.enrolmentService.createProfile(this.getUserFOrmDetails)
 	     .subscribe( data => {
           console.log(data)
           this.router.navigate(['/dashboard'])
        },
        error => console.log(error));
-       console.log(this.userValues)
+       console.log(this.getUserFOrmDetails)
     }
 
     

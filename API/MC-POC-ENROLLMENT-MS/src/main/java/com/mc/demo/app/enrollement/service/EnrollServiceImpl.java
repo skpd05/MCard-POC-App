@@ -112,6 +112,7 @@ public class EnrollServiceImpl implements EnrollService {
 			userPro.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
 			userRepo.save(userPro);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new ApplicationException("User profile creation failed");
 		}
 		return true;

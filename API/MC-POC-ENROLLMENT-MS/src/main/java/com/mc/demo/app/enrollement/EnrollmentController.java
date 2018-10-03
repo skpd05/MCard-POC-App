@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mc.demo.app.enrollement.service.EnrollService;
 import com.mc.demo.app.enrollment.exception.ApplicationException;
+import com.mc.demo.app.enrollment.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/api/v1/loyalty/enroll")
@@ -37,12 +38,18 @@ public class EnrollmentController {
 			@RequestHeader(name = "client_id", required = false) String clientId,
 			@RequestHeader(name = "Accept", required = false) String accept) {
 
-		CardEnrolled cardEnrolled;
+		CardEnrolled cardEnrolled = new CardEnrolled();
 		try {
 			cardEnrolled = enrollService.validateCard(enrollCard);
-		} catch (Exception e) {
+		} catch(ObjectNotFoundException obn){
+			System.out.println(obn.getMessage());
+			logger.error(obn.getMessage());
+			return new ResponseEntity<>(cardEnrolled, HttpStatus.NOT_FOUND);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
 			logger.error(e.getMessage());
-			return new ResponseEntity<>(new CardEnrolled(), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(cardEnrolled, HttpStatus.PRECONDITION_FAILED);
 		}
 
 		return new ResponseEntity<>(cardEnrolled, HttpStatus.OK);
