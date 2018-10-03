@@ -10,7 +10,7 @@ public class EnrollCard {
 	@NotEmpty(message = "SSN is required")
 	private String ssn;
 
-	@NotEmpty(message = "DOB is required")
+	//@NotEmpty(message = "DOB is required")
 	private String dob;
 
 	private String zipcode;

@@ -120,7 +120,7 @@
                 </div>
                 <div class="form-group">
                   <label for="cardno">Card No<span class="red">*</span></label>
-                  <input type="number" required min="16" name="cardNo" (blur)="validateCardNO($event.target.value)" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="123" [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" placeholder="Enter Card No">
+                  <input type="number" required min="16" name="cardNo" (blur)="validateCardNO($event.target.value)" maxlength="20" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="123" [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" placeholder="Enter Card No">
                    <div class="error" *ngIf="cardNoError">Not a valid card no</div>
              
                  

@@ -16,7 +16,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class EnrolmentService {
 
-  apiURL : any = "https://enrollment.apps.dev.pcf-aws.com/v1/api/";
+  apiURL : any = "http://localhost:8080/api/v1/";
   validateCard : any =  this.apiURL + "loyalty/enroll/validateCard";
   checkUserIDUrl : any = this.apiURL + "loyalty/enroll/checkUserID" ;
   createProfileUrl : any = this.apiURL + "loyalty/enroll/createProfile";

@@ -3,9 +3,11 @@ package com.mc.demo.app.enrollement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,7 @@ import com.mc.demo.app.enrollment.exception.ApplicationException;
 
 @RestController
 @RequestMapping("/api/v1/loyalty/enroll")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class EnrollmentController {
 
 
@@ -27,6 +30,7 @@ public class EnrollmentController {
 	@Autowired
 	EnrollService enrollService;
 
+	@CrossOrigin
 	@PostMapping(value = "/validateCard")
 	public ResponseEntity<CardEnrolled> validateEnrollment(@RequestBody @Validated EnrollCard enrollCard,
 			@RequestHeader(name = "uuid", required = false) String uuid,
@@ -44,6 +48,7 @@ public class EnrollmentController {
 		return new ResponseEntity<>(cardEnrolled, HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/checkUserID/{userid}", method = RequestMethod.GET)
 	public String verifyUserId(@PathVariable(value = "userid") String userid,
 			@RequestHeader(name = "uuid", required = false) String uuid,
@@ -57,6 +62,7 @@ public class EnrollmentController {
 
 	}
 
+	@CrossOrigin
 	@PostMapping(value = "/createProfile")
 	public ResponseEntity<CardEnrolled> createUserProfile(@RequestBody @Validated UserProfile userprofile,
 			@RequestHeader(name = "uuid", required = false) String uuid,
@@ -79,11 +85,17 @@ public class EnrollmentController {
 		return new ResponseEntity<>(cardEnroll, HttpStatus.OK);
 	}
 
+	
+	
+//	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	@PostMapping(value = "/ulogin")
 	public ResponseEntity<LoginResponse> loginUser(@RequestBody @Validated Login login,
 			@RequestHeader(name = "uuid", required = false) String uuid,
 			@RequestHeader(name = "client_id", required = false) String clientId,
 			@RequestHeader(name = "Accept", required = false) String accept) {
-		return new ResponseEntity<>(enrollService.ulogin(login), HttpStatus.OK);
+//		ResponseEntity<LoginResponse> entity =  new ResponseEntity<>(enrollService.ulogin(login), HttpStatus.OK);
+//		 HttpHeaders headers = entity.getHeaders();
+//		 headers.add("Access-Control-Allow-Origin", "http://localhost:4200");
+ 		return new ResponseEntity<>(enrollService.ulogin(login), HttpStatus.OK);
 	}
 }

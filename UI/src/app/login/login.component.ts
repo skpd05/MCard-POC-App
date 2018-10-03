@@ -83,13 +83,13 @@ export class LoginComponent implements OnInit {
     console.log(data);
      this.enrolmentService.userLogin(validateData)
 	     .subscribe( data => {
-          console.log(data.enrolledAlready)
-          if(data.enrolledAlready)
+          console.log(data.authenticated)
+          if(data.authenticated)
           {
               //this.router.navigate(['dashboard']);
              this.SSNContainer = true;
              this.loginContainer = false
-             this.SSNValidator = data.SSN
+             this.SSNValidator = data.ssn
           }else{
             this.checkUserDetail = true;
           }
@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
     if(getFIrstCahr[0] != 5 ){
       this.cardNoError = true
       this.isValid = false
-    }else if(data.length < 16 ){
+    }else if(data.length < 20 ){
       this.cardNoError = true
       this.isValid = false     
     }else{
@@ -267,9 +267,10 @@ export class LoginComponent implements OnInit {
       console.log(form)
       console.log("-----form value -----------------")
       let validateData = {
-        cardnumber : form.cardNo,
-        ssn : form.SSN,
-        dob :  form.dob
+        cardnumber : form.cardNo.toString(),
+        ssn : form.SSN.toString(),
+        dob :  form.dob,
+        zipcode : "654321"
       }
 
       //this.userValues.cardNo  = "";
@@ -277,7 +278,7 @@ export class LoginComponent implements OnInit {
      this.userValues.cardnumber = form.cardNo
      this.userValues.ssn = form.SSN
      this.userValues.dob = form.dob
-     
+    
       this.enrolmentService.getvalidateCard(validateData)
 	     .subscribe( data => {
 
@@ -286,17 +287,19 @@ export class LoginComponent implements OnInit {
 
             if(this.enrollAlready){
               console.log("Already login")
+            }else{
+              this.firstStep = false;
+              this.secondStep = true;
+        
+        
+              this.firstStep = false;
+              this.secondStep = true;
+             
             }
 
        },
         error => console.log(error));
 
-      this.firstStep = false;
-      this.secondStep = true;
-
-
-      this.firstStep = false;
-      this.secondStep = true;
     
     }
     if(step==3){
