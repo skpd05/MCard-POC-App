@@ -37,133 +37,134 @@ import com.mc.demo.app.enrollment.exception.ObjectNotFoundException;
 @RestController
 public class ApiControllerAdvice {
 
+	public static final String FATAL = "Fatal";
+	public static final String SERVICE_UNAVAILABLE = "serverUnavailable";
+	private static final String INVALID = "invalid";
+	private static final String ERROR = "error";
+	private static final String INVALIDREQUEST = "invalidRequest";
+	private static final String RESRCNOTFOUND = "resourceNotFound";
+	private static final String PARAM_NOT_VALID = "Missing or invalid Parameters";
+
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ErrorResponse> generalException(Exception e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("Fatal");
-		error.setCode("serverUnavailable");
-		error.setDetails("The request failed due to an internal error");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		List<ErrorInfo> errors = new ArrayList<>();
+		ErrorInfo error1 = new ErrorInfo();
+		error1.setType(FATAL);
+		error1.setCode(SERVICE_UNAVAILABLE);
+		error1.setDetails("The request failed due to an internal error");
+		error1.setLocation("");
+		error1.setMoreinfo(e.getMessage());
+		errors.add(error1);
+		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(value = ApplicationException.class)
 	public ResponseEntity<ErrorResponse> specialException(ApplicationException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("Fatal");
-		error.setCode("serverUnavailable");
-		error.setDetails("The request failed due to an internal error");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		List<ErrorInfo> specialErrors = new ArrayList<>();
+		ErrorInfo specialError = new ErrorInfo();
+		specialError.setType(FATAL);
+		specialError.setCode(SERVICE_UNAVAILABLE);
+		specialError.setDetails("The request failed due to an internal error");
+		specialError.setLocation("");
+		specialError.setMoreinfo(e.getMessage());
+		specialErrors.add(specialError);
+		errorResponse.setErrors(specialErrors);
+		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(value = BadRequestException.class)
 	public ResponseEntity<ErrorResponse> badRequestException(BadRequestException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("invalid");
-		error.setCode("invalidRequest");
-		error.setDetails("Missing or invalid Parameters");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+		List<ErrorInfo> badErrors = new ArrayList<>();
+		ErrorInfo badError = new ErrorInfo();
+		badError.setType(INVALID);
+		badError.setCode(INVALIDREQUEST);
+		badError.setDetails(PARAM_NOT_VALID);
+		badError.setLocation("");
+		badError.setMoreinfo(e.getMessage());
+		badErrors.add(badError);
+		errorResponse.setErrors(badErrors);
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = ObjectNotFoundException.class)
 	public ResponseEntity<ErrorResponse> objectNotFoundException(ObjectNotFoundException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("Error");
-		error.setCode("resourceNotFound");
-		error.setDetails("Empty resource/resource not found");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
+		List<ErrorInfo> ObjErrors = new ArrayList<>();
+		ErrorInfo ObjError = new ErrorInfo();
+		ObjError.setType(ERROR);
+		ObjError.setCode(RESRCNOTFOUND);
+		ObjError.setDetails("Empty resource/resource not found");
+		ObjError.setLocation("");
+		ObjError.setMoreinfo(e.getMessage());
+		ObjErrors.add(ObjError);
+		errorResponse.setErrors(ObjErrors);
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> methodArgumentNotValidException(MethodArgumentNotValidException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("invalid");
-		error.setCode("invalidRequest");
-		error.setDetails("Missing or invalid Parameters");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+		List<ErrorInfo> Methoderrors = new ArrayList<>();
+		ErrorInfo error2 = new ErrorInfo();
+		error2.setType(INVALID);
+		error2.setCode(INVALIDREQUEST);
+		error2.setDetails(PARAM_NOT_VALID);
+		error2.setLocation("");
+		error2.setMoreinfo(e.getMessage());
+		Methoderrors.add(error2);
+		errorResponse.setErrors(Methoderrors);
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = ServletRequestBindingException.class)
 	public ResponseEntity<ErrorResponse> servletRequestBindingException(ServletRequestBindingException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("invalid");
-		error.setCode("invalidRequest");
-		error.setDetails("Missing or invalid Parameters");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
-		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+		List<ErrorInfo> Serverrors = new ArrayList<>();
+		ErrorInfo error3 = new ErrorInfo();
+		error3.setType(INVALID);
+		error3.setCode(INVALIDREQUEST);
+		error3.setDetails(PARAM_NOT_VALID);
+		error3.setLocation("");
+		error3.setMoreinfo(e.getMessage());
+		Serverrors.add(error3);
+		errorResponse.setErrors(Serverrors);
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
 	public ResponseEntity<ErrorResponse> httpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("invalid");
-		error.setCode("invalidRequest");
-		error.setDetails("Missing or invalid Parameters");
-		error.setLocation("");
-		error.setMoreinfo(e.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
+		List<ErrorInfo> errors = new ArrayList<>();
+		ErrorInfo error4 = new ErrorInfo();
+		error4.setType(INVALID);
+		error4.setCode(INVALIDREQUEST);
+		error4.setDetails(PARAM_NOT_VALID);
+		error4.setLocation("");
+		error4.setMoreinfo(e.getMessage());
+		errors.add(error4);
 		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ResponseEntity<ErrorResponse> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 		ErrorResponse errorResponse = new ErrorResponse();
-		List<ErrorInfo> errors = null;
-		ErrorInfo error = new ErrorInfo();
-		error.setType("Error");
-		error.setCode("resourceNotFound");
-		error.setDetails("Empty resource/resource not found");
-		error.setLocation("");
-		error.setMoreinfo(ex.getMessage());
-		errors = new ArrayList<ErrorInfo>();
-		errors.add(error);
+		List<ErrorInfo> errors = new ArrayList<>();
+		ErrorInfo error5 = new ErrorInfo();
+		error5.setType(ERROR);
+		error5.setCode(RESRCNOTFOUND);
+		error5.setDetails("Empty resource/resource not found");
+		error5.setLocation("");
+		error5.setMoreinfo(ex.getMessage());
+
+		errors.add(error5);
 		errorResponse.setErrors(errors);
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
 
 }

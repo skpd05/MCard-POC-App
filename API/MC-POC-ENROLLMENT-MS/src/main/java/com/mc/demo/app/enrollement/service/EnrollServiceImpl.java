@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mc.demo.app.enrollement.CardEnrolled;
 import com.mc.demo.app.enrollement.EnrollCard;
+import com.mc.demo.app.enrollement.Login;
 import com.mc.demo.app.enrollement.LoginResponse;
 import com.mc.demo.app.enrollement.UserProfile;
 import com.mc.demo.app.enrollement.model.Account;
@@ -19,6 +20,7 @@ import com.mc.demo.app.enrollement.model.Customer;
 import com.mc.demo.app.enrollement.model.CustomerRespository;
 import com.mc.demo.app.enrollement.model.UserRespository;
 import com.mc.demo.app.enrollement.model.Userprofile;
+import com.mc.demo.app.enrollment.exception.ApplicationException;
 import com.mc.demo.app.enrollment.exception.ObjectNotFoundException;
 
 /**
@@ -91,23 +93,27 @@ public class EnrollServiceImpl implements EnrollService {
 	 * demo.app.enrollement.model.UserProfile)
 	 */
 	@Override
-	public boolean createUserProfile(UserProfile userProfile) throws Exception{
-		Userprofile userPro = new Userprofile();
-		userPro.setUserid(userProfile.getUserId());
-		userPro.setPswd(userProfile.getPassword());
-		userPro.setEmailid(userProfile.getEmailId());
-		userPro.setMobilenumber(userProfile.getMobileNumber());
-		userPro.setCommunicationaddress(userProfile.getCommunicationAddress());
-		userPro.setAccountnumber(userProfile.getAccountNumber());
-		userPro.setSq1(userProfile.getSQ1());
-		userPro.setSq2(userProfile.getSQ2());
-		userPro.setSq3(userProfile.getSQ3());
-		userPro.setSqa1(userProfile.getSQA1());
-		userPro.setSqa2(userProfile.getSQA2());
-		userPro.setSqa3(userProfile.getSQA3());
-		userPro.setCreated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
-		userPro.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
-		userRepo.save(userPro);
+	public boolean createUserProfile(UserProfile userProfile) throws ApplicationException{
+		try {
+			Userprofile userPro = new Userprofile();
+			userPro.setUserid(userProfile.getUserId());
+			userPro.setPswd(userProfile.getPassword());
+			userPro.setEmailid(userProfile.getEmailId());
+			userPro.setMobilenumber(userProfile.getMobileNumber());
+			userPro.setCommunicationaddress(userProfile.getCommunicationAddress());
+			userPro.setAccountnumber(userProfile.getAccountNumber());
+			userPro.setSq1(userProfile.getSQ1());
+			userPro.setSq2(userProfile.getSQ2());
+			userPro.setSq3(userProfile.getSQ3());
+			userPro.setSqa1(userProfile.getSQA1());
+			userPro.setSqa2(userProfile.getSQA2());
+			userPro.setSqa3(userProfile.getSQA3());
+			userPro.setCreated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+			userPro.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+			userRepo.save(userPro);
+		} catch (Exception e) {
+			throw new ApplicationException("User profile creation failed");
+		}
 		return true;
 	}
 
@@ -120,23 +126,23 @@ public class EnrollServiceImpl implements EnrollService {
 	}
 
 	@Override
-	public LoginResponse ulogin(UserProfile userProfile) {
+	public LoginResponse ulogin(Login login) {
 
 		Userprofile user = null;
 		LoginResponse loginResponse = new LoginResponse();
 		loginResponse.setAuthenticated(false);
-
-		if (null != userProfile.getAccountNumber()) {
-			user = userRepo.findUserByAccountnumber(userProfile.getAccountNumber());
-		} else if (null != userProfile.getUserId()) {
-			user = userRepo.findUserByUserid(userProfile.getUserId());
+		
+		String uid = login.getUserId();
+		user = userRepo.findUserByUserid(uid);
+		if(null == user)
+		{
+			user = userRepo.findUserByAccountnumber(uid);	
 		}
-
 		if (null == user) {
 			throw new ObjectNotFoundException("No User found");
 		}
 		String cardNumber = user.getAccountnumber();
-		if (user.getPswd().equalsIgnoreCase(userProfile.getPassword())) {
+		if (user.getPswd().equalsIgnoreCase(login.getPwdd())) {
 			loginResponse.setAuthenticated(true);
 			Account account = accountRepo.findByAccountnumber(cardNumber);
 			loginResponse.setCardnumber(cardNumber);
@@ -147,5 +153,7 @@ public class EnrollServiceImpl implements EnrollService {
 		}
 		return loginResponse;
 	}
+
+
 
 }

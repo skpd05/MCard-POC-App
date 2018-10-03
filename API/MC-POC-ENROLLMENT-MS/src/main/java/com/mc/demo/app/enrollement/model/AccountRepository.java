@@ -11,7 +11,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 	
-	// public List<Account> findByAccountnumber(String accountnumber);
 	public Account findByAccountnumber(String accountnumber);
 
 }

@@ -6,8 +6,8 @@ public class ApplicationException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private HttpStatus statusCode;
-	private String message;
+	private  HttpStatus statusCode;
+	private final String message;
 
 	// constructor-1
 	public ApplicationException(String message) {
@@ -24,6 +24,7 @@ public class ApplicationException extends RuntimeException {
 		return statusCode;
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}

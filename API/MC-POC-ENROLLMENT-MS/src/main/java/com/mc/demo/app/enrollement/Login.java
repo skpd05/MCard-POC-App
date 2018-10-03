@@ -10,10 +10,11 @@ public class Login {
 	@NotEmpty(message = " UserId is required")
 	private String userId;
 	
-	@JsonProperty(value = "password", required = true)
-	@NotEmpty(message = "Password is required")
-	private String password;
+	@JsonProperty(value = "pwdd", required = true)
+	@NotEmpty(message = "Pwd is required")
+	private String pwdd;
 
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -22,17 +23,23 @@ public class Login {
 		this.userId = userId;
 	}
 
-	public String getPassword() {
-		return password;
+	/**
+	 * @return the pwdd
+	 */
+	public String getPwdd() {
+		return pwdd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	/**
+	 * @param pwdd the pwdd to set
+	 */
+	public void setPwdd(String pwdd) {
+		this.pwdd = pwdd;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Login [userId=%s, password=%s]", userId, password);
+		return String.format("Login [userId=%s, pwdd=%s]", userId, pwdd);
 	}
 
 	
