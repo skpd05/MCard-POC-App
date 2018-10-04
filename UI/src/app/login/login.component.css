@@ -6,3 +6,18 @@ i{
     font-size: 2em;
     padding: 25px
 }
+
+.errorUser{
+    position: absolute;
+    bottom: -45px;
+    left: 5px;
+    padding: 3px 10px;
+    background: #333;
+    font-size: 11px;
+    color: #fff !important;
+    z-index: 99;
+}
+
+.accountError{
+    color:red;
+}

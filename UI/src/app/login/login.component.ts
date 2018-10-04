@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
    SSNContainer :any  = false;
    loginSSNError: any = false;
    cardNoError : any = false;
+   accalreadyError :any = false
 
 
  @ViewChild('f') form : any; 
@@ -99,9 +100,25 @@ export class LoginComponent implements OnInit {
 
   }
 
+  validateNumber (data){
+
+       var reg = new RegExp('^[0-9]+$');
+    
+        if(!reg.test(data) && data){
+          this.cardNoError = true
+          this.isValid = false
+        }else{
+          this.cardNoError = false
+          this.isValid = true     
+        }
+
+  }
+
 
   validateCardNO (data) {
     let getFIrstCahr = data.split("");
+
+    
 
    // this.cardNoError = getFIrstCahr[0] == 5 ? data.length < 16 :  
 
@@ -161,8 +178,9 @@ export class LoginComponent implements OnInit {
        this.userExist = false
 
        this.enrolmentService.checkUserID(data)
-	     .subscribe( data => {
-          if(!data.response){
+	     .subscribe( responseData => {
+         console.log(responseData)
+          if(responseData != "available"){
             this.userExist = true
              this.form.controls.userId.invalid;
              this.isValid = false
@@ -276,10 +294,11 @@ export class LoginComponent implements OnInit {
 
             if(this.enrollAlready){
               console.log("Already login")
+              this.accalreadyError = true 
             }else{
               this.firstStep = false;
               this.secondStep = true;
-        
+              this.accalreadyError = false 
         
               this.firstStep = false;
               this.secondStep = true;
