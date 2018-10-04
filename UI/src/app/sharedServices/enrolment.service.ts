@@ -70,22 +70,10 @@ getvalidateCard  (data): Observable<any> {
 
 
    checkUserID  (data): Observable<any> {
-   	let headers = new Headers({ 'Content-Type': 'application/json' });
+   
 
-        return this.http.get(this.checkUserIDUrl+"?userId="+data,
-            
-            {
-              headers: new HttpHeaders()
-                .set('Content-Type', 'application/json')
-                .set('uuid', 'f04c5720-c3ac-11e8-a355-529269fb1459')
-                .set('client_id', 'f04c5edc-c3ac-11e8-a355-529269fb1459')
-                .set('Accept', 'application/json'),
-                 withCredentials: true
-            }
-          )
-        .pipe(
-        catchError(this.handleError) // then handle the error
-       );
+        return this.http.get(this.checkUserIDUrl+"/userId="+data ,  {responseType: 'text'})
+        
 
         //let options = new RequestOptions({ headers: headers });
         //return this.http.get(this.checkUserIDUrl+"?userId="+data)

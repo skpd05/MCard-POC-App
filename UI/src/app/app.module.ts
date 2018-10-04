@@ -34,6 +34,14 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterseptorService } from './sharedServices/http-interseptor.service';
+
+import {DataServiceService} from './sharedServices/data-service.service'
+
+
+
+
 // const appRoutes : Routes = [
 //   {path: 'registration', component:RegistrationComponent}
 // ];
@@ -74,10 +82,12 @@ import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.co
     timeOut: 10000,
     positionClass: 'toast-top-full-width',
     preventDuplicates: true,
+    
   })
     //RouterModule.forRoot(appRoutes)
   ],
-  providers: [EnrolmentService],
+  providers: [EnrolmentService, DataServiceService ,{ provide: HTTP_INTERCEPTORS,  useClass: HttpInterseptorService,  multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

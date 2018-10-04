@@ -5,6 +5,9 @@ import { OnlynumberDirective } from '../onlynumber.directive';
 import { NgForm } from '@angular/forms';
 import {EnrolmentService} from '../sharedServices/enrolment.service';
 import { Router }                 from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -51,7 +54,7 @@ export class LoginComponent implements OnInit {
 
 
  @ViewChild('f') form : any; 
-  constructor(public enrolmentService : EnrolmentService , private router: Router) { }
+  constructor(public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -166,14 +169,14 @@ export class LoginComponent implements OnInit {
     console.log(data)
 
 
-     let userValidation =  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}/
+     let userValidation =  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&.*-]).{4,}/
 
      if(!userValidation.test(data) && data){
        this.form.controls.userId.invalid;
        this.form.controls.invalid
        this.userExist = true
        this.isValid = false
-       this.userError = "Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor "
+       this.userError = "Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at least 5 charactor "
      }else{
        this.userExist = false
 
@@ -349,8 +352,10 @@ export class LoginComponent implements OnInit {
 
      this.enrolmentService.createProfile(this.getUserFOrmDetails)
 	     .subscribe( data => {
+          
           console.log(data)
-          this.router.navigate(['/dashboard'])
+          this.toastr.success('Your profile is created successfuly please login with your credentials ');
+          this.router.navigate(['/login'])
        },
        error => console.log(error));
        console.log(this.getUserFOrmDetails)
