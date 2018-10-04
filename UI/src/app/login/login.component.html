@@ -126,9 +126,9 @@
                  
                 </div>
                 <div class="form-group">
-                  <label for="dob">Date Of Birth <span class="red">*</span></label>
-                   <input type="date" (change)="validDate(f.value)" (blur)="validDate(f.value)" required name="dob" [(ngModel)]="userValues.dob" class="form-control" id="dob" placeholder="DD/MM/YYYY">
-                   <div class="error" *ngIf="!dateError">Age should be greater then 18</div>
+                  <label for="zip">Zipcode<span class="red">*</span></label>
+                   <input type="number" required name="zip" [(ngModel)]="userValues.zip" class="form-control" id="zip" placeholder="66210">
+                   <div class="error" *ngIf="!dateError">please enter valid zipcode</div>
                 </div>
 
                 <div class="btnSubmitCls">

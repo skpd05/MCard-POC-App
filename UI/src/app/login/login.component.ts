@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
     if(getFIrstCahr[0] != 5 ){
       this.cardNoError = true
       this.isValid = false
-    }else if(data.length < 20 ){
+    }else if(data.length < 19 ){
       this.cardNoError = true
       this.isValid = false     
     }else{
@@ -258,8 +258,8 @@ export class LoginComponent implements OnInit {
       let validateData = {
         cardnumber : form.cardNo.toString(),
         ssn : form.SSN.toString(),
-        dob :  form.dob,
-        zipcode : "654321"
+        dob : "1978-03-03",
+        zipcode : form.zip.toString()
       }
 
       //this.getUserFOrmDetails :.cardNo  = "";
