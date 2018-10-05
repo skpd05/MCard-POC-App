@@ -50,8 +50,8 @@ public class RedemptionServiceImpl implements RedemptionService {
 			point.setOpertaion("minus");
 			point.setPointsvalue(transac.getRedeemedpoints());
 			
-			//String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
-			String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
+			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<String> response = restTemplate.postForEntity(url,point,
 	                String.class);

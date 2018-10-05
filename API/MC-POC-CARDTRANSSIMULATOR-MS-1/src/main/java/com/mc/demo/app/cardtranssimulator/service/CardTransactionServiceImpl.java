@@ -52,8 +52,8 @@ public class CardTransactionServiceImpl implements CardTransactionService {
 			point.setOpertaion("add");
 			point.setPointsvalue(transObj.getPointscaluclated());
 			RestTemplate restTemplate = new RestTemplate();
-			//String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
-			String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
+			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
 			
 			ResponseEntity<String> response = restTemplate.postForEntity(url,point,
 	                String.class);
