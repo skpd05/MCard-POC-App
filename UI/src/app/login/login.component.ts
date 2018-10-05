@@ -8,6 +8,9 @@ import { Router }                 from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import {DataServiceService} from '../sharedServices/data-service.service'
+import { UserService } from 'src/app/services/user-service';
+
+
 
 
 @Component({
@@ -52,11 +55,14 @@ export class LoginComponent implements OnInit {
    SSNContainer :any  = false;
    loginSSNError: any = false;
    cardNoError : any = false;
-   accalreadyError :any = false
+   accalreadyError :any = false;
+   userLogindata: any ;
+   userdata: any;
+   cardno: any;
 
 
  @ViewChild('f') form : any; 
-  constructor(public dataService : DataServiceService ,public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
+  constructor(public dataService : DataServiceService,private userService: UserService, public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -67,7 +73,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(data :any){
-
     if(this.loginContainer){
 
         let validateData = {
@@ -78,23 +83,32 @@ export class LoginComponent implements OnInit {
     console.log(data);
      this.enrolmentService.userLogin(validateData)
 	     .subscribe( data => {
-          console.log(data.authenticated)
+          console.log(data.authenticated);
+          this.userLogindata = data;
+          console.log(this.userLogindata);
           if(data.authenticated)
           {
               //this.router.navigate(['dashboard']);
+              console.log('----------->',this.userLogindata);
+              console.log('----------->',data.cardnumber);
              this.SSNContainer = true;
              this.loginContainer = false
-             this.SSNValidator = data.ssn
-             this.dataService.userData = data
+             this.SSNValidator = data.ssn;
+             this.dataService.userData = data;
+             this.userdata = data;
+             this.cardno = data.cardnumber;
           }else{
             this.checkUserDetail = true;
           }
-
        },
        error => console.log(error));
-    }else{
-        if(this.SSNValidator == data.ssn){
-          this.router.navigate(['dashboard']);
+    }else{      
+        if(this.SSNValidator == data.ssn){          
+          this.dataService.userData = this.userLogindata;          
+          this.userService.setCustomerDetails(this.userdata);
+          this.userService.setCardNo(this.cardno);    
+          this.userService.loginUser();      
+          this.router.navigate(['/dashboard']);
         }
         else{
             this.loginSSNError = true
@@ -358,7 +372,8 @@ export class LoginComponent implements OnInit {
           
           console.log(data)
           this.toastr.success('Your profile is created successfuly please login with your credentials ');
-          this.router.navigate(['/login'])
+
+          this.router.navigate(['/login']);
        },
        error => console.log(error));
        console.log(this.getUserFOrmDetails)

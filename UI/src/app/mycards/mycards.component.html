@@ -7,10 +7,10 @@
         <div class="row">
             <div class="posi-rel">
                 <div class="sidenav">
-                    <a href="#about"><i class="fa fa-user"></i> My Profile</a>
-                    <a href="#services"><i class="fa fa-credit-card"></i> My Cards</a>
-                    <a href="#clients"><i class="fa fa-gift"></i> My Points</a>
-                    <a href="#contact"><i class="fa fa-lock"></i> Change Password</a>
+                    <a ><i class="fa fa-user"></i> My Profile</a>
+                    <a routerLink="/mycards/all_cards"><i class="fa fa-credit-card"></i> My Cards</a>
+                    <a routerLink="/mypoints" ><i class="fa fa-gift"></i> My Points</a>
+                    <a ><i class="fa fa-lock"></i> Change Password</a>
                 </div>
             
             <div class="rght-panal">
@@ -18,12 +18,11 @@
                     <li>
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
                             <option value="all_cards">All Cards</option>
-                             <option value="89988990">89988990</option>
-                             <option value="11221121">11221121</option>
+                             <option *ngFor="let cardNumber of cardDetailsList" value="{{cardNumber.credicardnumber}}">{{cardNumber.credicardnumber}}</option>                             
                         </select>
                     </li>
                     <li>
-                            Points Earned <strong>1302.66</strong>
+                            Points Earned <strong> N/A</strong>
                     </li>
                     <li>
                             <span class="addcardCls"><i class="fa fa-plus-circle"></i> Add Card</span>
@@ -33,28 +32,37 @@
                 
                 <div class="AccCls">
                     <label>Accumulation Details</label>
-                    <table class="table">
+                    <!-- <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Card Number</th>
-                            <th scope="col">Date of Posting</th>
-                            <th scope="col">Transaction Description</th>
-                            <th scope="col">Transaction Amount($)</th>
-                            <th scope="col">Earned Points</th>
-                            <th scope="col">Card Type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of temp_item ">                                                
-                                <td>{{item.car_number}}</td>
-                                <td>{{item.date}}</td>
-                                <td>{{item.trans_description}}</td>
-                                <td>{{item.trans_amount}}</td>
-                                <td>{{item.earned_points}}</td>
-                                <td>{{item.card_type}}</td>
+                                <th scope="col">Card Number</th>
+                                <th scope="col">Card Type</th>
+                                <th scope="col">Bank Product Details</th>
+                                <th scope="col">Program Id</th>
+                                <th scope="col">Total Points</th>
+                                <th scope="col">Account Status</th>
                             </tr> 
+                        </thead>
+                        <tbody>                            
+                           <tr *ngFor="let card of temp_card_item">
+                                <td>{{card.credicardnumber}}</td>
+                                <td>{{card.cardType}}</td>
+                                <td>{{card.bankProductcode}}</td>
+                                <td>{{card.programID}}</td>
+                                <td>{{card.pointsTotal}}</td>
+                                <td>{{card.accountStatusID}}</td>
+                            </tr>                            
                         </tbody>
-                    </table>    
+                    </table>  -->
+                    <ag-grid-angular  style="width:100%;"
+                    class="ag-theme-balham"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [rowData]="temp_card_item" 
+                    [columnDefs]="columnDefs"
+                    rowSelection="multiple"
+                >
+                </ag-grid-angular>   
                 </div>
                 
             </div>   

@@ -120,4 +120,39 @@ getvalidateCard  (data): Observable<any> {
        );
 
     }
+    getAccount(cardno): Observable<any> {
+      // let url = this.accountUrl + cardno +'/accountsummary'
+      let url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/"+ cardno + "/accountsummary";
+      return this.http.get(url,
+            {
+              headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+                .set('uuid', 'f04c5720-c3ac-11e8-a355-529269fb1459')
+                .set('client_id', 'f04c5edc-c3ac-11e8-a355-529269fb1459')
+                .set('Accept', 'application/json'),
+                 withCredentials: true
+            }
+          )
+        .pipe(
+        catchError(this.handleError) // then handle the error
+       );
+    }
+  getMyPoints(cardno){    
+    let url = "https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/historybycard/"+ cardno ;
+    return this.http.get(url,
+          {
+            headers: new HttpHeaders()
+              .set('Content-Type', 'application/json')
+              .set('uuid', 'f04c5720-c3ac-11e8-a355-529269fb1459')
+              .set('client_id', 'f04c5edc-c3ac-11e8-a355-529269fb1459')
+              .set('Accept', 'application/json'),
+               withCredentials: true
+          }
+        )
+      .pipe(
+      catchError(this.handleError) // then handle the error
+     );
+  }
+
+
 }

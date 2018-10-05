@@ -35,6 +35,7 @@
 
 .posi-rel{
     position: relative;
+    min-height: 542px;
 }
 .rght-panal {
     margin-left: 250px;
@@ -72,6 +73,12 @@
     cursor: pointer;
     font-size: 15px;
 }
+
+ag-grid-angular{
+    height: 500px;
+    width: 100%;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}

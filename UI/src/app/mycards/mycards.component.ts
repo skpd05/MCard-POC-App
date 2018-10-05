@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { UserService } from 'src/app/services/user-service';
+import { EnrolmentService } from '../sharedServices/enrolment.service';
 
 @Component({
     selector: 'mycards-component',
@@ -13,278 +15,44 @@ export class MyCardsComponent{
     itemsInWishList : number = 0;
     filter_by_card: string = 'all_cards';
     sub: any;
+    cardNo: any;
+    cardDetailsList: any = [];
+    temp_card_item: any = [];
+    columnDefs = [
+        {headerName: 'Credit Card Number', field: 'credicardnumber' },
+        {headerName: 'Card Type', field: 'cardType'},
+        {headerName: 'Bank Product Code', field: 'bankProductcode' },
+        {headerName: 'Program ID', field: 'programID'},
+        {headerName: 'Total Points', field: 'pointsTotal' },
+        {headerName: 'Account Status ID', field: 'accountStatusID' }
+        
+    ];
     
-    constructor(  private route: ActivatedRoute){}
+    constructor(  private route: ActivatedRoute, private userService: UserService, public enrolmentService : EnrolmentService){}
     ngOnInit(){
+        this.cardNo = this.userService.getCardNo();
+        this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
+            console.log(data); 
+            this.cardDetailsList = data.creditcardsList;
+            this.temp_card_item = this.cardDetailsList.slice();
+        })
         this.sub = this.route.paramMap.subscribe((params: any) => {
             console.log(params.params.params);
             this.filter_by_card = params.params.params;
             this.update_filter(params.params.params)
         })        
     }
-    
-    items = [
-        {
-            date: new Date().toLocaleDateString(),
-            car_number: 89988990,
-            trans_description: 'TACO BELL',
-            trans_amount: 60.23,
-            earned_points: 100,
-            card_type: 'DB'
-        },
-        {
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },{
-            date: new Date().toLocaleDateString(),
-            car_number: 11221121,
-            trans_description: 'B&H PHOTO 800-000-096',
-            trans_amount: 7560,
-            earned_points: 100,
-            card_type: 'CR'
-        },
-
-    ];
-    temp_item = (this.items).slice();
-    
+        
     update_filter(x){
-        this.temp_item = [];
+        this.temp_card_item = [];
         if(x == 'all_cards'){
-            this.temp_item = (this.items).slice();
+            this.temp_card_item = this.cardDetailsList.slice();
         }else{        
-        this.items.forEach(item =>{
-            if(item.car_number == x){
-                this.temp_item.push(item);
-            }
-        })
+            this.cardDetailsList.forEach(item =>{
+                if(item.credicardnumber == x){
+                    this.temp_card_item.push(item);
+                }
+            })
     }
 }
    

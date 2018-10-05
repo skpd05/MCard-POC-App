@@ -17,14 +17,23 @@
               </li>
               <li>
                 <a href="#">About Us</a>
-              </li>
+              </li>              
               <li>
                 <a href="#">Contact Us</a>
               </li>
+              <li *ngIf="username">
+                <a>{{username}}</a>
+              </li>              
               <li>
-                <a routerLink="login">Login</a>
+                <a routerLink="login" *ngIf="username" (click)="userLogout()">Logout</a>
+              </li>
+              <li>
+                <a routerLink="login" *ngIf="!username">Login</a>
               </li>
             </ul>
           </div>
   </div><!-- /.container-fluid -->
 </nav>
+<!-- <ng-template #logout>
+   <a routerLink="login">Login</a>
+</ng-template> -->

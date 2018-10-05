@@ -37,7 +37,9 @@ import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.co
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterseptorService } from './sharedServices/http-interseptor.service';
 
-import {DataServiceService} from './sharedServices/data-service.service'
+import {DataServiceService} from './sharedServices/data-service.service';
+import { AgGridModule } from 'ag-grid-angular'; 
+import { UserService } from 'src/app/services/user-service';
 
 
 
@@ -78,6 +80,7 @@ import {DataServiceService} from './sharedServices/data-service.service'
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
+    AgGridModule.withComponents([MyPointsComponent, MyCardsComponent]), 
     ToastrModule.forRoot({
     timeOut: 10000,
     positionClass: 'toast-top-full-width',
@@ -86,7 +89,7 @@ import {DataServiceService} from './sharedServices/data-service.service'
   })
     //RouterModule.forRoot(appRoutes)
   ],
-  providers: [EnrolmentService, DataServiceService ,{ provide: HTTP_INTERCEPTORS,  useClass: HttpInterseptorService,  multi: true
+  providers: [EnrolmentService, UserService, DataServiceService ,{ provide: HTTP_INTERCEPTORS,  useClass: HttpInterseptorService,  multi: true
   }],
   bootstrap: [AppComponent]
 })

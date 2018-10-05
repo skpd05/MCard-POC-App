@@ -151,6 +151,7 @@ p.someTxt {
     background: url('assets/login-bg2.png');
     width:100%;
     background-size: cover; 
+    min-height: 542px;
 }
 
 .login-frm {
@@ -371,8 +372,9 @@ span.registerCls {
 
 .category i:hover{
    
- border: 1px solid #eee;
- color: #e87600;
+ border: 1px solid #e87600;
+ /*color: #e87600;*/
+ color: #000;
    
 }
 

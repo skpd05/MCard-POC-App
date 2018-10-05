@@ -1,3 +1,7 @@
+/* @import "node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "node_modules/ag-grid-community/dist/styles/ag-theme-balham.css"; */
+
+
 .leftPanelCls {
     background: #fff;
 }
@@ -35,6 +39,7 @@
 
 .posi-rel{
     position: relative;
+    min-height: 542px;
 }
 .rght-panal {
     margin-left: 250px;
@@ -75,6 +80,10 @@
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+ag-grid-angular{
+    height: 500px;
+    width: 100%;
 }
 
 /* left panel end */
