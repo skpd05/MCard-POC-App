@@ -5,6 +5,11 @@ import { OnlynumberDirective } from '../onlynumber.directive';
 import { NgForm } from '@angular/forms';
 import {EnrolmentService} from '../sharedServices/enrolment.service';
 import { Router }                 from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+import {DataServiceService} from '../sharedServices/data-service.service'
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -47,10 +52,11 @@ export class LoginComponent implements OnInit {
    SSNContainer :any  = false;
    loginSSNError: any = false;
    cardNoError : any = false;
+   accalreadyError :any = false
 
 
  @ViewChild('f') form : any; 
-  constructor(public enrolmentService : EnrolmentService , private router: Router) { }
+  constructor(public dataService : DataServiceService ,public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -79,6 +85,7 @@ export class LoginComponent implements OnInit {
              this.SSNContainer = true;
              this.loginContainer = false
              this.SSNValidator = data.ssn
+             this.dataService.userData = data
           }else{
             this.checkUserDetail = true;
           }
@@ -99,9 +106,25 @@ export class LoginComponent implements OnInit {
 
   }
 
+  validateNumber (data){
+
+       var reg = new RegExp('^[0-9]+$');
+    
+        if(!reg.test(data) && data){
+          this.cardNoError = true
+          this.isValid = false
+        }else{
+          this.cardNoError = false
+          this.isValid = true     
+        }
+
+  }
+
 
   validateCardNO (data) {
     let getFIrstCahr = data.split("");
+
+    
 
    // this.cardNoError = getFIrstCahr[0] == 5 ? data.length < 16 :  
 
@@ -149,20 +172,21 @@ export class LoginComponent implements OnInit {
     console.log(data)
 
 
-     let userValidation =  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}/
+     let userValidation =  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&.*-]).{4,}/
 
      if(!userValidation.test(data) && data){
        this.form.controls.userId.invalid;
        this.form.controls.invalid
        this.userExist = true
        this.isValid = false
-       this.userError = "Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor "
+       this.userError = "Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at least 5 charactor "
      }else{
        this.userExist = false
 
        this.enrolmentService.checkUserID(data)
-	     .subscribe( data => {
-          if(!data.response){
+	     .subscribe( responseData => {
+         console.log(responseData)
+          if(responseData != "available"){
             this.userExist = true
              this.form.controls.userId.invalid;
              this.isValid = false
@@ -276,10 +300,11 @@ export class LoginComponent implements OnInit {
 
             if(this.enrollAlready){
               console.log("Already login")
+              this.accalreadyError = true 
             }else{
               this.firstStep = false;
               this.secondStep = true;
-        
+              this.accalreadyError = false 
         
               this.firstStep = false;
               this.secondStep = true;
@@ -330,8 +355,10 @@ export class LoginComponent implements OnInit {
 
      this.enrolmentService.createProfile(this.getUserFOrmDetails)
 	     .subscribe( data => {
+          
           console.log(data)
-          this.router.navigate(['/dashboard'])
+          this.toastr.success('Your profile is created successfuly please login with your credentials ');
+          this.router.navigate(['/login'])
        },
        error => console.log(error));
        console.log(this.getUserFOrmDetails)

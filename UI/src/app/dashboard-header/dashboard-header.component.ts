@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-header.component.css']
 })
 export class DashboardHeaderComponent implements OnInit {
-
+  activeCls : any
   constructor() { }
 
   ngOnInit() {
+  }
+  addActiveClass (data){
+
   }
 
 }
