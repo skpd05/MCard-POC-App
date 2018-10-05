@@ -3,7 +3,7 @@ package com.mc.demo.app.enrollement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mc.demo.app.enrollement.service.EnrollService;
-import com.mc.demo.app.enrollment.exception.ApplicationException;
 import com.mc.demo.app.enrollment.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/api/v1/loyalty/enroll")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class EnrollmentController {
 
 
@@ -42,12 +40,10 @@ public class EnrollmentController {
 		try {
 			cardEnrolled = enrollService.validateCard(enrollCard);
 		} catch(ObjectNotFoundException obn){
-			System.out.println(obn.getMessage());
 			logger.error(obn.getMessage());
 			return new ResponseEntity<>(cardEnrolled, HttpStatus.NOT_FOUND);
 		}
 		catch (Exception e) {
-			System.out.println(e.getMessage());
 			logger.error(e.getMessage());
 			return new ResponseEntity<>(cardEnrolled, HttpStatus.PRECONDITION_FAILED);
 		}
@@ -94,15 +90,13 @@ public class EnrollmentController {
 
 	
 	
-//	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
+	@CrossOrigin
 	@PostMapping(value = "/ulogin")
 	public ResponseEntity<LoginResponse> loginUser(@RequestBody @Validated Login login,
 			@RequestHeader(name = "uuid", required = false) String uuid,
 			@RequestHeader(name = "client_id", required = false) String clientId,
 			@RequestHeader(name = "Accept", required = false) String accept) {
-//		ResponseEntity<LoginResponse> entity =  new ResponseEntity<>(enrollService.ulogin(login), HttpStatus.OK);
-//		 HttpHeaders headers = entity.getHeaders();
-//		 headers.add("Access-Control-Allow-Origin", "http://localhost:4200");
  		return new ResponseEntity<>(enrollService.ulogin(login), HttpStatus.OK);
 	}
 }
