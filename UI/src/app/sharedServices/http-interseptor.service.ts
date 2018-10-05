@@ -35,8 +35,10 @@ export class HttpInterseptorService implements HttpInterceptor  {
           // auth.setToken(null);
           // this.router.navigate(['/', 'login']);
         }else{
-          this.toastr.error('Something went wrong please check your data or please try after sometime');
+          //this.toastr.error('Something went wrong please check your data or please try after sometime');
         }
+         this.toastr.error('Something went wrong please check your data or please try after sometime');
+     
         return throwError(err);
       })
     );

@@ -9,17 +9,18 @@ import { ForgotuserComponent } from './forgotuser/forgotuser.component';
 import { MyPointsComponent } from './mypoints/mypoints.component';
 import { MyCardsComponent } from './mycards/mycards.component';
 import { ReactiveDrivenComponent } from './reactive/reactive.component';
+import { AuthGuard }              from './sharedServices/auth.guard';
 
 const appRoutes : Routes = [
  { path:'',component:LoginComponent},
  { path: 'login', component:LoginComponent},
  { path: 'forgotPasswod', component:ForgotpasswordComponent},
  { path: 'forgotUser', component:ForgotuserComponent},
-  { path: 'dashboard', component:DashboardComponent },
-   { path: 'mypoints', component:MyPointsComponent },
- { path: 'mycards', component:MyCardsComponent },
- { path: 'mycards/:params', component:MyCardsComponent },
- { path: 'reactive', component:ReactiveDrivenComponent }, 
+  { path: 'dashboard', component:DashboardComponent,  canActivate: [AuthGuard] },
+   { path: 'mypoints', component:MyPointsComponent, canActivate: [AuthGuard] },
+ { path: 'mycards', component:MyCardsComponent, canActivate: [AuthGuard] },
+ { path: 'mycards/:params', component:MyCardsComponent, canActivate: [AuthGuard] },
+ { path: 'reactive', component:ReactiveDrivenComponent, canActivate: [AuthGuard] }, 
  
 ]
 

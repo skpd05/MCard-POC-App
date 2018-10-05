@@ -7,6 +7,8 @@ import {EnrolmentService} from '../sharedServices/enrolment.service';
 import { Router }                 from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+import {DataServiceService} from '../sharedServices/data-service.service'
+
 
 @Component({
   selector: 'app-login',
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
 
 
  @ViewChild('f') form : any; 
-  constructor(public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
+  constructor(public dataService : DataServiceService ,public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -83,6 +85,7 @@ export class LoginComponent implements OnInit {
              this.SSNContainer = true;
              this.loginContainer = false
              this.SSNValidator = data.ssn
+             this.dataService.userData = data
           }else{
             this.checkUserDetail = true;
           }
