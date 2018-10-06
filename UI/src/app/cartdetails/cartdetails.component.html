@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap Shop Cart</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<app-dashboard-header></app-dashboard-header>
+<body>
+<div class="container" *ngIf="showDetailsStep">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="product-image">
+        <div class="view hm-zoom z-depth-2" style="cursor: pointer">
+          <img src="{{currentItemUrl}}" width="100%" class="img-fluid rounded">
+        </div>
+        <div class="" style="margin-top:15px">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Product Price</h6>
+              </div>
+              <span class="text-muted" style="color:crimson !important">{{currentItemPrice}} points</span>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-sm-8">
+      <div class="product-detail">
+        <h5 class="product-head">Product Details</h5>
+        <table class="table" cellspacing="0" style="max-height: 28px">
+          <tbody>
+            <tr>
+              <th scope="row">Product Name</th>
+              <td>{{currentItemName}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Product Description</th>
+              <td>{{currentItemDescription}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="controls">
+        <div *ngIf="currentItemQuantity > 0 ;then showbar else showaddbutton">here is ignored</div>
+        <ng-template #showbar>
+          <div class="addToCartButton">
+
+            <div class="input-group">
+
+              <span class="input-group-btn" style="vertical-align: middle;">
+                <button type="button" class="btn btn-default btn-number" [disabled]="disableMinus" data-type="minus" data-field="quant[1]"
+                  (click)="decreaseQuantityDetail(currentItemId)">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+              </span>
+              <input type="text" name="quant[1]" class="form-control input-number" value="{{currentItemQuantity}}" min="0"
+                max="10">
+              <span class="input-group-btn" style="vertical-align: middle;">
+                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+            </div>
+
+          </div>
+        </ng-template>
+        <ng-template #showaddbutton>
+          <div class="addToCartButton">
+            <button class="addToCart" (click)="addToCart(currentItemId);">Add to Cart</button>
+          </div>
+        </ng-template>
+        <div class="proceedCheckoutButton">
+          <button class="proceedCheckout" (click)="goToCartDetails();">Proceed to CheckOut</button>
+        </div>
+        <div class="backToCatalogButton">
+          <button class="backToCatalog" (click)="goBacktoCatalog();">Back To Catalog</button>
+        </div>
+      </div>
+      <!-- <ul>
+            <i class="fa fa-shopping-cart"></i><span class="badge badge-pill">6</span>
+        </ul>-->
+
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Cart Product List Page-->
+<br>
+
+<div class="container" *ngIf="showCartItemsStep">
+  <table class="greyGridTable">
+    <thead>
+      <tr>
+        <th><i>Items</i></th>
+        <th><i>Price</i></th>
+        <th><i>Quantity</i></th>
+        <th><i>Total</i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartProductList">
+        <td>
+          <img src="{{item.url}}" width="150" height="100">
+          <div><span> {{item.name}}</span></div>
+        </td>
+        <td>{{item.price}}</td>
+
+        <td>
+          <div class="row">
+              <div class="col-xs-6">
+                <div class="input-group">   
+                <span class="input-group-btn" style="vertical-align: middle;">
+                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]"
+                  (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                </span>
+                <input type="text" name="quant[1]" class="form-control input-number" value="{{item.quantity}}" min="0"
+                max="10">
+                <span class="input-group-btn" style="vertical-align: middle;">
+                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
+                <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                </span>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id);"><i class="fa fa-trash-o" ></i></button>
+              </div>
+          </div>
+        </td>
+        <td>
+            {{item.price*item.quantity}} 
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <span>Total Points Redeemed</span>
+        </td>
+        <td>
+          {{orderTotal}}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="float-left">
+    <a class="btn btn-default" (click)="proceedToShipping();">Procced to Checkout</a>
+  </div>
+
+
+</div>
+
+
+<!-- Shiiping & billing address Page-->
+<div class="container" *ngIf="billingDetailsStep">
+    <div class="row">
+        <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+            <div>
+                <h5><b>Shipping options</b></h5>
+            </div>
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+                    <div>
+                        <label>
+                            Please choose one of the shipping options below:
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optradio">1 business day shipping</label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optradio">Standard shipping (4-5 business days)</label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optradio">UPS (1-2 business days) - $25.00</label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optradio">FEDEX (1 business day) - $40.00</label>
+                    </div>
+                    <div class="text-muted">
+                        Note: This is a note that adds some details to the list
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h5><b>Shipping address</b></h5>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="col col-xs-12">
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> Your name (first and last):</h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> Shipping address:
+                                        </h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> City:
+                                        </h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> Country:
+                                        </h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> State:
+                                        </h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                    <label>
+                                        <h6> Phone number: </h6>
+                                    </label>
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-3">
+                                </div>
+                                <div class="col col-xs-9">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                    Save this shipping address for future use
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+
+                    <table id="cart" class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Points</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">TotalPoints</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  *ngFor="let products of cartProductList">
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <div class="col-sm-4 hidden-xs"><img src="{{products.url}}" alt="..."
+                                                class="img-responsive" /></div>
+                                        <div class="col-sm-8">
+                                            <h4 class="nomargin">{{products.name}}</h4>
+                                            <p>{{products.description}}.</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="Points">{{products.price}}</td>
+                                <td data-th="Quantity">{{products.quantity}} </td>
+                                <td data-th="TotalPoints" class="text-center">{{products.quantity*products.price}}</td>
+                                <td class="actions" data-th="">
+                                    <button class="btn btn-danger btn-sm" (click)="removeFromCart(products.id);"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="visible-xs">
+                                <td class="text-center"><strong>{{orderTotal}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn btn-warning" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
+                                        Go Back to Shopping</button></td>
+                                <td colspan="1" class="hidden-xs"></td>
+                                <td class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
+                                <td><button class="btn btn-success btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+                    <div> Questions? Comments?</div>
+                    <div>We are open 24/7.</div>
+                    <div> 1-800-HELP-ME</div>
+                    <div> We are happy to answer all your questions.</div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<!--Order Review Page-->
+<div class="container" *ngIf="reviewOrderStep">
+        <div class="row">
+            <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+                <div class="panel panel-primary">
+
+                    <div class="panel-body">
+                        <span>
+                            <div><strong>Jhon</strong>,your order will be shipped as soon as you complete your order.</div>
+                        </span>
+                        <span>
+                            <div><strong>Estimate shipping date:</strong>within 24 hours.</div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-body">
+
+                        <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Points</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">TotalPoints</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of cartProductList">
+                                    <td data-th="Product">
+                                        <div class="row">
+                                            <div class="col-sm-4 hidden-xs"><img src="{{order.url}}" alt="..."
+                                                    class="img-responsive" /></div>
+                                            <div class="col-sm-8">
+                                                <h4 class="nomargin">{{order.name}}</h4>
+                                                <p>{{order.ItemDescription}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th="Points">{{order.price}}</td>
+                                    <td data-th="Quantity">
+                                        {{order.quantity}}
+                                    </td>
+                                    <td data-th="TotalPoints" class="text-center">{{order.quantity*order.price}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="hidden-xs text-right">Sub Total</td>
+                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong> {{orderTotal}}</strong></td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="hidden-xs text-right">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong> {{orderTotal}}</strong></td>
+
+                                </tr>
+
+                            </tbody>
+                            <tfoot>
+                                <tr class="visible-xs">
+                                    <td class="text-center"><strong>150.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><button (click)="goBacktoCatalog();"  href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+                                            Go Back to Shopping</button></td>
+                                    <td colspan="1" class="hidden-xs"></td>
+                                    <td></td>
+                                    <td><button class="btn btn-success btn-block" (click)="doRedemption();">Place Order <i class="fa fa-angle-right" ></i></button></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
+                <div class="panel panel-primary">
+
+                    <div class="panel-body">
+                        <div> Questions? Comments?</div>
+                        <div>We are open 24/7.</div>
+                        <div> 1-800-HELP-ME</div>
+                        <div> We are happy to answer all your questions.</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+</div>
+
+
+<!--Order Reciept -->
+<div *ngIf="itemRedemptionSuccess ;then showsuccess else showfailure">here is ignored</div>
+        <ng-template #showsuccess>
+            <div class="headerfooter">
+                <span> You are receiving this email because you are subscribed to the COMPANY NAME newsletter.</span>
+                <br>
+            
+            
+                <span>If you no longer wish to receive these emails, you can <a href="#">unsubscribe instantly.</a></span>
+                <br>
+            
+            
+                <span> If you have any trouble viewing this email please visit <a href="#">this link.</a></span>
+            
+            </div>
+
+            <div class="panel panel-primary border">
+                <div class=" panel-body ">
+                    <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/50X50" alt="..." class="img-responsive" /></div>
+                                        <div class="col-sm-10 text-center">
+                                            <span> <strong>Thank you for order!</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="mailContent ">
+                                    <span>
+                                                You've successfully placed your order with BrandName -- please print (or save) this page for
+                                                your
+                                                records. You will be receiving a copy of this page by e-mail shortly. When contacting us
+                                                regarding
+                                                this order, please use this Order Number as a reference:
+                                    </span>
+                                </div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="mailContent ">
+                                    <span><strong>Order Number:</strong>219998</span>
+                                    <br>
+                                    <span><strong>Order Number:</strong>June 21, 2011</span>
+                                </div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="mailContent ">
+                                    <span><strong>Billing & Shipping Information</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mailContent ">
+                                    <span><strong>Billing information:</strong></span>
+                                        <div class="address">
+                                            <span>
+                                             John Doe
+                                             35th Street
+                                             Montreal, QC, J8J 2L2
+                                             CANADA
+                                            </span>
+                                        </div>                                        
+                                            <br>
+                                    <span><strong>Shipping information:</strong></span>
+                                         <div class="address">
+                                              <span>John Doe
+                                                  35th Street
+                                                  Montreal, QC, J8J 2L2
+                                                  CANADA
+                                                </span>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="row mailContent">
+                                 <span><strong>Your Order Detail:</strong></span>
+                                    <table id="cart" class="table table-hover table-condensed ">
+                                        <thead>
+                                             <tr>
+                                                <th>Product</th>
+                                                <th>Points</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">TotalPoints</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td data-th="Product">
+                                                 <div class="row" *ngFor="let orderconfirm of cartProductList">
+                                                    <div class="col-sm-4 hidden-xs"><img src="{{orderconfirm.url}}" alt="..."
+                                                         class="img-responsive" /></div>
+                                                    <div class="col-sm-8">
+                                                    <h4 class="nomargin">{{orderconfirm.name}}</h4>
+                                                    <p>{{orderconfirm.ItemDescription}}</p>
+                                                    </div>
+                                                </div>
+                                                </td>
+                                                    <td data-th="Points">{{orderconfirm.quantity*orderconfirm.price}}</td>
+                                                    <td data-th="Quantity" class="text-center">
+                                                        1
+                                                    </td>
+                                                    <td data-th="TotalPoints" class="text-center">{{orderTotal}}</td>
+                    
+                                                </tr>
+                    
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="hidden-xs text-right">
+                                                        <strong>Total</strong>
+                                                    </td>
+                                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
+                    
+                                                </tr>
+                    
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="visible-xs">
+                                                    <td class="text-center"><strong>150.00</strong></td>
+                                                </tr>
+                    
+                                            </tfoot>
+                                        </table>
+                    
+                                </div>
+                                <div class="row "><span><strong>Thanks!</strong></span></div>
+                                <div class="row mailContent"><span>Thanks so much for being one of our beloved customers. If you believe we
+                                        can help you in any manner, please contact our friendly support team and we'll try to sort any
+                                        problems you might have.</span></div>
+                            
+
+                            <!--Closing Div Mains-->
+                    </div>
+                        </div>
+                           
+        </ng-template>
+        <ng-template #showfailure>
+          <div>Transaction failed</div>
+        </ng-template>
+</body></html>

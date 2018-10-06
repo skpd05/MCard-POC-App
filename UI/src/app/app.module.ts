@@ -40,7 +40,7 @@ import { HttpInterseptorService } from './sharedServices/http-interseptor.servic
 import {DataServiceService} from './sharedServices/data-service.service';
 import { AgGridModule } from 'ag-grid-angular'; 
 import { UserService } from 'src/app/services/user-service';
-
+import { CartdetailsComponent } from './cartdetails/cartdetails.component';
 
 
 
@@ -68,7 +68,8 @@ import { UserService } from 'src/app/services/user-service';
     MyCardsComponent,
     ReactiveDrivenComponent,
     CarouselComponent,
-    DashboardHeaderComponent
+    DashboardHeaderComponent,
+    CartdetailsComponent
   ],
   imports: [
     BrowserModule,

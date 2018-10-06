@@ -10,6 +10,8 @@ import { MyPointsComponent } from './mypoints/mypoints.component';
 import { MyCardsComponent } from './mycards/mycards.component';
 import { ReactiveDrivenComponent } from './reactive/reactive.component';
 import { AuthGuard }              from './sharedServices/auth.guard';
+import { CartdetailsComponent } from './cartdetails/cartdetails.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 const appRoutes : Routes = [
  { path:'',component:LoginComponent},
@@ -21,7 +23,8 @@ const appRoutes : Routes = [
  { path: 'mycards', component:MyCardsComponent, canActivate: [AuthGuard] },
  { path: 'mycards/:params', component:MyCardsComponent, canActivate: [AuthGuard] },
  { path: 'reactive', component:ReactiveDrivenComponent, canActivate: [AuthGuard] }, 
- 
+ { path: 'buynow' ,component:CartdetailsComponent},
+ { path: 'catalog' ,component:CatalogComponent}
 ]
 
 @NgModule({

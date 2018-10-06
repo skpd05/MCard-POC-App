@@ -10,7 +10,7 @@
               </div>
               <div class="collapse navbar-collapse" id="myNavbar1">
             <div class="balenceCls">
-              <a class="navbar-brand dropdown-toggle" href="#" type="button" data-toggle="dropdown" >
+              <a class="navbar-brand dropdown-toggle" routerLink="/catalog" type="button" data-toggle="dropdown" >
                 {{totalBalance}}PT
                 <span class="balcls">Balance points</span>
                 <div class="arrowAbs"><i class="fa fa-angle-down"></i></div>
@@ -36,53 +36,53 @@
               <i class="fa fa-navicon"></i>Shop By catagory <i class="fa fa-angle-down"></i></a>
               
               <div class="dropdown-menu">
-                <!--<li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>-->
+                <!--<li><a routerLink="/catalog">HTML</a></li>
+                <li><a routerLink="/catalog">CSS</a></li>
+                <li><a routerLink="/catalog">JavaScript</a></li>-->
                 <!--vivek starts-->
                 <div class="row">
                   <div class="col-md-3">
                       <div class="cata-div1">
                           <p><u><b>Mens Apperal</b></u></p>
                           <a class="dropdown-item dahboard-item-anchor">Shirt</a>
-                          <a class="dropdown-item" href="#">T-Shirt &nbsp;
+                          <a class="dropdown-item" routerLink="/catalog">T-Shirt &nbsp;
                             <span class="badge badge-pill badge-success">New</span>
                           </a>                
-                          <a class="dropdown-item" href="#">Shoes</a>
-                          <a class="dropdown-item" href="#">Coming Soon</a>
-                          <a class="dropdown-item" href="#">Coming Soon</a>                                
+                          <a class="dropdown-item" routerLink="/catalog">Shoes</a>
+                          <a class="dropdown-item" routerLink="/catalog">Coming Soon</a>
+                          <a class="dropdown-item" routerLink="/catalog">Coming Soon</a>                                
                       </div>               
                           
                     </div>
                     <div class="col-md-3">
                         <div  class="cata-div1">
                             <p><u><b>Electric Aappliences</b></u></p>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>                    
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>                
-                            <a class="dropdown-item" href="#">Something else</a>
+                            <a class="dropdown-item" routerLink="/catalog">Action</a>
+                            <a class="dropdown-item" routerLink="/catalog">Another action</a>                    
+                            <a class="dropdown-item" routerLink="/catalog">Action</a>
+                            <a class="dropdown-item" routerLink="/catalog">Another action</a>                
+                            <a class="dropdown-item" routerLink="/catalog">Something else</a>
                         </div>
                                         
                     </div>
                     <div class="col-md-3">
                         <div class="cata-div1">
                             <p><b><u>House Hold</u></b></p>
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>                
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
                         </div>                            
                     </div>
                     <div class="col-md-3">
                         <div class="cata-div1">
                             <p><b><u>Kids Apperal</u></b></p>
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>                
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>
-                            <a class="dropdown-item" href="#">Item Link</a>                                
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
+                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                                
                         </div>                            
                     </div>
                 </div>
@@ -124,7 +124,7 @@
           </li>
           <li >
             <a routerLinkActive="active01">
-              <i class="fa fa-shopping-cart"></i><sup class="badge badge-pill">6</sup>
+              <i class="fa fa-shopping-cart"></i><sup class="badge badge-pill">{{cartItemTotal}}</sup>
             </a>
           </li>          
           </ul>
