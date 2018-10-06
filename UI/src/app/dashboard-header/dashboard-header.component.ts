@@ -32,7 +32,6 @@ export class DashboardHeaderComponent implements OnInit {
       });
       this._checkoutService.componentMethodCalled$.subscribe(
         () => {
-          console.log('inter component call', this._checkoutService.getCartItemTotal());
           this.cartItemTotal = this._checkoutService.getCartItemTotal();
         }
       );
