@@ -38,6 +38,13 @@ export class LoginComponent implements OnInit {
  userExist : any = false;
  checkUserDetail : any = false ;
  userValues : any = {
+  "zip" : "",
+  "SSN" : "",
+  "userId" : "",
+  "password" : "",
+  "email" : "",
+  "mobile" : "",
+  "rePassword" : ""
    };
 
    getUserFOrmDetails : any = {}
@@ -146,7 +153,7 @@ export class LoginComponent implements OnInit {
     if(getFIrstCahr[0] != 5 ){
       this.cardNoError = true
       this.isValid = false
-    }else if(data.length < 19 ){
+    }else if(!(data.length == 19 || data.length == 16)){
       this.cardNoError = true
       this.isValid = false     
     }else{
@@ -187,14 +194,14 @@ export class LoginComponent implements OnInit {
     console.log(data)
 
 
-     let userValidation =  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&.*-]).{4,}/
+     let userValidation =  /[A-Za-z0-9@]*/
 
      if(!userValidation.test(data) && data){
        this.form.controls.userId.invalid;
        this.form.controls.invalid
        this.userExist = true
        this.isValid = false
-       this.userError = "Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at least 5 charactor "
+       this.userError = "User id must be alphanumeric."
      }else{
        this.userExist = false
 
@@ -280,7 +287,7 @@ export class LoginComponent implements OnInit {
             this.form.controls['password'].markAsTouched(true);
             
        this.userPassword = true
-       this.passwordError = "Password must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor "
+       this.passwordError = "Password must contain at least 1 uppercase character, 1 number, 1 special character, 1 lowecase character and must contain at lease 5 character "
        this.isValid = false
       }else{
         this.isValid = true
@@ -411,4 +418,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  onlyNumberKey(event) {
+    // Allow to enter only numbers (0-9) in text filed
+    return (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57;
+  }
 }

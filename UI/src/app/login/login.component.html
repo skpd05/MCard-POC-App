@@ -13,14 +13,17 @@
               <div class="form-group" *ngIf="SSNContainer">
                 <label for="email">SSN No last 4 digits:</label>
                 <input 
-                type="ssn" 
+                type="number" 
                 class="form-control" 
                 id="ssn" 
                 placeholder="Enter last 4 digits of your SSN no" 
                 ngModel 
                 name="ssn" 
                 required 
-                #ssn="ngModel">
+                #ssn="ngModel"
+                minlength="4"
+                maxlength="4"
+                >
                 <div class="error" *ngIf="loginSSNError">Please enter valid ssn</div>
               </div>
                
@@ -56,8 +59,8 @@
                 <span class="error" *ngIf="!pass.valid && pass.touched">Please enter password</span>
               </div>
               <div class="checkbox" *ngIf="!SSNContainer">
-                <span> <a routerLink="forgotPasswod"><label>Forgot password?</label></a></span>
-                <span class="pull-right"> <a routerLink="forgotUser"><label>Forgot Userid?</label></a></span>
+                <span> <a routerLink="/forgotPasswod"><label>Forgot password?</label></a></span>
+                <span class="pull-right"> <a routerLink="/forgotUser"><label>Forgot Userid?</label></a></span>
               </div>
               <div class="btnSubmitCls">
                 <button type="submit" class="btn btn-primary"  [disabled]="!loginFrm.valid">Submit</button>
@@ -105,10 +108,10 @@
             <div class="login-frm registration-frm">
               <h2>Registration</h2>
               <ul class="list-inline formStep">
-                <li><a href="#" [ngClass]="{'active': firstStep == true}">1<span>Step 1</span></a></li>
-                <li><a href="#" [ngClass]="{'active': secondStep == true}">2<span>Step 2</span></a></li>
+                <li><a [ngClass]="{'active': firstStep == true}">1<span>Step 1</span></a></li>
+                <li><a [ngClass]="{'active': secondStep == true}">2<span>Step 2</span></a></li>
                 <!--<li><a href="#" [ngClass]="{'active': thirdStep == true}">3<span>Step 3</span></a></li>-->
-                <li><a href="#" [ngClass]="{'active': fourtStep == true}">3<span>Step 3</span></a></li>
+                <li><a  [ngClass]="{'active': fourtStep == true}">3<span>Step 3</span></a></li>
               </ul>
               <form  name="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
               <div *ngIf="firstStep" @slidleft>
@@ -118,25 +121,30 @@
 
                 <div class="form-group">
                   <label for="ssnno">Last 4 Digit SSN Number <span class="red">*</span></label>
-                   <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="\d*" maxlength="4" required name="SSN" [(ngModel)]="userValues.SSN" class="form-control" id="ssnno" placeholder="Enter SSN No">
+                   <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="\d*" maxlength="4" required name="SSN" [(ngModel)]="userValues.SSN" 
+                   class="form-control" id="ssnno" placeholder="Enter SSN No" minlength="4"
+                   maxlength="4" (keypress)="onlyNumberKey($event)">
             
                 </div>
                 <div class="form-group">
                   <label for="cardno">Card No<span class="red">*</span></label>
-                  <input type="test" required  name="cardNo" (blur)="validateCardNO($event.target.value)" maxlength="19"  [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" placeholder="Enter Card No">
+                  <input type="test" required  name="cardNo" (blur)="validateCardNO($event.target.value)"
+                   maxlength="19"  [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" 
+                   placeholder="Enter Card No" (keypress)="onlyNumberKey($event)">
                    <div class="error" *ngIf="cardNoError">Not a valid card no</div>
              
                  
                 </div>
                 <div class="form-group">
                   <label for="zip">Zipcode<span class="red">*</span></label>
-                   <input type="number" required name="zip" [(ngModel)]="userValues.zip" class="form-control" id="zip" placeholder="66210">
+                   <input type="number" required name="zip" [(ngModel)]="userValues.zip"
+                    class="form-control" id="zip" placeholder="Zipcode" (keypress)="onlyNumberKey($event)" maxlength="4">
                    <div class="error" *ngIf="!dateError">please enter valid zipcode</div>
                 </div>
 
                 <div class="btnSubmitCls">
                     <button type="button" class="btn btn-primary" (click)="showRegister()">Cancel</button>
-                  <button type="button" [disabled]="!f.form.valid || !isValid" class="btn btn-primary" (click)="goToStep(2, f.value)">next</button>
+                  <button type="button" [disabled]="!f.form.valid || !isValid" class="btn btn-primary" (click)="goToStep(2, f.value)">Next</button>
                 </div>
 
               </div>
@@ -145,7 +153,7 @@
 
                 <div class="form-group">
                   <label for="userid">User ID <span class="red">*</span></label>
-                  <input type="text" required title="Username must contain at least 1 uppercase charactor, 1 number, 1 special charactor, 1 lowecase charactor and must contain at lease 5 charactor "  (blur)="checkUserId($event.target.value)" [(ngModel)]="userValues.userId"  class="form-control" name="userId" id="userId" placeholder="Enter Card No">
+                  <input type="text" required title="User id must be alphanumeric."  (blur)="checkUserId($event.target.value)" [(ngModel)]="userValues.userId"  class="form-control" name="userId" id="userId" placeholder="Enter User Id">
                   <div class="errorUser" *ngIf = "userExist" >{{userError}}</div>
                 </div>
                 <div class="form-group">
@@ -155,14 +163,14 @@
                 </div>
                 <div class="form-group">
                   <label for="retypassword">Re-type Password <span class="red">*</span></label>
-                   <input type="password" required class="form-control" (blur)="confirmPassord($event.target.value)" name="re-password" [(ngModel)]="userValues.re-password" id="re-password" placeholder="Retype password">
+                   <input type="password" required class="form-control" (blur)="confirmPassord($event.target.value)" name="rePassword" [(ngModel)]="userValues.rePassword" id="rePassword" placeholder="Retype password">
                    <div class="error" *ngIf = "confirmError" >Password did not match</div>
                 </div>
 
                 <div class="btnSubmitCls">
                   <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(1)">Previous</button>
                   <button type="button" class="btn btn-primary prevCls" >Cancel</button>
-                  <button type="button" class="btn btn-primary" id="userLevel" [disabled]="!f.form.valid || !isValid" (click)="goToStep(4, f.value)">next</button>
+                  <button type="button" class="btn btn-primary" id="userLevel" [disabled]="!f.form.valid || !isValid" (click)="goToStep(4, f.value)">Next</button>
                 </div>
 
               </div>

@@ -30,9 +30,7 @@ public class CardTransactionController {
 			@RequestHeader(name = "client_id", required = true) String clientId,
 			@RequestHeader(name = "Accept", required = true) String accept) {
 		List<Cardtransaction> transactions = transService.getTransactionHistory(cardnumber);
-		if (transactions.size() == 0) {
-			throw new ObjectNotFoundException("NO Record Found");
-		}
+		
 		return new ResponseEntity<List<Cardtransaction>>(transactions, HttpStatus.OK);
 	}
 
