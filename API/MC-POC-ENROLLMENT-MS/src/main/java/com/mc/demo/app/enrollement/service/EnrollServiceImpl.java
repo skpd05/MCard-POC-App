@@ -139,24 +139,29 @@ public class EnrollServiceImpl implements EnrollService {
 		{
 			user = userRepo.findUserByAccountnumber(uid);	
 		}
-		if (null == user) {
+		/*
+		 * if (null == user) {
 			throw new ObjectNotFoundException("No User found");
-		}
-		String cardNumber = user.getAccountnumber();
-		try{
-		if (login.getPswd().equalsIgnoreCase(user.getPswd())) {
+		}*/
+		
+		if(user!=null) {
+			String cardNumber = user.getAccountnumber();
+			try{
+			if (login.getPswd().equalsIgnoreCase(user.getPswd())) {
 
-			loginResponse.setAuthenticated(true);
-			Account account = accountRepo.findByAccountnumber(cardNumber);
-			loginResponse.setCardnumber(cardNumber);
-			loginResponse.setMessage("user authenticated");
-			loginResponse.setUserid(user.getUserid());
-			loginResponse.setCustid(account.getCustid());
-			Customer cust = custRepo.getCustBycustid(account.getCustid());
-			loginResponse.setSsn(cust.getSsn());
-			return loginResponse;
+				loginResponse.setAuthenticated(true);
+				Account account = accountRepo.findByAccountnumber(cardNumber);
+				loginResponse.setCardnumber(cardNumber);
+				loginResponse.setMessage("user authenticated");
+				loginResponse.setUserid(user.getUserid());
+				loginResponse.setCustid(account.getCustid());
+				Customer cust = custRepo.getCustBycustid(account.getCustid());
+				loginResponse.setSsn(cust.getSsn());
+				return loginResponse;
+			}
+			}catch(Exception e){ }
+	
 		}
-		}catch(Exception e){ }
 		return loginResponse;
 	}
 

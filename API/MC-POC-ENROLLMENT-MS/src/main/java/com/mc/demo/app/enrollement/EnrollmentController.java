@@ -41,7 +41,7 @@ public class EnrollmentController {
 			cardEnrolled = enrollService.validateCard(enrollCard);
 		} catch(ObjectNotFoundException obn){
 			logger.error(obn.getMessage());
-			return new ResponseEntity<>(cardEnrolled, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(cardEnrolled, HttpStatus.NO_CONTENT);
 		}
 		catch (Exception e) {
 			logger.error(e.getMessage());
