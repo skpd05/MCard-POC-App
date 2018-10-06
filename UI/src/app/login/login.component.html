@@ -114,6 +114,7 @@
               <div *ngIf="firstStep" @slidleft>
 
                 <div class="accountError" *ngIf = "accalreadyError">Already enrolled user try to login </div>
+                <div class="accountError" *ngIf = "invalidDataError">Invalid data, Please check. </div>
 
                 <div class="form-group">
                   <label for="ssnno">Last 4 Digit SSN Number <span class="red">*</span></label>
@@ -134,7 +135,7 @@
                 </div>
 
                 <div class="btnSubmitCls">
-                    <button type="button" class="btn btn-primary">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="showRegister()">Cancel</button>
                   <button type="button" [disabled]="!f.form.valid || !isValid" class="btn btn-primary" (click)="goToStep(2, f.value)">next</button>
                 </div>
 

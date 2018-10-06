@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
    loginSSNError: any = false;
    cardNoError : any = false;
    accalreadyError :any = false;
+   invalidDataError : boolean = false;
    userLogindata: any ;
    userdata: any;
    cardno: any;
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
   showRegister(){
     this.register = !this.register ;
-    this.btnTxt = 'Login';
+    this.btnTxt = 'Login'; 
     console.log(this.register);
   }
 
@@ -308,22 +309,27 @@ export class LoginComponent implements OnInit {
     
       this.enrolmentService.getvalidateCard(validateData)
 	     .subscribe( data => {
-
+        if(data!=null){
+          this.invalidDataError = false;
           console.log(data)
-            this.enrollAlready = data.enrolledAlready
+          this.enrollAlready = data.enrolledAlready
 
-            if(this.enrollAlready){
-              console.log("Already login")
-              this.accalreadyError = true 
-            }else{
-              this.firstStep = false;
-              this.secondStep = true;
-              this.accalreadyError = false 
-        
-              this.firstStep = false;
-              this.secondStep = true;
-             
-            }
+          if(this.enrollAlready){
+            console.log("Already login")
+            this.accalreadyError = true 
+          }else{
+            this.firstStep = false;
+            this.secondStep = true;
+            this.accalreadyError = false 
+      
+            this.firstStep = false;
+            this.secondStep = true;
+           
+          }
+        }else{
+          this.invalidDataError = true;
+        }
+          
 
        },
         error => console.log(error));

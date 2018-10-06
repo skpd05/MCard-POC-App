@@ -60,7 +60,7 @@ getvalidateCard  (data): Observable<any> {
                  withCredentials: true
             }
           )
-        .pipe(
+        .pipe(   
         catchError(this.handleError) // then handle the error
        );
    	   // let headers = new Headers({ 'Content-Type': 'application/json' , 'uuid' : 'f04c5720-c3ac-11e8-a355-529269fb1459' , 'client_id' : 'f04c5edc-c3ac-11e8-a355-529269fb1459' , 'Accept' : 'application/json' });
