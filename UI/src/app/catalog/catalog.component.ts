@@ -19,7 +19,6 @@ export class CatalogComponent implements OnInit {
   }
 
   public showProductDetails(item): void {
-    this._checkoutService.callComponentMethod();
     this._checkoutService.setCurrentItem(item);
     this._router.navigate(['buynow']);
   }
@@ -45,5 +44,10 @@ export class CatalogComponent implements OnInit {
     this._checkoutService.increaseQuantity(itemId, true);
     this.itemArray = this._checkoutService.getItems();
     this._checkoutService.callComponentMethod();
+  }
+
+  public selectFromSideMenu(parentCategory, subCategory){
+    this._checkoutService.setCurrentCatagory(parentCategory, subCategory);
+    this.itemArray = this._checkoutService.getItems();
   }
 }

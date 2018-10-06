@@ -17,11 +17,13 @@ export class DashboardHeaderComponent implements OnInit {
   username: string;
   totalBalance = 0 ;
   public cartItemTotal = 0;
+  public itemList;
   constructor(  private userService: UserService,
                 private userdata: DataServiceService,
                 public enrolmentService: EnrolmentService, private _router: Router, private _checkoutService: CheckoutserviceService) {  }
 
   public ngOnInit(): void {
+    this.itemList = this._checkoutService.getItems();
     this.cardNo = this.userService.getCardNo();
     this.enrolmentService.getAccount(this.cardNo).subscribe((data: any) => {
         console.log(data);
@@ -35,6 +37,8 @@ export class DashboardHeaderComponent implements OnInit {
           this.cartItemTotal = this._checkoutService.getCartItemTotal();
         }
       );
+      this._checkoutService.setCartItemTotal();
+      this.cartItemTotal = this._checkoutService.getCartItemTotalNo();
     // let temp:any = this.userService.getCustmerDetails();
   }
 
@@ -50,5 +54,11 @@ export class DashboardHeaderComponent implements OnInit {
       this.totalBalance += Math.round(element.pointsTotal);
     });
   }
+
+  public setCurrentCategory(parentCat, subCat) {
+   this._checkoutService.setCurrentCatagory(parentCat, subCat);
+   this._router.navigate(['catalog']);
+  }
+
 
 }

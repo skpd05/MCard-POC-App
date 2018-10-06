@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user-service';
 @Component({
   selector: 'app-cartdetails',
   templateUrl: './cartdetails.component.html',
@@ -24,7 +25,7 @@ export class CartdetailsComponent implements OnInit {
   public billingDetailsStep = false;
   public reviewOrderStep = false;
   public confirmationStep = false;
-  constructor(private _router: Router, private _checkoutService: CheckoutserviceService) { }
+  constructor(private _router: Router, private _checkoutService: CheckoutserviceService, private _userService: UserService) { }
   public ngOnInit(): void {
     this.initializeItemDetails();
     if ( !this._checkoutService.goDirectlyToAddCart)  {
@@ -144,9 +145,11 @@ export class CartdetailsComponent implements OnInit {
     let itemInfo: any;
     let responseCode: any;
     const now = new Date();
+    console.log('user id', this._userService.getCardNo());
+    console.log('user details', this._userService.getCustmerDetails());
     this.cartProductList.forEach(element => {
         itemInfo = ({
-          'cardnumber': '5461237890123456009',
+          'cardnumber': this._userService.getCardNo(),
           'custid': '1',
           'quantity': element.quantity,
           'redeemeditem': element.name,

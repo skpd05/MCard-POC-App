@@ -11,56 +11,287 @@ import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.c
 })
 export class CheckoutserviceService {
   public itemArray: CatalogItem[] = [
-    {'id': 1,
-    'name': 'Sony 1 TB Wired External Hard Disk Drive  (Black)',
-    'url': 'assets/product-list/pro-1.jpg',
-    'ItemDescription': `Office documents and personal pictures - you can save them all in this Sony 1TB hard disk.
-     Stylishly designed, this external hard disk ensures super-fast transfer speeds
-     of up to 5 GB/s via a 3.0 USB and 480 Mbps via a USB 2.0 making it easy for you to save and
-     transfer files.`,
-     'quantity': 0,
-     'price': 30,
-     'enableMinusButton': false,
-     'itemType': 'electronic'
+  {
+    'id': 1,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/1.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
   },
   {
     'id': 2,
-    'name': 'Sony Headphones',
-    'url': 'assets/product-list/pro2.jpg',
-    'ItemDescription': `Office documents and personal pictures - you can save them all in this Sony 1TB hard disk.
-     Stylishly designed, this external hard disk ensures super-fast transfer speeds
-     of up to 5 GB/s via a 3.0 USB and 480 Mbps via a USB 2.0 making it easy for you to save and
-     transfer files.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-     'itemType': 'electronic'
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/2.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
   },
   {
     'id': 3,
-    'name': 'Toshiba 1 TB Wired External Hard Disk Drive  (Black)',
-    'url': 'assets/product-list/pro1.jpg',
-    'ItemDescription': `Office documents and personal pictures - you can save them all in this Sony 1TB hard disk.
-     Stylishly designed, this external hard disk ensures super-fast transfer speeds
-     of up to 5 GB/s via a 3.0 USB and 480 Mbps via a USB 2.0 making it easy for you to save and
-     transfer files.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-     'itemType': 'electronic'
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/3.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
   },
   {
     'id': 4,
-    'name': 'Sony 1 TB Wired External Hard Disk Drive  (Black)',
-    'url': 'assets/product-list/pro-1.jpg',
-    'ItemDescription': `Office documents and personal pictures - you can save them all in this Sony 1TB hard disk.
-     Stylishly designed, this external hard disk ensures super-fast transfer speeds
-     of up to 5 GB/s via a 3.0 USB and 480 Mbps via a USB 2.0 making it easy for you to save and
-     transfer files.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-     'itemType': 'electronic'
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/4.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 5,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/5.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 6,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/6.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 7,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/7.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 8,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/8.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 9,
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'url': 'assets/product-list/clothing/tops/9.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'tops',
+    'activeCategory': false,
+  },
+  {
+    'id': 10,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/10.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 11,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/11.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 12,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/12.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 13,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/13.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 14,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/14.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 15,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/15.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 16,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/16.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 17,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/17.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
+  },
+  {
+    'id': 18,
+    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
+    'url': 'assets/product-list/clothing/bottoms/18.jpg',
+    'ItemDescription': `A cotton-modal blend that drapes perfectly.
+    Softest Supima cotton and modal knit.
+    Long sleeves.
+    Boatneck.Material & Care
+    58% Pima Cotton, 39% Modal, 3% Spandex.
+    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    'itemType': 'electronic',
+    'category': 'clothing',
+    'subcategory': 'bottoms',
+    'activeCategory': false,
   },
   ];
   public cartItemsArray = new Array;
+  public cartTotalItem = 0;
   public redemptionSuccess = false;
   public showDescItemId;
   public quantity = 0;
   public cartTotal = 0;
   public disableDecreaseQuantity = true;
   public goDirectlyToAddCart = false;
+  public parentCatagory = '';
+  public subCatagory = '';
   public gotToMyCart = false;
   public saveRedemptionUrl = `https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/savetransaction`;
   // Observable string sources
@@ -121,7 +352,16 @@ export class CheckoutserviceService {
   }
 
   public getCartItemTotal(): number {
+    console.log('getting item total', this.cartItemsArray.length);
     return this.cartItemsArray.length;
+  }
+
+  public setCartItemTotal(): void {
+    this.cartTotalItem = this.cartItemsArray.length;
+  }
+
+  public getCartItemTotalNo(): number {
+    return this.cartTotalItem;
   }
 
   public increaseQuantity(itemId, allowZero): void {
@@ -266,6 +506,35 @@ export class CheckoutserviceService {
     return this.redemptionSuccess;
   }
 
+  public setCurrentCatagory(parentCat, subCat) {
+    this.parentCatagory = parentCat;
+    this.subCatagory = subCat;
+    console.log('subcategory', subCat);
+    this.setActiveCatagory();
+  }
+
+  public setActiveCatagory(): void {
+    this.itemArray.forEach(element => {
+      if (element.category === this.parentCatagory) {
+        if (this.subCatagory === 'notselected') {
+          element.activeCategory = true;
+        } else {
+            if ( element.subcategory === this.subCatagory) {
+              element.activeCategory = true;
+            } else {
+              element.activeCategory = false;
+            }
+        }
+      } else {
+        if ( this.parentCatagory === 'notselected') {
+          element.activeCategory = true;
+        } else {
+          element.activeCategory = false;
+        }
+      }
+    });
+  }
+
 }
 
 interface CatalogItem {
@@ -277,6 +546,9 @@ interface CatalogItem {
   'price': number;
   'enableMinusButton': boolean;
   'itemType': string;
+  'category': string;
+  'subcategory': string;
+  'activeCategory': boolean;
 }
 
 interface RedemptionDetails {

@@ -567,11 +567,11 @@
                                                     </div>
                                                 </div>
                                                 </td>
-                                                    <td data-th="Points">{{orderconfirm.quantity*orderconfirm.price}}</td>
+                                                    <td data-th="Points">{{orderconfirm.price}}</td>
                                                     <td data-th="Quantity" class="text-center">
-                                                        1
+                                                       {{orderconfirm.quantity}}
                                                     </td>
-                                                    <td data-th="TotalPoints" class="text-center">{{orderTotal}}</td>
+                                                    <td data-th="TotalPoints" class="text-center">{{orderconfirm.quantity*orderconfirm.price}}</td>
                     
                                                 </tr>
                     
@@ -588,7 +588,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr class="visible-xs">
-                                                    <td class="text-center"><strong>150.00</strong></td>
+                                                    <td class="text-center"><strong>{{orderTotal}}</strong></td>
                                                 </tr>
                     
                                             </tfoot>

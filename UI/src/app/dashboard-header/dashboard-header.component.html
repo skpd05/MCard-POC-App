@@ -1,134 +1,140 @@
-<div class="dashboard-header">
-    <nav class="navbar navbar-inverse clear-fix">
-        <div class="container">
-          <div class="navbar-header ">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-              </div>
-              <div class="collapse navbar-collapse" id="myNavbar1">
-            <div class="balenceCls">
-              <a class="navbar-brand dropdown-toggle" routerLink="/catalog" type="button" data-toggle="dropdown" >
-                {{totalBalance}}PT
-                <span class="balcls">Balance points</span>
-                <div class="arrowAbs"><i class="fa fa-angle-down"></i></div>
-              </a>
-          
-            <ul class="dropdown-menu bailace-point">
-              <li>Redeem Points</li>
-              <li><a href="#">User Points to Shop</a></li>
-              <li><a href="#">Cash Back</a></li>
-              <li><a href="#">Experiences</a></li>
-              <li><a href="#">Gift Cards</a></li>
-              <li><hr/></li>
-              <li><a href="#">Earn Points</a></li>
-              <li><a href="#">Transfer Points</a></li>
-              <li><span class="expiredcir">102</span>points will be expired by this cycle</li>
-            </ul> 
-          </div>
-         
-          <ul class="nav navbar-nav dashb-active" style="position:relative;">
-            <li routerLinkActive="active01">
-              <div class="dropdown02">
-              <a    data-toggle="dropdown">
-              <i class="fa fa-navicon"></i>Shop By catagory <i class="fa fa-angle-down"></i></a>
-              
-              <div class="dropdown-menu">
-                <!--<li><a routerLink="/catalog">HTML</a></li>
-                <li><a routerLink="/catalog">CSS</a></li>
-                <li><a routerLink="/catalog">JavaScript</a></li>-->
-                <!--vivek starts-->
-                <div class="row">
-                  <div class="col-md-3">
-                      <div class="cata-div1">
-                          <p><u><b>Mens Apperal</b></u></p>
-                          <a class="dropdown-item dahboard-item-anchor">Shirt</a>
-                          <a class="dropdown-item" routerLink="/catalog">T-Shirt &nbsp;
-                            <span class="badge badge-pill badge-success">New</span>
-                          </a>                
-                          <a class="dropdown-item" routerLink="/catalog">Shoes</a>
-                          <a class="dropdown-item" routerLink="/catalog">Coming Soon</a>
-                          <a class="dropdown-item" routerLink="/catalog">Coming Soon</a>                                
-                      </div>               
-                          
-                    </div>
-                    <div class="col-md-3">
-                        <div  class="cata-div1">
-                            <p><u><b>Electric Aappliences</b></u></p>
-                            <a class="dropdown-item" routerLink="/catalog">Action</a>
-                            <a class="dropdown-item" routerLink="/catalog">Another action</a>                    
-                            <a class="dropdown-item" routerLink="/catalog">Action</a>
-                            <a class="dropdown-item" routerLink="/catalog">Another action</a>                
-                            <a class="dropdown-item" routerLink="/catalog">Something else</a>
-                        </div>
-                                        
-                    </div>
-                    <div class="col-md-3">
-                        <div class="cata-div1">
-                            <p><b><u>House Hold</u></b></p>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                        </div>                            
-                    </div>
-                    <div class="col-md-3">
-                        <div class="cata-div1">
-                            <p><b><u>Kids Apperal</u></b></p>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>
-                            <a class="dropdown-item" routerLink="/catalog">Item Link</a>                                
-                        </div>                            
-                    </div>
-                </div>
-                <!-- vivek ends -->
-              </div>
-            </div>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Balance Points  {{totalBalance}}PTS</a>
+    </div>
+    
+    <div class="collapse navbar-collapse js-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown mega-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Redeem Points <span class="caret"></span></a>				
+          <ul class="dropdown-menu mega-dropdown-menu">
+            <li class="col-sm-4">
+              <ul>
+                <li><a href="#">User Points to Shop</a></li>     
+                <li><a href="#">Cash Back</a></li>
+                <li><a href="#">Experiences</a></li>     
+                <li><a href="#">Gift Cards</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Earn Points</a></li>
+                <li><a href="#">1200 Points will expire by end of cycle </a></li>
+              </ul>
             </li>
-              <li> <form class="navbar-form">
+            
+          </ul>				
+        </li>
+
+       
+              <li class="dropdown mega-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">SHOP <span class="caret"></span></a>				
+          <ul class="dropdown-menu mega-dropdown-menu">
+            <li class="col-sm-3">
+                <ul>
+                    <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('electronics','notselected')">Electronics</a></li>
+                    <li><a role="button" (click)="setCurrentCategory('electronics','harddisk')">Hard Disks</a></li>
+                    <li><a role="button" (click)="setCurrentCategory('electronics','pendrive')">Pen Drives</a></li>
+                    <li><a role="button" (click)="setCurrentCategory('electronics','bluetooth')">Bluetooth</a></li>                            
+                    <li><a role="button" (click)="setCurrentCategory('electronics','powerbank')">Power Banks</a></li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('clothing','notselected')">Clothing</a></li>
+                <li><a role="button" (click)="setCurrentCategory('clothing','tops')">Tops</a></li>
+                <li><a role="button" (click)="setCurrentCategory('clothing','bottoms')">Bottoms</a></li>
+                <li><a role="button" (click)="setCurrentCategory('clothing','scarfs')">Scarfs</a></li>                            
+                <li><a role="button" (click)="setCurrentCategory('clothing','ties')">Ties</a></li>							
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                  <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('footwear','notselected')">Footwear</a></li>
+                  <li><a role="button" (click)="setCurrentCategory('clothing','pumps')">Pumps</a></li>
+                  <li><a role="button" (click)="setCurrentCategory('clothing','peeptoes')">Peep Toes</a></li>
+                  <li><a role="button" (click)="setCurrentCategory('clothing','shoes')">Shoes</a></li>                            
+                  <li><a role="button" (click)="setCurrentCategory('clothing','ballerinas')">Ballerinas</a></li>		                      
+              </ul>
+            </li>
+            
+                      <li class="col-sm-3">
+                <ul>
+                <li class="dropdown-header">Whole Collection</li>                            
+                              <div id="womenCollection" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                  <div class="item active">
+                                      <a href="catalog"><img src="assets/product-list/clothing/bottoms/17.jpg" class="img-responsive" alt="product 1"></a>
+                                                                             
+                                            
+                                  </div><!-- End Item -->
+                                  <div class="item" *ngFor="let orderconfirm of itemList">
+                                      <a href="catalog"><img src="{{orderconfirm.url}}" class="img-responsive" alt="product 2"></a>
+                                                                            
+                                             
+                                  </div><!-- End Item -->
+                                  <div class="item">
+                                      <a href="catalog"><img src="assets/product-list/clothing/tops/7.jpg" class="img-responsive" alt="product 3"></a>
+                                                                            
+                                  
+                                  </div><!-- End Item -->                                
+                                </div><!-- End Carousel Inner -->
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#womenCollection" role="button" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#womenCollection" role="button" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </div><!-- /.carousel -->
+                              <li class="divider"></li>
+                              <li><a role="button" (click)="setCurrentCategory('clothing','pumps')">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+              </ul>
+            </li>
+          </ul>				
+        </li>
+
+        <li class="dropdown mega-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Cards <span class="caret"></span></a>				
+            <ul class="dropdown-menu mega-dropdown-menu">
+              <li class="col-sm-4">
+                <ul>
+                  <li><a routerLink="/mycards/all_cards">All Cards</a></li>                      
+                  <li *ngFor="let card of creditCardList">
+                    <a routerLink="/mycards/{{card}}">{{card}}</a>
+                  </li>    
+                </ul>
+              </li>
+              
+            </ul>				
+          </li>
+
+              <li><a href="#">My Points</a></li>
+            <li><form class="navbar-form">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" name="search">
-                  <div class="searchIconCls"><i class="fa fa-search"></i></div>
-                  
+                  <div class="searchIconCls"></div>
                 </div>
               </form></li>
-              <li >
-                  <div class="dropdown" style="cursor: pointer;">
-                    <a  class="dropdown-toggle"  data-toggle="dropdown" 
-                    [ngClass]="{'active01': activeCls}">
-                      <i class="fa fa-credit-card"></i>My Cards
-                    </a>                
-                    <ul class="dropdown-menu">
-                      <li><a routerLink="/mycards/all_cards">All Cards</a></li>                      
-                      <li *ngFor="let card of creditCardList">
-                        <a routerLink="/mycards/{{card}}">{{card}}</a>
-                      </li>
-                      <!-- <li><a routerLink="/mycards/11221121">11221121</a></li> -->
-                    </ul>                
-                </div>            
-              </li>
-              <li >
-                <a routerLink="/mypoints"  [ngClass]="{'active01': !activeCls}" routerLinkActive="active01">
-                  <i class="fa fa-gift"></i>My Points
-                </a>
-              </li>
-              <li>
-                <a  routerLinkActive="active01">
-                  <i class="fa fa-user"></i>My Profile
-                </a>
+                 
+              
+      </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My account <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings</a></li>
+            </ul>
           </li>
-          <li >
-            <a routerLinkActive="active01">
-              <i class="fa fa-shopping-cart"></i><sup class="badge badge-pill">{{cartItemTotal}}</sup>
-            </a>
-          </li>          
-          </ul>
-        </div>
-        </div>
-      </nav>  
-    </div>
+          <li><a href="#"><i class="fa fa-shopping-cart"></i><sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>
+        </ul>
+    </div><!-- /.nav-collapse -->
+    </nav>
+  </div>
+  
