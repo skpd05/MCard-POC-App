@@ -18,12 +18,11 @@
                     <li>
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
                             <option value="all_cards">All Cards</option>
-                             <option value="89988990">89988990</option>
-                             <option value="11221121">11221121</option>
+                            <option *ngFor="let cardNumber of cardDetailsList" value="{{cardNumber.credicardnumber}}">{{cardNumber.credicardnumber}}</option>                             
                         </select>
                     </li>
                     <li>
-                            Points Earned <strong>1302.66</strong>
+                            Points Earned <strong>{{totalBalance}} </strong>
                     </li>
                     <li>
                             <span class="addcardCls"><i class="fa fa-plus-circle"></i> Add Card</span>

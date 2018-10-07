@@ -82,6 +82,7 @@ public class AccountServiceImpl implements AccountService {
 				}
 				account.setPointsaccured(pointsTotal - points.getPointsvalue());
 			}
+			accRepo.save(account);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

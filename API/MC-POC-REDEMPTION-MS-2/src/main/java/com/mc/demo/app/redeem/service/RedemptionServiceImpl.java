@@ -48,7 +48,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			Points point =new Points();
 			point.setCardNumber(transac.getCardNumber());
 			point.setOpertaion("minus");
-			point.setPointsvalue(transac.getRedeemedpoints());
+			point.setPointsvalue(transac.getRedeemedpoints()*transac.getRedeemedpoints());
 			
 			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
 			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";

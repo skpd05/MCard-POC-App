@@ -23,13 +23,16 @@ export class MyPointsComponent{
     errorMessage: boolean = false;
     
     columnDefs = [
-        {headerName: 'Date', field: 'date' },
-        {headerName: 'Transaction Description', field: 'trans_description' },
-        {headerName: 'Transaction Amount($)', field: 'trans_amount'},
-        {headerName: 'Earned Points', field: 'earned_points' },
-        {headerName: 'Card Type', field: 'card_type'}
+        {headerName: 'Date', field: 'redemptiontimestaamp' },
+        {headerName: 'Item ', field: 'redeemeditem' },
+        {headerName: 'Reedeemed Points', field: 'redeemedpoints'},
+        {headerName: 'Quantity', field: 'quantity' },
+        {headerName: 'Card Number', field: 'cardnumber'}
     ];
     rowData: any;
+    cardDetailsList: any = [];
+    temp_card_item: any = [];
+    totalBalance = 0 ;
     
     constructor(private httpService : HttpService, 
                 private enrolmentService: EnrolmentService, 
@@ -45,31 +48,53 @@ export class MyPointsComponent{
         this.cardNo = this.userService.getCardNo();
         this.enrolmentService.getMyPoints(this.cardNo).subscribe((data: any)=> {                        
             console.log(data); 
-            // this.cardDetailsList = data.creditcardsList;
-            // this.temp_card_item = this.cardDetailsList.slice();
+            this.items = data         
         }, (error: any)=>{
             console.log(error);
             this.errorMessage = true;
         });        
-        this.httpService.getMockJSON().subscribe((data: any) => {            
-            this.items = data.items;
-            this.rowData = this.items;
-            console.log(this.items);
-            this.temp_item = (this.items).slice();            
-        });
+        this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
+            console.log(data); 
+            this.cardDetailsList = data.creditcardsList;
+            this.temp_card_item = this.cardDetailsList.slice();
+            this.getBalancePoint(data.creditcardsList);
+        })  
     }
         
     update_filter(x){
         this.temp_item = [];
-        if(x == 'all_cards'){
-            this.temp_item = (this.items).slice();
-        }else{        
-        this.items.forEach(item =>{
-            if(item.car_number == x){
-                this.temp_item.push(item);
+        /*this.enrolmentService.getMyPoints(x).subscribe((data: any)=> {                        
+            this.items = data 
+            console.log(data); 
+            if(x == 'all_cards'){
+                this.rowData = (this.items).slice();
+            }else{        
+                this.items.forEach(item =>{
+                    if(item.cardnumber == x){
+                        this.rowData.push(item);
+                    }
+                }) 
             }
-        })
+        }, (error: any)=>{
+            console.log(error);
+            this.errorMessage = true;
+        });     
+        */
+        if(x == 'all_cards'){
+            this.temp_item = this.items;
+        }else{        
+            this.items.forEach(item =>{
+                if(item.cardnumber == x){
+                    this.temp_item.push(item);
+                }
+            }) 
+        }
     }
-}
+
+    getBalancePoint(list): any {
+        list.forEach(element => {
+          this.totalBalance += Math.round(element.pointsTotal);
+        });
+      }
    
 }
