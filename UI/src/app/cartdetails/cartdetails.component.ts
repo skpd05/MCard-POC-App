@@ -149,6 +149,9 @@ export class CartdetailsComponent implements OnInit {
     const now = new Date();
     console.log('user id', this._userService.getCardNo());
     console.log('user details', this._userService.getCustmerDetails());
+    
+    let currentTimeStamp = Math.floor(new Date().getTime()/1000)+19880;
+    console.log(currentTimeStamp);
     this.cartProductList.forEach(element => {
         itemInfo = ({
           'cardnumber': this._userService.getCardNo(),
@@ -156,7 +159,7 @@ export class CartdetailsComponent implements OnInit {
           'quantity': element.quantity,
           'redeemeditem': element.name,
           'redeemedpoints': element.quantity * element.price,
-          'redemptiontimestaamp': '1419038000',
+          'redemptiontimestaamp': currentTimeStamp,
           'vendorid': 'Mastercard'
         });
           this._checkoutService.saveTransaction(itemInfo).subscribe( data => {

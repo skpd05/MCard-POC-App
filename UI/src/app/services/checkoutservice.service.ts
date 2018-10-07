@@ -481,10 +481,7 @@ export class CheckoutserviceService {
                .set('Accept', 'application/json'),
                 withCredentials: true
            }
-         )
-       .pipe(
-       catchError(this._handleError) // then handle the error
-      );
+         );
    }
 
    private _handleError(error: HttpErrorResponse): any {

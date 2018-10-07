@@ -24,20 +24,19 @@ public class RedeemServiceController {
 	RedemptionService redeemService;
 
 	@RequestMapping(value = "/savetransaction", method = RequestMethod.POST)
-	public String redeemPoints(@RequestBody @Validated RedemptionTransaction redeem,
+	public ResponseEntity<String> redeemPoints(@RequestBody @Validated RedemptionTransaction redeem,
 			@RequestHeader(name = "uuid", required = true) String uuid,
 			@RequestHeader(name = "client_id", required = true) String clientId,
 			@RequestHeader(name = "Accept", required = true) String accept) {
-
 		try {
 			if (redeemService.save(redeem)) {
-				return "successful";
+				return new ResponseEntity<String>("successful", HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "unsuccessful";
+		return new ResponseEntity<String>("unsuccessful", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/historybycard/{cardnumber}", method = RequestMethod.GET)

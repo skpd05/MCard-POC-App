@@ -55,6 +55,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<String> response = restTemplate.postForEntity(url,point,
 	                String.class);
+			System.out.println("customer/adjustpoints:::"+response.getBody().toString());
 			if("unsuccessful".equalsIgnoreCase(response.getBody().toString())){
 				return false;
 			}
@@ -71,6 +72,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			redeemObj.setVendorid(transac.getVendorid());
 			redeemObj.setCreated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
 			redeemObj.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+			System.out.println("Prinitn raw redeemObj"+redeemObj);
 			redeemRepo.save(redeemObj);
 		} catch (Exception exc) {
 			exc.printStackTrace();
