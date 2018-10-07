@@ -58,20 +58,20 @@
       <div class="controls">
         <div *ngIf="currentItemQuantity > 0 ;then showbar else showaddbutton">here is ignored</div>
         <ng-template #showbar>
-          <div class="addToCartButton">
+          <div >
 
             <div class="input-group">
 
               <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number" [disabled]="disableMinus" data-type="minus" data-field="quant[1]"
+                <button type="button" class="btn btn-default btn-number btn-sm" [disabled]="disableMinus" data-type="minus" data-field="quant[1]"
                   (click)="decreaseQuantityDetail(currentItemId)">
                   <span class="glyphicon glyphicon-minus"></span>
                 </button>
               </span>
-              <input type="text" name="quant[1]" class="form-control input-number" value="{{currentItemQuantity}}" min="0"
+              <input type="text" class="form-control input-number input-sm sm-1" value="{{currentItemQuantity}}" min="0"
                 max="10">
               <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
+                <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
                   <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
@@ -80,15 +80,15 @@
           </div>
         </ng-template>
         <ng-template #showaddbutton>
-          <div class="addToCartButton">
-            <button class="addToCart" (click)="addToCart(currentItemId);">Add to Cart</button>
+          <div>
+            <button class="btn btn-primary btn-sm btn-primary-spacing " (click)="addToCart(currentItemId);">Add to Cart</button>
           </div>
         </ng-template>
-        <div class="proceedCheckoutButton">
-          <button class="proceedCheckout" (click)="goToCartDetails();">Proceed to CheckOut</button>
+        <div>
+          <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut</button>
         </div>
-        <div class="backToCatalogButton">
-          <button class="backToCatalog" (click)="goBacktoCatalog();">Back To Catalog</button>
+        <div >
+          <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();">Back To Catalog</button>
         </div>
       </div>
       <!-- <ul>
@@ -105,6 +105,7 @@
 <br>
 
 <div class="container" *ngIf="showCartItemsStep">
+    <div *ngIf="cartProductList.length > 0; else noItems" >
   <table class="greyGridTable">
     <thead>
       <tr>
@@ -117,7 +118,7 @@
     <tbody>
       <tr *ngFor="let item of cartProductList">
         <td>
-          <img src="{{item.url}}" width="150" height="100">
+          <img src="{{item.url}}"  class="img-thumbnail img-responsive" width="150" height="100">
           <div><span> {{item.name}}</span></div>
         </td>
         <td>{{item.price}}</td>
@@ -127,15 +128,15 @@
               <div class="col-xs-6">
                 <div class="input-group">   
                 <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]"
+                <button type="button" class="btn btn-default btn-number btn-sm" data-type="minus" data-field="quant[1]"
                   (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton">
                   <span class="glyphicon glyphicon-minus"></span>
                 </button>
                 </span>
-                <input type="text" name="quant[1]" class="form-control input-number" value="{{item.quantity}}" min="0"
+                <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
                 max="10">
                 <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
+                <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
                 <span class="glyphicon glyphicon-plus"></span>
                 </button>
                 </span>
@@ -164,16 +165,21 @@
   </table>
 
   <div class="float-left">
-    <a class="btn btn-default" (click)="proceedToShipping();">Procced to Checkout</a>
+    <a class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout</a>
+    <button (click)="goBacktoCatalog();"  href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+        Go Back to Shopping</button>
   </div>
-
-
+</div>
+        <ng-template #noItems>
+            <div class="container"> <p> Sorry there are no products in the cart. </p>  </div>
+             
+              </ng-template>
 </div>
 
 
 <!-- Shiiping & billing address Page-->
 <div class="container" *ngIf="billingDetailsStep">
-    <div class="row">
+    <div class="row" role="form" #userForm (ngSubmit)="reviewOrder();">
         <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
             <div>
                 <h5><b>Shipping options</b></h5>
@@ -210,85 +216,118 @@
             <div>
                 <h5><b>Shipping address</b></h5>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" style="width:99%">
                 <div class="panel-body">
-                    <form class="form-horizontal">
-                        <div class="col col-xs-12">
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> Your name (first and last):</h6>
-                                    </label>
+                    
+                        <div class="col-md-12  col-sm-12  col-xs-8 " style="background:#fff; padding:30px;">
+
+                            
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h3 class="text-center">Billing Address</h3>
+                         
+                                        <hr>
+
+                                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                                 <div class="form-group">
+                                                     <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                </div>
+                                 </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Email id">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> Shipping address:
-                                        </h6>
-                                    </label>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+
+                                          <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                            <textarea class="form-control"  placeholder="Address">                                                
+                                            </textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> City:
-                                        </h6>
-                                    </label>
+
+                                          <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="country">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+                                   <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="city">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> Country:
-                                        </h6>
-                                    </label>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="pincode">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+                                               <input class="coupon_question" type="checkbox" name="coupon_question" value="1">
+                                        <span class="item-text"><b>Billing Address same as Shiiping Address</b></span>
+                                  </div>
+
+
+                                  <div class="col-md-6 shipping col-sm-6 col-xs-12">
+                                        <h3 class="text-center">Shipping Address</h3>
+
+                                        <hr>
+                                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                                 <div class="form-group">
+                                                     <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                </div>
+                                 </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> State:
-                                        </h6>
-                                    </label>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Email id">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
-                                    <label>
-                                        <h6> Phone number: </h6>
-                                    </label>
+
+                                          <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                            <textarea class="form-control"  placeholder="Address">                                                
+                                            </textarea>
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input class="form-control" type="text" />
+
+                                          <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="country">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col col-xs-3">
+                                   <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="city">
+                                    </div>
                                 </div>
-                                <div class="col col-xs-9">
-                                    <input type="checkbox" checked="checked">
-                                    <span class="checkmark"></span>
-                                    Save this shipping address for future use
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="pincode">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
+                                  </div> 
+                               
+                              
+                    </div>
                 </div>
             </div>
             <div>
@@ -313,7 +352,7 @@
                                 <td data-th="Product">
                                     <div class="row">
                                         <div class="col-sm-4 hidden-xs"><img src="{{products.url}}" alt="..."
-                                                class="img-responsive" /></div>
+                                                class="img-responsive img-thumbnail" /></div>
                                         <div class="col-sm-8">
                                             <h4 class="nomargin">{{products.name}}</h4>
                                             <p>{{products.description}}.</p>
@@ -323,9 +362,7 @@
                                 <td data-th="Points">{{products.price}}</td>
                                 <td data-th="Quantity">{{products.quantity}} </td>
                                 <td data-th="TotalPoints" class="text-center">{{products.quantity*products.price}}</td>
-                                <td class="actions" data-th="">
-                                    <button class="btn btn-danger btn-sm" (click)="removeFromCart(products.id);"><i class="fa fa-trash-o"></i></button>
-                                </td>
+                               
                             </tr>
                         </tbody>
                         <tfoot>
@@ -337,7 +374,7 @@
                                         Go Back to Shopping</button></td>
                                 <td colspan="1" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
-                                <td><button class="btn btn-success btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
+                                <td><button type="sumbit" class="btn btn-success btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -400,7 +437,7 @@
                                     <td data-th="Product">
                                         <div class="row">
                                             <div class="col-sm-4 hidden-xs"><img src="{{order.url}}" alt="..."
-                                                    class="img-responsive" /></div>
+                                                    class="img-responsive img-thumbnail" /></div>
                                             <div class="col-sm-8">
                                                 <h4 class="nomargin">{{order.name}}</h4>
                                                 <p>{{order.ItemDescription}}</p>
@@ -470,108 +507,97 @@
 
 <!--Order Reciept -->
 <div *ngIf="itemRedemptionSuccess ;then showsuccess else showfailure">here is ignored</div>
-        <ng-template #showsuccess>
-            <div class="headerfooter">
-                <span> You are receiving this email because you are subscribed to the COMPANY NAME newsletter.</span>
-                <br>
-            
-            
-                <span>If you no longer wish to receive these emails, you can <a href="#">unsubscribe instantly.</a></span>
-                <br>
-            
-            
-                <span> If you have any trouble viewing this email please visit <a href="#">this link.</a></span>
-            
-            </div>
-
-            <div class="panel panel-primary border">
-                <div class=" panel-body ">
-                    <div class="container">
+    <ng-template #showsuccess>
+            <div class="pageDiv">
+                    
+                    <div class=container>
+                    <div class="panel panel-primary border">
+                        <div class=" panel-body ">
+                            <div class="container">
                                 <div class="row">
-                                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/50X50" alt="..." class="img-responsive" /></div>
-                                        <div class="col-sm-10 text-center">
-                                            <span> <strong>Thank you for order!</strong></span>
-                                        </div>
+                                    <div class="row">
+                                        <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/50X50" alt="..." class="img-responsive" /></div>
+                                        <div class="col-sm-7 text-center"><span> <strong>Thank you for order!</strong></span></div>
                                     </div>
                                 </div>
 
-                            <div class="row">
-                                <div class="mailContent ">
-                                    <span>
+                                <div class="row" style="width:90%;">
+                                        <div class="mailContent ">
+                                            <span>
                                                 You've successfully placed your order with BrandName -- please print (or save) this page for
                                                 your
                                                 records. You will be receiving a copy of this page by e-mail shortly. When contacting us
                                                 regarding
                                                 this order, please use this Order Number as a reference:
-                                    </span>
-                                </div>
-                            </div>
-                        
-                            <div class="row">
-                                <div class="mailContent ">
-                                    <span><strong>Order Number:</strong>219998</span>
-                                    <br>
-                                    <span><strong>Order Number:</strong>June 21, 2011</span>
-                                </div>
-                            </div>
-                        
-                            <div class="row">
-                                <div class="mailContent ">
-                                    <span><strong>Billing & Shipping Information</strong></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="mailContent ">
-                                    <span><strong>Billing information:</strong></span>
-                                        <div class="address">
-                                            <span>
-                                             John Doe
-                                             35th Street
-                                             Montreal, QC, J8J 2L2
-                                             CANADA
                                             </span>
-                                        </div>                                        
-                                            <br>
-                                    <span><strong>Shipping information:</strong></span>
-                                         <div class="address">
-                                              <span>John Doe
-                                                  35th Street
-                                                  Montreal, QC, J8J 2L2
-                                                  CANADA
-                                                </span>
                                         </div>
+                                 </div>                        
+                                                                                                                                
+                                <div class="row" style="width:90%;">
+                                    <div class="mailContent" >
+                                        <span><strong>Order Number:</strong>219998
+                                        </span>
+                                        <br>
+                                        <span><strong>Order Number:</strong>June 21, 2011</span>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="row mailContent">
-                                 <span><strong>Your Order Detail:</strong></span>
-                                    <table id="cart" class="table table-hover table-condensed ">
-                                        <thead>
-                                             <tr>
-                                                <th>Product</th>
-                                                <th>Points</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th class="text-center">TotalPoints</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td data-th="Product">
-                                                 <div class="row" *ngFor="let orderconfirm of cartProductList">
-                                                    <div class="col-sm-4 hidden-xs"><img src="{{orderconfirm.url}}" alt="..."
-                                                         class="img-responsive" /></div>
-                                                    <div class="col-sm-8">
-                                                    <h4 class="nomargin">{{orderconfirm.name}}</h4>
-                                                    <p>{{orderconfirm.ItemDescription}}</p>
-                                                    </div>
-                                                </div>
-                                                </td>
-                                                    <td data-th="Points">{{orderconfirm.price}}</td>
-                                                    <td data-th="Quantity" class="text-center">
-                                                       {{orderconfirm.quantity}}
+                    
+                                <div class="row" style="width:90%;">
+                                    <div class="mailContent ">
+                                        <span><strong>Billing & Shipping Information</strong></span>
+                                    </div>
+                                </div>
+                    
+                                <div class="row" style="width:90%;" >
+                                    <div class="mailContent ">
+                                        <span><strong>Billing information:</strong></span>
+                                            <div class="address"><span>John Doe
+                                                    35th Street
+                                                    Montreal, QC, J8J 2L2
+                                                    CANADA</span>
+                                                <br> </div>
+                                        <span><strong>Shipping information:</strong></span>
+                                             <div class="address">
+                                                        <span>John Doe
+                                                            35th Street
+                                                            Montreal, QC, J8J 2L2
+                                                            CANADA
+                                                        </span>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row mailContent" style="width:90%;">
+                                     <span><strong>Your Order Detail:</strong></span>
+                                        <table id="cart" class="table table-hover table-condensed  table-responsive ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Points</th>
+                                                    <th class="text-center">Quantity</th>
+                                                    <th class="text-center">TotalPoints</th>
+                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-th="Product">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
+                                                                    class="img-responsive" /></div>
+                                                            <div class="col-sm-4">
+                                                                <h4 class="nomargin">Product 1</h4>
+                                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum
+                                                                    dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit
+                                                                    amet.</p>
+                                                            </div>
+                                                        </div>
                                                     </td>
-                                                    <td data-th="TotalPoints" class="text-center">{{orderconfirm.quantity*orderconfirm.price}}</td>
+                                                    <td data-th="Points">150.00</td>
+                                                    <td data-th="Quantity" class="text-center">
+                                                        1
+                                                    </td>
+                                                    <td data-th="TotalPoints" class="text-center">150.00</td>
                     
                                                 </tr>
                     
@@ -581,32 +607,49 @@
                                                     <td class="hidden-xs text-right">
                                                         <strong>Total</strong>
                                                     </td>
-                                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
+                                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong> 150.00</strong></td>
                     
                                                 </tr>
                     
                                             </tbody>
                                             <tfoot>
                                                 <tr class="visible-xs">
-                                                    <td class="text-center"><strong>{{orderTotal}}</strong></td>
+                                                    <td class="text-center"><strong>150.00</strong></td>
                                                 </tr>
                     
                                             </tfoot>
                                         </table>
                     
                                 </div>
-                                <div class="row "><span><strong>Thanks!</strong></span></div>
-                                <div class="row mailContent"><span>Thanks so much for being one of our beloved customers. If you believe we
+                                <div class="row " style="width:90%;"><span><strong>Thanks!</strong></span></div>
+                                <div class="row mailContent"style="width:90%;"><span>Thanks so much for being one of our beloved customers. If you believe we
                                         can help you in any manner, please contact our friendly support team and we'll try to sort any
-                                        problems you might have.</span></div>
+                                        problems you might have.</span>
+                                </div>
                             
-
-                            <!--Closing Div Mains-->
+                    
+                    
+                    
+                     
+                    
+                    
+                    <div class="headerfooter">
+                        <span> You are receiving this email because you are subscribed to the COMPANY NAME newsletter.</span>
+                        <br>
+                    
+                    
+                        <span>If you no longer wish to receive these emails, you can <a href="#">unsubscribe instantly.</a></span>
+                        <br>
+                    
+                    
+                        <span> If you have any trouble viewing this email please visit <a href="#">this link.</a></span>
+                    
                     </div>
-                        </div>
+                 </div></div></div></div></div>
+                    
                            
         </ng-template>
         <ng-template #showfailure>
-          <div>Transaction failed</div>
+          
         </ng-template>
 </body></html>

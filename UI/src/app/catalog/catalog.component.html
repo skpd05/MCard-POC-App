@@ -151,18 +151,10 @@
                 <section class="panel" *ngIf="item.activeCategory">
                   <div class="pro-img-box">
                       <img src="{{item.url}}" alt="" >
-                   
+                     
                   </div>
                   
-                  <div class="panel-body text-center">
-                    
-                    <h4>
-                      <a href="#" class="pro-title">
-                                        Product Title
-                                    </a>
-                    </h4>
-                    <p class="price">{{item.price}}points</p>
-                  </div>
+                  
                   <div class="bottons">
 
                       <div *ngIf="item.quantity>0 ;then content else other_content">here is ignored</div>    
@@ -172,13 +164,13 @@
                               <div class="input-group">
                                
                                     <span class="input-group-btn" style="vertical-align: middle;">
-                                        <button type="button" class="btn btn-default btn-number" [disabled]="item.enableMinusButton" data-type="minus" data-field="quant[1]" (click)="decreaseQuantity(item.id)">
-                                            <span class="glyphicon glyphicon-minus"></span>
+                                        <button type="button" class="btn btn-default btn-number btn-sm" [disabled]="item.enableMinusButton" data-type="minus" data-field="quant[1]" (click)="decreaseQuantity(item.id)">
+                                            <span class="glyphicon glyphicon-minus"  ></span>
                                         </button>
                                     </span>
-                                    <input type="text" name="quant[1]" class="form-control input-number" value="{{item.quantity}}" min="0" max="10">
+                                    <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0" max="10">
                                     <span class="input-group-btn" style="vertical-align: middle;">
-                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
+                                        <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </button>
                                     </span>
@@ -188,13 +180,18 @@
                       </ng-template>
                       <ng-template #other_content>
                           <div class="addToCartButton">
-                          <button class="btn btn-primary" (click)="addToCart(item.id);">Add to Cart</button>
+                          <button class="btn btn-primary " (click)="addToCart(item.id);">Add to Cart</button>
                           </div>
                       </ng-template>
                       <div class="addToCartButton">
-                          <button class="btn btn-accent" (click)="showProductDetails(item.id);">Buy Now</button>
+                          <button class="btn btn-accent" (click)="showProductDetails(item.id);">Buy Now
+                                 <span class="badge badge-secondary">{{item.price}} pts</span>
+                          </button>
                       </div>
+                      
+                      
                     </div>    
+                    
                 </section>
               </div>
             </div>

@@ -60,5 +60,10 @@ export class DashboardHeaderComponent implements OnInit {
    this._router.navigate(['catalog']);
   }
 
+  public goToCart() {
+    this._checkoutService.goDirectlyToAddCart = true;
+    this._router.navigate(['buynow']);
+  }
+
 
 }

@@ -356,6 +356,10 @@ export class CheckoutserviceService {
     return this.cartItemsArray.length;
   }
 
+  public resetCartItemArray() {
+    this.cartItemsArray = [];
+  }
+
   public setCartItemTotal(): void {
     this.cartTotalItem = this.cartItemsArray.length;
   }

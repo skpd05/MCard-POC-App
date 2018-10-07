@@ -8,6 +8,7 @@ import { UserService } from '../services/user-service';
   styleUrls: ['./cartdetails.component.css']
 })
 export class CartdetailsComponent implements OnInit {
+  public orderDetails;
   public currentItemId;
   public itemRedemptionSuccess = false;
   public currentItemUrl;
@@ -35,6 +36,7 @@ export class CartdetailsComponent implements OnInit {
     this.reviewOrderStep  = false;
     this.confirmationStep  = false;
     }  else {
+      this.cartProductList = this._checkoutService.getAllCartItemList();
     this.showDetailsStep = false;
     this.showCartItemsStep = true;
     this.billingDetailsStep  = false;
@@ -161,7 +163,14 @@ export class CartdetailsComponent implements OnInit {
             responseCode = data.status;
           },
           error => console.log(error));
-          if ( this._checkoutService.getRedemptionStatus ) {
+          if (this._checkoutService.getRedemptionStatus ) {
+            this.cartProductList.forEach(item => {
+              this._checkoutService.deleteProductFromCart(item.id);
+              });
+              this.orderDetails = this.cartProductList;
+              this._checkoutService.callComponentMethod();
+              this.orderTotal = this._checkoutService.resetCartTotal();
+              this._checkoutService.setCartItemTotal();
               this.itemRedemptionSuccess = true;
               this.showDetailsStep = false;
               this.showCartItemsStep = false;
