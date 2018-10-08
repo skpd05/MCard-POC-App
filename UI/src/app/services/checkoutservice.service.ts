@@ -469,6 +469,7 @@ export class CheckoutserviceService {
   }
 
   public saveTransaction  (data): Observable<any> {
+    console.log(data)
     const headers = new Headers({ 'Content-Type': 'application/json' });
 
       return this._http.post(this.saveRedemptionUrl,
