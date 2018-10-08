@@ -8,7 +8,7 @@ import { EmailValidator } from '../validator/validator.service';
   styleUrls: ['./forgotuser.component.css']
 })
 export class ForgotuserComponent implements OnInit {
-
+  showConfirm: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +16,7 @@ export class ForgotuserComponent implements OnInit {
 
   onSubmit(forgotFrm: NgForm){
     console.log(forgotFrm);
+    this.showConfirm = true;
   }
 
 }

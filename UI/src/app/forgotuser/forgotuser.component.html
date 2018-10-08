@@ -9,7 +9,7 @@
                 <h2>Forgot User ID?</h2>
                 
                 <div>
-                  <form  (ngSubmit)="onSubmit(forgotuser)" #forgotuser="ngForm">
+                  <form  #forgotuser="ngForm">
                   <div class="form-group">
                     <label for="email">Registered Email ID</label>
                     <input 
@@ -25,6 +25,7 @@
                     validateEmail
                     >
                     <span class="error" *ngIf="!email.valid && email.touched">Please enter valid email</span>
+                    <span *ngIf="showConfirm" class="success">Mail has been sent.</span>
                   </div>
                   <div class="help-block">
                       <p>Your user Id will be sent to your registered mail id..
@@ -32,8 +33,9 @@
                   </div>
                   <div class="btnSubmitCls">
                     <button 
-                    type="submit" 
+                    type="reset" 
                     class="btn btn-primary"
+                    (click)="onSubmit(forgotuser)"
                     [disabled]="!forgotuser.valid">Send</button>
                   </div>
                   

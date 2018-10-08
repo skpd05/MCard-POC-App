@@ -9,13 +9,16 @@ import { EmailValidator } from '../validator/validator.service';
 })
 export class ForgotpasswordComponent implements OnInit {
 
+  showConfirm: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
 
   onSubmit(forgotFrm: NgForm){
-    console.log(forgotFrm);
+    console.log(forgotFrm);    
+    this.showConfirm = true;
+    
   }
-
+  
 }
