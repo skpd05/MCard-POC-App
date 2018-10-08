@@ -27,7 +27,7 @@ export class OnlynumberDirective {
           return;
         }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+        if ( (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57) ) && (e.keyCode < 96 || e.keyCode > 105) && (e.keyCode != 0) && (e.keyCode != 8)) {
             e.preventDefault();
         }
       }

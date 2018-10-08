@@ -12,8 +12,8 @@
 
               <div class="form-group" *ngIf="SSNContainer">
                 <label for="email">SSN No last 4 digits:</label>
-                <input 
-                type="number" 
+                <input        
+                type="text"         
                 class="form-control" 
                 id="ssn" 
                 placeholder="Enter last 4 digits of your SSN no" 
@@ -21,8 +21,9 @@
                 name="ssn" 
                 required 
                 #ssn="ngModel"
+                pattern="\d*"                   
                 minlength="4"
-                maxlength="4"
+                maxlength="4" (keypress)="onlyNumberKey($event)"
                 >
                 <div class="error" *ngIf="loginSSNError">Please enter valid ssn</div>
               </div>
@@ -63,6 +64,7 @@
                 <span class="pull-right"> <a routerLink="/forgotUser"><label>Forgot Userid?</label></a></span>
               </div>
               <div class="btnSubmitCls">
+                  <button type="button" *ngIf="SSNContainer" class="btn btn-primary" (click)="showLogin()">Cancel</button>
                 <button type="submit" class="btn btn-primary"  [disabled]="!loginFrm.valid">Submit</button>
               </div>
             </form>
@@ -121,7 +123,7 @@
 
                 <div class="form-group">
                   <label for="ssnno">Last 4 Digit SSN Number <span class="red">*</span></label>
-                   <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="\d*" maxlength="4" required name="SSN" [(ngModel)]="userValues.SSN" 
+                   <input type="number" pattern="\d*" required name="SSN" [(ngModel)]="userValues.SSN" 
                    class="form-control" id="ssnno" placeholder="Enter SSN No" minlength="4"
                    maxlength="4" (keypress)="onlyNumberKey($event)">
             

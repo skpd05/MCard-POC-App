@@ -105,6 +105,7 @@ export class LoginComponent implements OnInit {
              this.dataService.userData = data;
              this.userdata = data;
              this.cardno = data.cardnumber;
+             this.checkUserDetail = false;
           }else{
             this.checkUserDetail = true;
           }
@@ -127,7 +128,10 @@ export class LoginComponent implements OnInit {
     
 
   }
-
+  showLogin(){
+    this.loginContainer = true;
+    this.SSNContainer = false;
+  }
   validateNumber (data){
 
        var reg = new RegExp('^[0-9]+$');

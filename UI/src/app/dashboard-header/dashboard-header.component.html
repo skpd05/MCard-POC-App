@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Balance Points  {{totalBalance}}PTS</a>
+      <a class="navbar-brand">Balance Points  {{totalBalance}}PTS</a>
     </div>
     
     <div class="collapse navbar-collapse js-navbar-collapse">
@@ -18,12 +18,12 @@
             <li class="col-sm-4">
               <ul>
                 <li><a routerLink="/catalog">User Points to Shop</a></li>     
-                <li><a href="#">Cash Back</a></li>
-                <li><a href="#">Experiences</a></li>     
-                <li><a href="#">Gift Cards</a></li>
+                <li><a>Cash Back</a></li>
+                <li><a>Experiences</a></li>     
+                <li><a>Gift Cards</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Earn Points</a></li>
-                <li><a href="#">1200 Points will expire by end of cycle </a></li>
+                <li><a>Earn Points</a></li>
+                <li><a>1200 Points will expire by end of cycle </a></li>
               </ul>
             </li>
             
@@ -101,7 +101,7 @@
         </li>
 
         <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Cards <span class="caret"></span></a>				
+            <a class="dropdown-toggle" data-toggle="dropdown">My Cards <span class="caret"></span></a>				
             <ul class="dropdown-menu mega-dropdown-menu">
               <li class="col-sm-4">
                 <ul>
@@ -116,12 +116,12 @@
           </li>
 
               <li><a routerLink="/mypoints">My Points</a></li>
-            <li><form class="navbar-form">
+            <!-- <li><form class="navbar-form">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" name="search">
                   <div class="searchIconCls"></div>
                 </div>
-              </form></li>
+              </form></li> -->
                  
               
       </ul>
@@ -129,7 +129,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My account <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings</a></li>
+              <li><a >Settings</a></li>
             </ul>
           </li>
           <li><a role="button" (click)="goToCart()" ><i class="fa fa-shopping-cart" ></i><sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>

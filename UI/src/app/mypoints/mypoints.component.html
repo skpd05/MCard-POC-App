@@ -6,14 +6,14 @@
 <div class="container">
         <div class="row">
             <div class="posi-rel">
-                <div class="sidenav">
+                <div class="sidenav hide-side-mobile">
                     <a href="#about"><i class="fa fa-user"></i> My Profile</a>
                     <a routerLink="/mycards/all_cards"><i class="fa fa-credit-card"></i> My Cards</a>
                     <a routerLink="/mypoints"><i class="fa fa-gift"></i> My Points</a>
                     <a href="#contact"><i class="fa fa-lock"></i> Change Password</a>
                 </div>
             
-            <div class="rght-panal">
+            <div class="rght-panal col-xs-12">
                 <ul class="list-inline tableHeaderCls">
                     <li>
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
