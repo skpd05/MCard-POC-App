@@ -14,91 +14,27 @@
       <ul class="nav navbar-nav">
         <li class="dropdown mega-dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Redeem Points <span class="caret"></span></a>				
-          <ul class="dropdown-menu mega-dropdown-menu">
+          <ul class="dropdown-menu">
             <li class="col-sm-4">
               <ul>
-                <li><a routerLink="/catalog">User Points to Shop</a></li>     
-                <li><a>Cash Back</a></li>
-                <li><a>Experiences</a></li>     
-                <li><a>Gift Cards</a></li>
-                <li class="divider"></li>
-                <li><a>Earn Points</a></li>
-                <li><a>1200 Points will expire by end of cycle </a></li>
+                <li><a routerLink="/catalog">User Points to Shop</a></li>                     
               </ul>
             </li>
             
           </ul>				
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Redeem Points <span class="caret"></span></a>				
+            <ul class="dropdown-menu">
+              <li>
+                <ul>
+                  <li><a routerLink="/catalog"  class="dropdown-item">User Points to Shop</a></li>                     
+                </ul>
+              </li>
+              
+            </ul>				
+          </li>
 
-       
-              <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">SHOP <span class="caret"></span></a>				
-          <ul class="dropdown-menu mega-dropdown-menu">
-            <li class="col-sm-3">
-                <ul>
-                    <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('electronics','notselected')">Electronics</a></li>
-                    <li><a role="button" (click)="setCurrentCategory('electronics','harddisk')">Hard Disks</a></li>
-                    <li><a role="button" (click)="setCurrentCategory('electronics','pendrive')">Pen Drives</a></li>
-                    <li><a role="button" (click)="setCurrentCategory('electronics','bluetooth')">Bluetooth</a></li>                            
-                    <li><a role="button" (click)="setCurrentCategory('electronics','powerbank')">Power Banks</a></li>
-              </ul>
-            </li>
-            <li class="col-sm-3">
-              <ul>
-                <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('clothing','notselected')">Clothing</a></li>
-                <li><a role="button" (click)="setCurrentCategory('clothing','tops')">Tops</a></li>
-                <li><a role="button" (click)="setCurrentCategory('clothing','bottoms')">Bottoms</a></li>
-                <li><a role="button" (click)="setCurrentCategory('clothing','scarfs')">Scarfs</a></li>                            
-                <li><a role="button" (click)="setCurrentCategory('clothing','ties')">Ties</a></li>							
-              </ul>
-            </li>
-            <li class="col-sm-3">
-              <ul>
-                  <li class="dropdown-header"><a role="button" (click)="setCurrentCategory('footwear','notselected')">Footwear</a></li>
-                  <li><a role="button" (click)="setCurrentCategory('clothing','pumps')">Pumps</a></li>
-                  <li><a role="button" (click)="setCurrentCategory('clothing','peeptoes')">Peep Toes</a></li>
-                  <li><a role="button" (click)="setCurrentCategory('clothing','shoes')">Shoes</a></li>                            
-                  <li><a role="button" (click)="setCurrentCategory('clothing','ballerinas')">Ballerinas</a></li>		                      
-              </ul>
-            </li>
-            
-                      <li class="col-sm-3">
-                <ul>
-                <li class="dropdown-header">Whole Collection</li>                            
-                              <div id="womenCollection" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                  <div class="item active">
-                                      <a href="catalog"><img src="assets/product-list/clothing/bottoms/17.jpg" class="img-responsive" alt="product 1"></a>
-                                                                             
-                                            
-                                  </div><!-- End Item -->
-                                  <div class="item" *ngFor="let orderconfirm of itemList">
-                                      <a href="catalog"><img src="{{orderconfirm.url}}" class="img-responsive" alt="product 2"></a>
-                                                                            
-                                             
-                                  </div><!-- End Item -->
-                                  <div class="item">
-                                      <a href="catalog"><img src="assets/product-list/clothing/tops/7.jpg" class="img-responsive" alt="product 3"></a>
-                                                                            
-                                  
-                                  </div><!-- End Item -->                                
-                                </div><!-- End Carousel Inner -->
-                                <!-- Controls -->
-                                <a class="left carousel-control" href="#womenCollection" role="button" data-slide="prev">
-                                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                  <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="right carousel-control" href="#womenCollection" role="button" data-slide="next">
-                                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                  <span class="sr-only">Next</span>
-                                </a>
-                              </div><!-- /.carousel -->
-                              <li class="divider"></li>
-                              <li><a role="button" (click)="setCurrentCategory('clothing','pumps')">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-              </ul>
-            </li>
-          </ul>				
-        </li>
 
         <li class="dropdown mega-dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">My Cards <span class="caret"></span></a>				
@@ -115,7 +51,7 @@
             </ul>				
           </li>
 
-              <li><a routerLink="/mypoints">My Points</a></li>
+              
             <!-- <li><form class="navbar-form">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" name="search">

@@ -29,9 +29,9 @@ export class MyCardsComponent{
     ];
     
     constructor(  private route: ActivatedRoute, private userService: UserService, public enrolmentService : EnrolmentService){}
-    ngOnInit(){
-        this.cardNo = this.userService.getCardNo();
-        this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
+    async ngOnInit(){
+        this.cardNo = await this.userService.getCardNo();
+        this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
             console.log(data); 
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();

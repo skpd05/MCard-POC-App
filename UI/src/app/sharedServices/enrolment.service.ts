@@ -21,7 +21,7 @@ export class EnrolmentService {
   checkUserIDUrl : any = this.apiURL + "loyalty/enroll/checkUserID" ;
   createProfileUrl : any = this.apiURL + "loyalty/enroll/createProfile";
   userLoginUrl :any = this.apiURL + "loyalty/enroll/ulogin";
-
+ public  mypoints : any;
    constructor(private http: HttpClient) {
 
       
@@ -120,10 +120,10 @@ getvalidateCard  (data): Observable<any> {
        );
 
     }
-    getAccount(cardno): Observable<any> {
+    async getAccount(cardno) {
       // let url = this.accountUrl + cardno +'/accountsummary'
-      let url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/"+ cardno + "/accountsummary";
-      return this.http.get(url,
+      const url = await "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/"+ cardno + "/accountsummary";
+      const response = await this.http.get(url,
             {
               headers: new HttpHeaders()
                 .set('Content-Type', 'application/json')
@@ -135,11 +135,13 @@ getvalidateCard  (data): Observable<any> {
           )
         .pipe(
         catchError(this.handleError) // then handle the error
-       );
+       ).toPromise();
+
+       return response;
     }
-  getMyPoints(cardno){    
-    let url = "https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/historybycard/"+ cardno ;
-    return this.http.get(url,
+  async getMyPoints(cardno){    
+    let url = await "https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/historybycard/"+ cardno ;
+    const response = await this.http.get(url,
           {
             headers: new HttpHeaders()
               .set('Content-Type', 'application/json')
@@ -148,10 +150,10 @@ getvalidateCard  (data): Observable<any> {
               .set('Accept', 'application/json'),
                withCredentials: true
           }
-        )
-      .pipe(
-      catchError(this.handleError) // then handle the error
-     );
+        ).toPromise();
+        
+        this.mypoints= await response;
+      return response;
   }
 
 

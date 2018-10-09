@@ -22,23 +22,23 @@ export class DashboardHeaderComponent implements OnInit {
                 private userdata: DataServiceService,
                 public enrolmentService: EnrolmentService, private _router: Router, private _checkoutService: CheckoutserviceService) {  }
 
-  public ngOnInit(): void {
-    this.itemList = this._checkoutService.getItems();
-    this.cardNo = this.userService.getCardNo();
-    this.enrolmentService.getAccount(this.cardNo).subscribe((data: any) => {
+  async ngOnInit() {
+    this.itemList = await this._checkoutService.getItems();
+    this.cardNo = await this.userService.getCardNo();
+    await this.enrolmentService.getAccount(this.cardNo).then((data: any) => {
         console.log(data);
         this.getCardList(data.creditcardsList);
         this.getBalancePoint(data.creditcardsList);
         this.username = data.firstName;
         this.userdata.changeMessage(this.username);
       });
-      this._checkoutService.componentMethodCalled$.subscribe(
+      await this._checkoutService.componentMethodCalled$.subscribe(
         () => {
           this.cartItemTotal = this._checkoutService.getCartItemTotal();
         }
       );
-      this._checkoutService.setCartItemTotal();
-      this.cartItemTotal = this._checkoutService.getCartItemTotalNo();
+      await this._checkoutService.setCartItemTotal();
+      this.cartItemTotal = await this._checkoutService.getCartItemTotalNo();
     // let temp:any = this.userService.getCustmerDetails();
   }
 

@@ -23,10 +23,10 @@ export class MyPointsComponent{
     errorMessage: boolean = false;
     
     columnDefs = [
-        {headerName: 'Date', field: 'redemptiontimestaamp' },
-        {headerName: 'Item ', field: 'redeemeditem' },
-        {headerName: 'Reedeemed Points', field: 'redeemedpoints'},
-        {headerName: 'Quantity', field: 'quantity' },
+        {headerName: 'Date', field: 'redemptiontimestaamp',color: 'red',width: 200,type: ['dateColumn']},
+        {headerName: 'Item ', field: 'redeemeditem' ,width: 350},
+        {headerName: 'Reedeemed Points', field: 'redeemedpoints',width: 160},
+        {headerName: 'Quantity', field: 'quantity',width: 150 },
         {headerName: 'Card Number', field: 'cardnumber'}
     ];
     rowData: any;
@@ -38,27 +38,29 @@ export class MyPointsComponent{
                 private enrolmentService: EnrolmentService, 
                 private userService: UserService){}   
     
-    ngOnInit(){        
+    async ngOnInit(){        
         // this.httpService.get('path').subscribe((data: any) => {
         //     console.log(data);
         // });
         // this.enrolmentService.checkUserID({'para_1': 'RAJ1245'}).subscribe((data: any)=> {
         //     console.log("here",data);
         // });
-        this.cardNo = this.userService.getCardNo();
-        this.enrolmentService.getMyPoints(this.cardNo).subscribe((data: any)=> {                        
-            console.log(data); 
-            this.items = data         
-        }, (error: any)=>{
-            console.log(error);
-            this.errorMessage = true;
-        });        
-        this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
+        this.cardNo = await this.userService.getCardNo();
+        
+        await this.enrolmentService.getAccount("5461237890123456008").then((data: any)=> {
             console.log(data); 
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();
             this.getBalancePoint(data.creditcardsList);
         })  
+        await this.enrolmentService.getMyPoints("5461237890123456008").then((data: any)=> {                        
+            console.log(data);
+            this.items = data;     
+            this.temp_item = data;
+        }, (error: any)=>{
+            console.log(error);
+            this.errorMessage = true;
+        });        
     }
         
     update_filter(x){
@@ -91,8 +93,8 @@ export class MyPointsComponent{
         }
     }
 
-    getBalancePoint(list): any {
-        list.forEach(element => {
+    async getBalancePoint(list) {
+        await list.forEach(element => {
           this.totalBalance += Math.round(element.pointsTotal);
         });
       }

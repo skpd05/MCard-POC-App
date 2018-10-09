@@ -20,8 +20,8 @@ export class UserService {
     setCardNo(cardno){
         localStorage.setItem('cardno' , cardno);
     }
-    getCardNo(){
-        return localStorage.getItem('cardno');
+    async getCardNo(){
+        return await localStorage.getItem('cardno');
     }
 
     setCustomerDetails(data){        

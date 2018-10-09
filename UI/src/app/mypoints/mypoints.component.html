@@ -1,19 +1,9 @@
-<app-dashboard-header></app-dashboard-header>
-
-
-  
 <div class="main-cards">
 <div class="container">
         <div class="row">
             <div class="posi-rel">
-                <div class="sidenav hide-side-mobile">
-                    <a href="#about"><i class="fa fa-user"></i> My Profile</a>
-                    <a routerLink="/mycards/all_cards"><i class="fa fa-credit-card"></i> My Cards</a>
-                    <a routerLink="/mypoints"><i class="fa fa-gift"></i> My Points</a>
-                    <a href="#contact"><i class="fa fa-lock"></i> Change Password</a>
-                </div>
             
-            <div class="rght-panal col-xs-12">
+            <div class="col-xs-12">
                 <ul class="list-inline tableHeaderCls">
                     <li>
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
@@ -21,13 +11,13 @@
                             <option *ngFor="let cardNumber of cardDetailsList" value="{{cardNumber.credicardnumber}}">{{cardNumber.credicardnumber}}</option>                             
                         </select>
                     </li>
-                    <li>
+                    <!--<li>
                             Points Earned <strong>{{totalBalance}} </strong>
-                    </li>
+                    </li>-->
                    <!-- <li>
                             <span class="addcardCls"><i class="fa fa-plus-circle"></i> Add Card</span>
                     </li>-->
-                    <li>
+                    <!--<li>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
                                     Learn more
                         </a>
@@ -47,7 +37,7 @@
                             </div>
 
                     </li>
-                   
+                   -->
                 </ul>
                 
                 <div class="AccCls">
@@ -90,5 +80,5 @@
         </div>
     </div>      
 </div> 
-
+<br><br>
 
