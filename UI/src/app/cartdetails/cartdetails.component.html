@@ -500,6 +500,7 @@
 
 
 <!--Order Reciept -->
+<div *ngIf="confirmationStep">
 <div *ngIf="itemRedemptionSuccess ;then showsuccess else showfailure">here is ignored</div>
     <ng-template #showsuccess>
             <div class="pageDiv">
@@ -576,22 +577,20 @@
                                             <tbody>
                                                 <tr>
                                                     <td data-th="Product">
-                                                        <div class="row">
-                                                            <div class="col-sm-4 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
+                                                        <div class="row"  *ngFor="let item of cartProductList">
+                                                            <div class="col-sm-4 hidden-xs"><img src="{{item.url}}" alt="..."
                                                                     class="img-responsive" /></div>
                                                             <div class="col-sm-4">
-                                                                <h4 class="nomargin">Product 1</h4>
-                                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum
-                                                                    dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit
-                                                                    amet.</p>
+                                                                <h4 class="nomargin">{{item.name}}</h4>
+                                                                <p>{{item.ItemDescription}}</p>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td data-th="Points">150.00</td>
+                                                    <td data-th="Points">{{item.price}}</td>
                                                     <td data-th="Quantity" class="text-center">
-                                                        1
+                                                        {{item.quantity}}
                                                     </td>
-                                                    <td data-th="TotalPoints" class="text-center">150.00</td>
+                                                    <td data-th="TotalPoints" class="text-center">{{item.quantity*item.price}}</td>
                     
                                                 </tr>
                     
@@ -601,14 +600,14 @@
                                                     <td class="hidden-xs text-right">
                                                         <strong>Total</strong>
                                                     </td>
-                                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong> 150.00</strong></td>
+                                                    <td data-th="TotalPoints" class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
                     
                                                 </tr>
                     
                                             </tbody>
                                             <tfoot>
                                                 <tr class="visible-xs">
-                                                    <td class="text-center"><strong>150.00</strong></td>
+                                                    <td class="text-center"><strong>{{orderTotal}}</strong></td>
                                                 </tr>
                     
                                             </tfoot>
@@ -644,6 +643,7 @@
                            
         </ng-template>
         <ng-template #showfailure>
-          
+          <p>You don't have enough points for redemption</p>
         </ng-template>
+    </div>
 </body></html>

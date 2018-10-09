@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-service';
+import { EnrolmentService } from '../sharedServices/enrolment.service';
 @Component({
   selector: 'app-cartdetails',
   templateUrl: './cartdetails.component.html',
@@ -26,7 +27,8 @@ export class CartdetailsComponent implements OnInit {
   public billingDetailsStep = false;
   public reviewOrderStep = false;
   public confirmationStep = false;
-  constructor(private _router: Router, private _checkoutService: CheckoutserviceService, private _userService: UserService) { }
+  constructor(private _enroll: EnrolmentService,
+     private _router: Router, private _checkoutService: CheckoutserviceService, private _userService: UserService) { }
   public ngOnInit(): void {
     this.initializeItemDetails();
     if ( !this._checkoutService.goDirectlyToAddCart)  {
@@ -143,7 +145,7 @@ export class CartdetailsComponent implements OnInit {
     this.confirmationStep  = false;
   }
 
-  public doRedemption(): void {
+  public doRedemptionCallApi(): void {
     let itemInfo: any;
     let responseCode: any;
     const now = new Date();
@@ -163,22 +165,28 @@ export class CartdetailsComponent implements OnInit {
             responseCode = data.status;
           },
           error => console.log(error));
-          if (this._checkoutService.getRedemptionStatus ) {
-            this.cartProductList.forEach(item => {
-              this._checkoutService.deleteProductFromCart(item.id);
-              });
-              this.orderDetails = this.cartProductList;
-              this._checkoutService.callComponentMethod();
-              this.orderTotal = this._checkoutService.resetCartTotal();
-              this._checkoutService.setCartItemTotal();
-              this.itemRedemptionSuccess = true;
-              this.showDetailsStep = false;
-              this.showCartItemsStep = false;
-              this.billingDetailsStep  = false;
-              this.reviewOrderStep  = false;
-              this.confirmationStep  = false;
-          }
         });
+      }
+
+      public async doRedemption() {
+        const orderAmount = await this._enroll.getMyPoints(this._userService.getCardNo());
+        console.log('order amount is', orderAmount);
+        if (orderAmount > this.orderTotal) {
+          this.itemRedemptionSuccess = false;
+          this.showDetailsStep = false;
+          this.showCartItemsStep = false;
+          this.billingDetailsStep  = false;
+          this.reviewOrderStep  = false;
+          this.confirmationStep  = true;
+        } else {
+          this.doRedemptionCallApi();
+          this.itemRedemptionSuccess = true;
+          this.showDetailsStep = false;
+          this.showCartItemsStep = false;
+          this.billingDetailsStep  = false;
+          this.reviewOrderStep  = false;
+          this.confirmationStep  = false;
+        }
       }
 }
 
