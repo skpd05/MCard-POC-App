@@ -44,8 +44,11 @@ export class CartdetailsComponent implements OnInit {
   public billingDetailsStep = false;
   public reviewOrderStep = false;
   public confirmationStep = false;
-  constructor(private _data: DataServiceService,
-     private _router: Router, private _checkoutService: CheckoutserviceService, private _userService: UserService) { }
+  showSpinner = false;
+  constructor(public _data: DataServiceService,
+    public enrolmentService : EnrolmentService,
+     private _router: Router, private _checkoutService: CheckoutserviceService, 
+     public _userService: UserService) { }
   public ngOnInit(): void {
     this.initializeItemDetails();
     if ( !this._checkoutService.goDirectlyToAddCart)  {
@@ -54,7 +57,7 @@ export class CartdetailsComponent implements OnInit {
     this.billingDetailsStep  = false;
     this.reviewOrderStep  = false;
     this.confirmationStep  = false;
-    }  else {
+    } else {
       this.cartProductList = this._checkoutService.getAllCartItemList();
     this.showDetailsStep = false;
     this.showCartItemsStep = true;
@@ -160,13 +163,11 @@ export class CartdetailsComponent implements OnInit {
     this.billingDetailsStep  = false;
     this.reviewOrderStep  = true;
     this.confirmationStep  = false;
-  }
+  } 
 
   public  doRedemption() {
-    console.log('order amount is', this._data.totalBalance);
-    console.log('order amount is', this.orderTotal);
+    this.showSpinner = true;
     if (this.orderTotal > this._data.totalBalance) {
-      console.log('in if');
       this.itemRedemptionSuccess = false;
       this.showDetailsStep = false;
       this.showCartItemsStep = false;
@@ -178,14 +179,6 @@ export class CartdetailsComponent implements OnInit {
       this.cartProductList.forEach(element => {
         this._checkoutService.deleteProductFromCart(element.id);
        });
-      this.cartProductList = this._checkoutService.getAllCartItemList();
-      console.log('in else', this.orderConfirmationProd);
-      this.itemRedemptionSuccess = true;
-      this.showDetailsStep = false;
-      this.showCartItemsStep = false;
-      this.billingDetailsStep  = false;
-      this.reviewOrderStep  = false;
-      this.confirmationStep  = true;
       this.doRedemptionCallApi();
     }
   }
@@ -195,6 +188,7 @@ export class CartdetailsComponent implements OnInit {
     let responseCode: any;
     console.log('user id', this._data.creditCardList[0]);
     console.log('user details', this._userService.getCustmerDetails());
+    this.showSpinner = true;
     this.cartProductList.forEach(element => {
         itemInfo = ({
           'cardnumber': this._data.creditCardList[0],
@@ -205,11 +199,26 @@ export class CartdetailsComponent implements OnInit {
           'redemptiontimestaamp': '1419038000',
           'vendorid': 'Mastercard'
         });
+
           this._checkoutService.saveTransaction(itemInfo).subscribe( data => {
 
             responseCode = data;
+            console.log(responseCode);
+            const cardNo = this._userService.getCardNo();
+            this.enrolmentService.getAccount(cardNo).then((userdata: any)=> {
+                this._data.setUserInfo(userdata);
+                this.cartProductList = this._checkoutService.getAllCartItemList();
+                this._data.cartTotalItem = this._checkoutService.getCartItemTotal();
+                this.itemRedemptionSuccess = true;
+                this.showDetailsStep = false;
+                this.showCartItemsStep = false;
+                this.billingDetailsStep  = false;
+                this.reviewOrderStep  = false;
+                this.confirmationStep  = true;
+                this.showSpinner = false;
+            })
           },
-          error => console.log(error));
+         );
         });
       }
 

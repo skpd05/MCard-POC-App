@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
  secondStep : boolean = false;
  thirdStep : boolean = false;
  fourtStep : boolean = false;
+ finalStep : boolean = false;
 
  enrollAlready : boolean ;
  userExist : any = false;
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
   "password" : "",
   "email" : "",
   "mobile" : "",
-  "rePassword" : ""
+  "rePassword" : "",
+  "cardNo":""
    };
 
    getUserFOrmDetails : any = {}
@@ -82,6 +84,19 @@ export class LoginComponent implements OnInit {
     this.register = !this.register ;
     this.btnTxt = 'Login'; 
     console.log(this.register);
+    this.firstStep = true;
+    this.secondStep = false;
+    this.thirdStep = false;
+    this.fourtStep = false;
+    this.finalStep = false;
+    this.userValues.zip = "";
+    this.userValues.SSN = "";
+    this.userValues.userId = "";
+    this.userValues.password = "";
+    this.userValues.email = "";
+    this.userValues.mobile = "";
+    this.userValues.rePassword = "";
+    this.userValues.cardNo = "";
   }
 
   loginUser(data :any){
@@ -328,7 +343,7 @@ export class LoginComponent implements OnInit {
      this.getUserFOrmDetails.cardnumber = form.cardNo
      this.getUserFOrmDetails.ssn = form.SSN
      this.getUserFOrmDetails.dob = form.dob
-    
+     this.showSpinner = true;
       this.enrolmentService.getvalidateCard(validateData)
 	     .subscribe( data => {
         if(data!=null){
@@ -351,7 +366,7 @@ export class LoginComponent implements OnInit {
         }else{
           this.invalidDataError = true;
         }
-          
+        this.showSpinner = false;
 
        },
         error => console.log(error));
@@ -384,31 +399,43 @@ export class LoginComponent implements OnInit {
 
     if(step==5){
 
-     this.getUserFOrmDetails.emailid = form.email
-     this.getUserFOrmDetails.mobilenumber = form.mobile
-     this.getUserFOrmDetails.sqa1 = "maiden"
-     this.getUserFOrmDetails.sqa2 = "pet"
-     this.getUserFOrmDetails.sqa3 = "last"
-     this.getUserFOrmDetails.sq1 = "what is your maiden name?"
-     this.getUserFOrmDetails.sq2 = "what is your pet name?"
-     this.getUserFOrmDetails.sq3 = "what is last pet name?"
-     this.getUserFOrmDetails.communicationaddress="SOme address" 
 
-
-     this.enrolmentService.createProfile(this.getUserFOrmDetails)
-	     .subscribe( data => {
-          
-          console.log(data)
-          this.toastr.success('Your profile is created successfuly please login with your credentials ');
-
-          this.router.navigate(['/login']);
-       },
-       error => console.log(error));
-       console.log(this.getUserFOrmDetails)
     }
 
     
 
+  }
+
+  doRegister(step,form){
+    this.getUserFOrmDetails.emailid = form.email
+    this.getUserFOrmDetails.mobilenumber = form.mobile
+    this.getUserFOrmDetails.sqa1 = "maiden"
+    this.getUserFOrmDetails.sqa2 = "pet"
+    this.getUserFOrmDetails.sqa3 = "last"
+    this.getUserFOrmDetails.sq1 = "what is your maiden name?"
+    this.getUserFOrmDetails.sq2 = "what is your pet name?"
+    this.getUserFOrmDetails.sq3 = "what is last pet name?"
+    this.getUserFOrmDetails.communicationaddress="SOme address" 
+
+    this.firstStep = false;
+    this.secondStep = false;
+    this.thirdStep = false;
+    this.showSpinner = true;
+    this.enrolmentService.createProfile(this.getUserFOrmDetails)
+      .subscribe( data => {
+         
+         console.log(data)
+         this.toastr.success('Your profile is created successfuly please login with your credentials ');
+         this.firstStep = false;
+         this.secondStep = false;
+         this.thirdStep = false;
+         this.fourtStep = false;
+         this.finalStep = true;
+         this.showSpinner = false;
+        // this.router.navigate(['/login']);
+      },
+      error => console.log(error));
+      console.log(this.getUserFOrmDetails)
   }
 
   goToPrevious(step){

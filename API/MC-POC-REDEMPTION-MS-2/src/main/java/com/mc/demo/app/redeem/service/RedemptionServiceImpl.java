@@ -73,7 +73,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			redeemRepo.save(redeemObj);
 		} catch (Exception exc) {
 			exc.printStackTrace();
-			throw new ApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, exc.getMessage());
+			return false;
 		}
 		
 		

@@ -17,40 +17,36 @@
               <li>
                 <a routerLink="/dashboard"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
               </li>
-              <li>
-                  <a> Balance Points {{dataService.totalBalance}} </a>
-                      
-                  
-                </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Redeem Points <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a routerLink="/catalog">Use Points for Shopping</a></li>                     
-                  </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Cards <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a routerLink="/mycards/all_cards">All Cards</a></li>                      
-                        <li *ngFor="let card of dataService.creditCardList">
-                          <a routerLink="/mycards/{{card}}">{{card | creditCardMask:3}}</a>
-                        </li>
-                    </ul>
+             
+              
+                <li>
+                    <a routerLink="/mycards">My Cards</a>
+                    
                   </li>
                   <li><a routerLink="/mypoints">My Points</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Redeem Points <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a routerLink="/catalog">Use Points for Shopping</a></li>                     
+                    </ul>
+                  </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">
                 <li>
                     <a  style="cursor:auto;">{{dataService.username}}</a>
                 </li>              
-                <li><a role="button" (click)="goToCart()" style="cursor:auto;"><i class="fa fa-shopping-cart" ></i>
-                <sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>
+                <li><a role="button" (click)="goToCart()" style="cursor:auto;">
+                    <i class="fa fa-shopping-cart" ></i>
+                    <sup class="badge badge-pill">{{dataService.cartTotalItem}}</sup>
+                  </a>
+                </li>
+                <li>
+                  <a> Balance Points <span class="label label-success" style="font-size: 12px; margin-left: 4px">{{dataService.totalBalance}}</span> </a>
+                </li>
                 <li>
                     <a (click)="userLogout()">Logout</a>
                 </li>
-
-                  
               </ul>
               <ul class="nav navbar-nav navbar-right"  *ngIf="!dataService.username">
                   <li>

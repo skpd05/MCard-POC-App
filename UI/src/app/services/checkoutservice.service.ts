@@ -352,7 +352,6 @@ export class CheckoutserviceService {
   }
 
   public getCartItemTotal(): number {
-    console.log('getting item total', this.cartItemsArray.length);
     return this.cartItemsArray.length;
   }
 
@@ -470,7 +469,7 @@ export class CheckoutserviceService {
 
    saveTransaction  (data){
 
-    const headers =  new Headers({ 'Content-Type': 'application/json' });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
 
       const response =  this._http.post(this.saveRedemptionUrl,
            data,
@@ -482,7 +481,7 @@ export class CheckoutserviceService {
                .set('Accept', 'application/json'),
                 withCredentials: true
            }
-         ).pipe(catchError(this._handleError))
+         );
          return response;
    }
 

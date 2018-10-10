@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
       
       await this._checkoutService.componentMethodCalled$.subscribe(
         () => {
-          this.cartItemTotal = this._checkoutService.getCartItemTotal();
+          this.dataService.cartTotalItem = this._checkoutService.getCartItemTotal();
         }
       );
       await this._checkoutService.setCartItemTotal();

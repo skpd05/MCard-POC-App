@@ -20,7 +20,7 @@ export class MyCardsComponent{
     cardNo: any;
     cardDetailsList: any = [];
     temp_card_item: any = [];
-    showSpineer : boolean = false;
+    showSpinner : boolean = false;
     columnDefs = [
         {headerName: 'Credit Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
         {headerName: 'Card Type', field: 'cardType'},
@@ -36,19 +36,19 @@ export class MyCardsComponent{
          public enrolmentService : EnrolmentService,
          public dataService : DataServiceService){}
     async ngOnInit(){
-        this.showSpineer = true;
+        this.showSpinner = true;
         this.cardNo = await this.userService.getCardNo();
-        this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
-            console.log(data); 
+        await this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();
-        })
+            this.showSpinner = false;
+        });
+        this.showSpinner = true;
         this.sub = this.route.paramMap.subscribe((params: any) => {
-            console.log(params.params.params);
-            this.filter_by_card = params.params.params;
-            this.update_filter(params.params.params)
+            this.update_filter(this.filter_by_card)
+            this.showSpinner = false;     
         })   
-        this.showSpineer = false;     
+        
     }
         
     update_filter(x){

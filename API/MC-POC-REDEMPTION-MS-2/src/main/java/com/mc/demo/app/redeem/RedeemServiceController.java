@@ -24,19 +24,20 @@ public class RedeemServiceController {
 	RedemptionService redeemService;
 
 	@RequestMapping(value = "/savetransaction", method = RequestMethod.POST)
-	public String redeemPoints(@RequestBody @Validated RedemptionTransaction redeem,
+	public ResponseEntity<String> redeemPoints(@RequestBody @Validated RedemptionTransaction redeem,
 			@RequestHeader(name = "uuid", required = true) String uuid,
 			@RequestHeader(name = "client_id", required = true) String clientId,
 			@RequestHeader(name = "Accept", required = true) String accept) {
 		try {
 			if (redeemService.save(redeem)) {
-				return "successful";
+				
+				return new ResponseEntity<String>("{\"response\":\"successful\"}", HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "unsuccessful";
+		return new ResponseEntity<String>("{\"response\":\"unsuccessful\"}", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/historybycard/{cardnumber}", method = RequestMethod.GET)
@@ -46,9 +47,7 @@ public class RedeemServiceController {
 			@RequestHeader(name = "Accept", required = false) String accept) {
 		List<RedemptionTransaction> historyList = redeemService.getHistoryByCard(cardnumber);
 
-		if (null == historyList) {
-			throw new ObjectNotFoundException("NO Record Found");
-		}
+	
 		return new ResponseEntity<List<RedemptionTransaction>>(historyList, HttpStatus.OK);
 	}
 
@@ -59,9 +58,7 @@ public class RedeemServiceController {
 			@RequestHeader(name = "Accept", required = false) String accept) {
 		List<RedemptionTransaction> historyList = redeemService.getHistoryByCustomerID(custId);
 
-		if (null == historyList) {
-			throw new ObjectNotFoundException("NO Record Found");
-		}
+		
 		return new ResponseEntity<List<RedemptionTransaction>>(historyList, HttpStatus.OK);
 	}
 

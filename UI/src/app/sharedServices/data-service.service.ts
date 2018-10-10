@@ -11,7 +11,7 @@ export class DataServiceService {
   public creditCardList: any = [];
   public username: string = "";
   public totalBalance = 0 ;
-
+  public cartTotalItem = 0;
 
   constructor(public enrolmentService: EnrolmentService) { }
 
@@ -42,9 +42,12 @@ export class DataServiceService {
   }
 
   getBalancePoint(list): any {
+    this.totalBalance = 0;
     list.forEach(element => {
       this.totalBalance += Math.round(element.pointsTotal);
     });
   }
+
+  
 
 }

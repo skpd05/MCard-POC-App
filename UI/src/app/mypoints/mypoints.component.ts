@@ -60,12 +60,19 @@ export class MyPointsComponent{
         })  */
         this.showSpinner = true;
         await this.enrolmentService.getMyPoints(this.cardNo).then((data: any)=> {                        
-            this.items = data;     
-            this.temp_item = data;
+            if(data==undefined||data==null){
+                this.items = [];     
+                this.temp_item = [];
+            }else{
+                this.items = data;     
+                this.temp_item = data;
+                
+            }
             this.showSpinner = false;
         }, (error: any)=>{
-            console.log(error);
-            this.errorMessage = true;
+            //console.log(error);
+            //this.errorMessage = true;
+            this.showSpinner = false;
         });        
     }
         
