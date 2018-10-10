@@ -162,16 +162,15 @@ export class CartdetailsComponent implements OnInit {
           'vendorid': 'Mastercard'
         });
           this._checkoutService.saveTransaction(itemInfo).subscribe( data => {
-            responseCode = data.status;
+            responseCode = data;
           },
           error => console.log(error));
         });
       }
 
-      public async doRedemption() {
-        const orderAmount = await this._enroll.getMyPoints(this._userService.getCardNo());
-        console.log('order amount is', orderAmount);
-        if (orderAmount > this.orderTotal) {
+      public  doRedemption() {
+        console.log('order amount is', this._enroll.mypoints);
+        if (this.orderTotal > this._enroll.mypoints) {
           this.itemRedemptionSuccess = false;
           this.showDetailsStep = false;
           this.showCartItemsStep = false;
@@ -185,7 +184,7 @@ export class CartdetailsComponent implements OnInit {
           this.showCartItemsStep = false;
           this.billingDetailsStep  = false;
           this.reviewOrderStep  = false;
-          this.confirmationStep  = false;
+          this.confirmationStep  = true;
         }
       }
 }

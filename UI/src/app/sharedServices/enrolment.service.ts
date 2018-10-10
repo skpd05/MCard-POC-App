@@ -152,7 +152,7 @@ getvalidateCard  (data): Observable<any> {
           }
         ).toPromise();
         
-        this.mypoints= await response;
+        this.mypoints = await response;
       return response;
   }
 
