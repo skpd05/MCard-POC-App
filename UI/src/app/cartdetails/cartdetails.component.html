@@ -14,7 +14,7 @@
     <div class="col-sm-4">
       <div class="product-image">
         <div class="view hm-zoom z-depth-2" style="cursor: pointer">
-          <img src="{{currentItemUrl}}" width="100%" class="img-fluid rounded img-responsive img-thumbnail">
+          <img src="{{currentItemUrl}}"  class="img-fluid rounded img-responsive img-thumbnail">
         </div>
         <div class="" style="margin-top:15px">
           <ul class="list-group mb-3">
@@ -61,7 +61,7 @@
                                   <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                               </span>
-                              <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{currentItemQuantity}}" min="0" max="10">
+                              <input disabled="true" type="text" name="quant[1]" class="form-control input-number input-sm" value="{{currentItemQuantity}}" min="0" max="10">
                               <span class="input-group-btn" style="vertical-align: middle;">
                                 <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
                                   <span class="glyphicon glyphicon-plus"></span>
@@ -72,25 +72,24 @@
                           </div>
                         </ng-template>
                         <ng-template #showaddbutton>
-                          <div>
+                          
                             <button class="btn btn-primary btn-sm btn-primary-spacing " (click)="addToCart(currentItemId);">Add to Cart</button>
-                          </div>
-                        </ng-template></td>
+                          
+                        </ng-template>
+                        </td>
                         <td>
-                        <div>
+                        
                                 <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();"> Back To Catalog</button>
                           
-                        </div> </td><td><div>
+                         
+                        
                                 <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut </button>
-                            </div>
-                                <div >
-                                
-                              </div>
-                  </td>
+                        
+                    </td>  
+                    <td>        
               </tr>
           </tfoot>
         </table>
-
       </div>
     
       <!-- <ul>
@@ -165,7 +164,7 @@
                                         <span class="glyphicon glyphicon-minus"></span>
                                       </button>
                                       </span>
-                                      <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
+                                      <input disabled="true" type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
                                       max="10">
                                       <span class="input-group-btn" style="vertical-align: middle;">
                                       <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
