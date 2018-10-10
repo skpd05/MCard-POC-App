@@ -1,6 +1,7 @@
  
 <div class="main-cards">
 <div class="container">
+        <spinner *ngIf="showSpinner"></spinner>
         <div class="row">
             <div class="posi-rel">
             
@@ -9,7 +10,7 @@
                     <li>
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
                             <option value="all_cards">All Cards</option>
-                             <option *ngFor="let cardNumber of cardDetailsList" value="{{cardNumber.credicardnumber}}">{{cardNumber.credicardnumber | creditCardMask:3}}</option>                             
+                             <option *ngFor="let cardNumber of dataService.creditCardList" value="{{cardNumber}}">{{cardNumber| creditCardMask:3}}</option>                             
                         </select>
                     </li>
                     <!-- <li>

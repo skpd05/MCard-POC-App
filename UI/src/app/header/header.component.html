@@ -18,8 +18,7 @@
                 <a routerLink="/dashboard"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
               </li>
               <li>
-                  <a> Points Earned {{dataService.totalBalance}} 
-                      <span class="glyphicon glyphicon-info-sign"></span> </a>
+                  <a> Balance Points {{dataService.totalBalance}} </a>
                       
                   
                 </li>
@@ -43,9 +42,10 @@
             
             <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">
                 <li>
-                    <a>{{dataService.username}}</a>
+                    <a  style="cursor:auto;">{{dataService.username}}</a>
                 </li>              
-                <li><a role="button" (click)="goToCart()" ><i class="fa fa-shopping-cart" ></i><sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>
+                <li><a role="button" (click)="goToCart()" style="cursor:auto;"><i class="fa fa-shopping-cart" ></i>
+                <sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>
                 <li>
                     <a (click)="userLogout()">Logout</a>
                 </li>

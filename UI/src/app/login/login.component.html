@@ -40,7 +40,7 @@
                 ngModel 
                 name="email" 
                 required 
-                #email="ngModel">
+                #email="ngModel" autocomplete="false">
                 <span class="error" *ngIf="!email.valid && email.touched">Please enter valid email</span>
               </div>
 
@@ -126,14 +126,14 @@
                   <label for="ssnno">Last 4 Digit SSN Number <span class="red">*</span></label>
                    <input type="number" pattern="\d*" required name="SSN" [(ngModel)]="userValues.SSN" 
                    class="form-control" id="ssnno" placeholder="Enter SSN No" minlength="4"
-                   maxlength="4" (keypress)="onlyNumberKey($event)">
+                   maxlength="4" (keypress)="onlyNumberKey($event)" autocomplete="false">
             
                 </div>
                 <div class="form-group">
                   <label for="cardno">Card No<span class="red">*</span></label>
                   <input type="test" required  name="cardNo" (blur)="validateCardNO($event.target.value)"
                    maxlength="19"  [(ngModel)]="userValues.cardNo"  class="form-control" id="cardno" 
-                   placeholder="Enter Card No" (keypress)="onlyNumberKey($event)">
+                   placeholder="Enter Card No" (keypress)="onlyNumberKey($event)" autocomplete="false">
                    <div class="error" *ngIf="cardNoError">Not a valid card no</div>
              
                  
@@ -141,7 +141,7 @@
                 <div class="form-group">
                   <label for="zip">Zipcode<span class="red">*</span></label>
                    <input type="text" required name="zip" [(ngModel)]="userValues.zip"
-                    class="form-control" id="zip" placeholder="Zipcode" pattern="\d*" (keypress)="onlyNumberKey($event)" maxlength="6">
+                    class="form-control" id="zip" placeholder="Zipcode" pattern="\d*" (keypress)="onlyNumberKey($event)" maxlength="6" autocomplete="false">
                    <div class="error" *ngIf="!dateError">please enter valid zipcode</div>
                 </div>
 
@@ -156,7 +156,7 @@
 
                 <div class="form-group">
                   <label for="userid">User ID <span class="red">*</span></label>
-                  <input type="text" required title="User id must be alphanumeric."  (blur)="checkUserId($event.target.value)" [(ngModel)]="userValues.userId"  class="form-control" name="userId" id="userId" placeholder="Enter User Id">
+                  <input type="text" required title="User id must be alphanumeric."  (blur)="checkUserId($event.target.value)" [(ngModel)]="userValues.userId"  class="form-control" name="userId" id="userId" placeholder="Enter User Id" autocomplete="false">
                   <div class="errorUser" *ngIf = "userExist" >{{userError}}</div>
                 </div>
                 <div class="form-group">

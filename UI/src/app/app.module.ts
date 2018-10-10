@@ -44,6 +44,7 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CreditCardMaskPipe } from './pipe/credit-card-mask.pipe';
 import { CreditCardGridTransformer } from './pipe/credit-card-grid-transform';
+import { DateGridTransformer } from './pipe/date-grid-transform';
 
 
 
@@ -75,7 +76,8 @@ import { CreditCardGridTransformer } from './pipe/credit-card-grid-transform';
     CartdetailsComponent,
     SpinnerComponent,
     CreditCardMaskPipe,
-    CreditCardGridTransformer
+    CreditCardGridTransformer,
+    DateGridTransformer
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { CreditCardGridTransformer } from './pipe/credit-card-grid-transform';
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
-    AgGridModule.withComponents([MyPointsComponent, MyCardsComponent, CreditCardGridTransformer]), 
+    AgGridModule.withComponents([MyPointsComponent, MyCardsComponent, CreditCardGridTransformer,DateGridTransformer]), 
     ToastrModule.forRoot({
     timeOut: 10000,
     positionClass: 'toast-top-full-width',
@@ -101,6 +103,7 @@ import { CreditCardGridTransformer } from './pipe/credit-card-grid-transform';
   bootstrap: [AppComponent],
   entryComponents: [
     CreditCardGridTransformer,
+    DateGridTransformer
 ],
 })
 export class AppModule { }
