@@ -16,6 +16,7 @@ export class CatalogComponent implements OnInit {
   }
   public ngOnInit(): void {
     this.itemArray =  this._checkoutService.getItems();
+    this._checkoutService.setCurrentCatagory('clothing','tops');
   }
 
   public showProductDetails(item): void {

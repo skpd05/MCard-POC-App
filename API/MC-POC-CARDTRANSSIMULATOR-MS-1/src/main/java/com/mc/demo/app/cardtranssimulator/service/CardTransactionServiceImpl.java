@@ -2,7 +2,7 @@ package com.mc.demo.app.cardtranssimulator.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +28,7 @@ public class CardTransactionServiceImpl implements CardTransactionService {
 	public boolean saveTransaction(CreditCardTransaction cardTrans) {
 		try {
 			Cardtransaction transObj = new Cardtransaction();
-			Random r = new Random();
-			int inR = r.nextInt((9999999 - 2000000) + 1) + 2000000;
+			int inR = ThreadLocalRandom.current().nextInt((99999999 - 2000) + 1) + 2000000;
 			transObj.setTransactionid(String.valueOf(inR));
 			transObj.setAccountnumber(cardTrans.getCreditCardNumber());
 			transObj.setMerchantname(cardTrans.getMerchantName());

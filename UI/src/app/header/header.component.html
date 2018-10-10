@@ -1,5 +1,6 @@
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="110">
   <div class="container">
+        <spinner *ngIf="showSpinner"></spinner>
       <div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 						<span class="icon-bar"></span>
@@ -12,41 +13,49 @@
         </div>
         
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-left">
-              <li *ngIf="username">
+            <ul class="nav navbar-nav navbar-left"  *ngIf="dataService.username">
+              <li>
                 <a routerLink="/dashboard"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
               </li>
-              <li *ngIf="username">
-                  <a> Points Earned <span class="glyphicon glyphicon-info-sign"></span></a>
+              <li>
+                  <a> Points Earned {{dataService.totalBalance}} 
+                      <span class="glyphicon glyphicon-info-sign"></span> </a>
+                      
                   
                 </li>
-              <li *ngIf="username" class="dropdown">
+              <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Redeem Points <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a routerLink="/catalog">User Points to Shop</a></li>                     
+                    <li><a routerLink="/catalog">Use Points for Shopping</a></li>                     
                   </ul>
                 </li>
-                <li *ngIf="username" class="dropdown">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Cards <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a routerLink="/mycards/all_cards">All Cards</a></li>                      
-                        <li *ngFor="let card of creditCardList">
-                          <a routerLink="/mycards/{{card}}">{{card}}</a>
+                        <li *ngFor="let card of dataService.creditCardList">
+                          <a routerLink="/mycards/{{card}}">{{card | creditCardMask:3}}</a>
                         </li>
                     </ul>
                   </li>
                   <li><a routerLink="/mypoints">My Points</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="username">
-                    <a>{{username}}</a>
+            
+            <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">
+                <li>
+                    <a>{{dataService.username}}</a>
                 </li>              
                 <li><a role="button" (click)="goToCart()" ><i class="fa fa-shopping-cart" ></i><sup class="badge badge-pill">{{cartItemTotal}}</sup></a></li>
                 <li>
-                    <a routerLink="login" *ngIf="username" (click)="userLogout()">Logout</a>
-                    <a routerLink="login" *ngIf="!username">Login</a>
+                    <a (click)="userLogout()">Logout</a>
                 </li>
+
                   
+              </ul>
+              <ul class="nav navbar-nav navbar-right"  *ngIf="!dataService.username">
+                  <li>
+                      <a routerLink="login">Login</a>
+                  </li>              
               </ul>
           </div>
   </div><!-- /.container-fluid -->

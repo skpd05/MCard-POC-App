@@ -41,6 +41,9 @@ import {DataServiceService} from './sharedServices/data-service.service';
 import { AgGridModule } from 'ag-grid-angular'; 
 import { UserService } from 'src/app/services/user-service';
 import { CartdetailsComponent } from './cartdetails/cartdetails.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { CreditCardMaskPipe } from './pipe/credit-card-mask.pipe';
+import { CreditCardGridTransformer } from './pipe/credit-card-grid-transform';
 
 
 
@@ -69,7 +72,10 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
     ReactiveDrivenComponent,
     CarouselComponent,
     DashboardHeaderComponent,
-    CartdetailsComponent
+    CartdetailsComponent,
+    SpinnerComponent,
+    CreditCardMaskPipe,
+    CreditCardGridTransformer
   ],
   imports: [
     BrowserModule,
@@ -81,7 +87,7 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
-    AgGridModule.withComponents([MyPointsComponent, MyCardsComponent]), 
+    AgGridModule.withComponents([MyPointsComponent, MyCardsComponent, CreditCardGridTransformer]), 
     ToastrModule.forRoot({
     timeOut: 10000,
     positionClass: 'toast-top-full-width',
@@ -92,6 +98,9 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
   ],
   providers: [EnrolmentService, UserService, DataServiceService ,{ provide: HTTP_INTERCEPTORS,  useClass: HttpInterseptorService,  multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreditCardGridTransformer,
+],
 })
 export class AppModule { }

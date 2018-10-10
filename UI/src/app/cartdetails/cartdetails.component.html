@@ -14,7 +14,7 @@
     <div class="col-sm-4">
       <div class="product-image">
         <div class="view hm-zoom z-depth-2" style="cursor: pointer">
-          <img src="{{currentItemUrl}}" width="100%" class="img-fluid rounded">
+          <img src="{{currentItemUrl}}" width="100%" class="img-fluid rounded img-responsive img-thumbnail">
         </div>
         <div class="" style="margin-top:15px">
           <ul class="list-group mb-3">
@@ -35,7 +35,7 @@
     <div class="col-sm-8">
       <div class="product-detail">
         <h5 class="product-head">Product Details</h5>
-        <table class="table" cellspacing="0" style="max-height: 28px">
+        <table class="table container-fluid" cellspacing="0" style="max-height: 28px">
           <tbody>
             <tr>
               <th scope="row">Product Name</th>
@@ -46,45 +46,51 @@
               <td>{{currentItemDescription}}</td>
             </tr>
           </tbody>
+          <tfoot>
+              <tr>
+                  <td >
+                        <div *ngIf="currentItemQuantity > 0 ;then showbar else showaddbutton">here is ignored</div>
+                        <ng-template #showbar>
+                          <div >
+                
+                            <div class="input-group">
+                
+                              <span class="input-group-btn" style="vertical-align: middle;">
+                                <button type="button" class="btn btn-default btn-number btn-sm" [disabled]="disableMinus" data-type="minus" data-field="quant[1]"
+                                  (click)="decreaseQuantityDetail(currentItemId)">
+                                  <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                              </span>
+                              <input type="text" class="form-control input-number input-sm " value="{{currentItemQuantity}}" min="0"
+                                max="10">
+                              <span class="input-group-btn" style="vertical-align: middle;">
+                                <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
+                                  <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                              </span>
+                            </div>
+                
+                          </div>
+                        </ng-template>
+                        <ng-template #showaddbutton>
+                          <div>
+                            <button class="btn btn-primary btn-sm btn-primary-spacing " (click)="addToCart(currentItemId);">Add to Cart</button>
+                          </div>
+                        </ng-template></td>
+                        <td>
+                        <div>
+                          <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut</button>
+                        </div> </td><td>
+                         <div >
+                                <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();">Back To Catalog</button>
+                              </div>
+                  </td>
+              </tr>
+          </tfoot>
         </table>
 
       </div>
-      <div class="controls">
-        <div *ngIf="currentItemQuantity > 0 ;then showbar else showaddbutton">here is ignored</div>
-        <ng-template #showbar>
-          <div >
-
-            <div class="input-group">
-
-              <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number btn-sm" [disabled]="disableMinus" data-type="minus" data-field="quant[1]"
-                  (click)="decreaseQuantityDetail(currentItemId)">
-                  <span class="glyphicon glyphicon-minus"></span>
-                </button>
-              </span>
-              <input type="text" class="form-control input-number input-sm sm-1" value="{{currentItemQuantity}}" min="0"
-                max="10">
-              <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
-            </div>
-
-          </div>
-        </ng-template>
-        <ng-template #showaddbutton>
-          <div>
-            <button class="btn btn-primary btn-sm btn-primary-spacing " (click)="addToCart(currentItemId);">Add to Cart</button>
-          </div>
-        </ng-template>
-        <div>
-          <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut</button>
-        </div>
-        <div >
-          <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();">Back To Catalog</button>
-        </div>
-      </div>
+    
       <!-- <ul>
             <i class="fa fa-shopping-cart"></i><span class="badge badge-pill">6</span>
         </ul>-->
@@ -100,7 +106,7 @@
 
 <div class="container" *ngIf="showCartItemsStep">
     <div *ngIf="cartProductList.length > 0; else noItems" >
-  <table class="greyGridTable">
+  <table class="greyGridTable table-responsive">
     <thead>
       <tr>
         <th><i>Items</i></th>
@@ -155,18 +161,28 @@
           {{orderTotal}}
         </td>
       </tr>
+
+      <tr>
+            <td > 
+                    <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout</button>
+                </td>
+            <td colspan="2"> 
+            
+            </td>
+            <td>
+                    <button (click)="goBacktoCatalog();"   class="btn btn-warning">
+                        Go Back to Shopping</button>
+            </td>
+      </tr>
     </tfoot>
   </table>
 
-  <div class="float-left">
-    <a class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout</a>
-    <button (click)="goBacktoCatalog();"  href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i>
-        Go Back to Shopping</button>
-  </div>
+ 
 </div>
         <ng-template #noItems>
-            <div class="container"> <p> Sorry there are no products in the cart. </p>  </div>
-             
+                <div class="alert alert-warning">
+                        <strong>Sorry!</strong>There are no products in your shopping cart. Please add items to cart to proceed with checkout.
+                      </div>             
               </ng-template>
 </div>
 
@@ -223,49 +239,50 @@
 
                                               <div class="col-xs-6 col-sm-6 col-md-6">
                                                  <div class="form-group">
-                                                     <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                     <input type="text"  [(ngModel)]="billFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
                                                 </div>
                                  </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input type="text" name="last_name" [(ngModel)]="billLastName"  id="last_name" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                 </div>
 
                                           <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Email id">
+                            <input type="text" name="first_name" [(ngModel)]="billEmail" id="first_name" class="form-control input-sm" placeholder="Email id">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                        <input type="text" name="last_name" [(ngModel)]="billMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
                                     </div>
                                 </div>
 
                                           <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                            <textarea class="form-control"  placeholder="Address">                                                
+                                        <input type="text" name="last_name" [(ngModel)]="billAddress" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                        <textarea class="form-control"  placeholder="Address">                                                
                                             </textarea>
                                     </div>
                                 </div>
 
                                           <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="country">
+                            <input type="text" name="first_name" id="first_name" [(ngModel)]="billCountry" class="form-control input-sm" placeholder="country">
                                     </div>
                                 </div>
                                    <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="city">
+                            <input type="text" name="first_name" id="first_name" [(ngModel)]="billCity" class="form-control input-sm" placeholder="city">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="pincode">
+                                        <input type="text" name="last_name" [(ngModel)]="billPincode" id="last_name" class="form-control input-sm" placeholder="pincode">
                                     </div>
                                 </div>
-                                               <input class="coupon_question" type="checkbox" name="coupon_question" value="1">
+                                               <input class="coupon_question" type="checkbox"  (change)="copyBillingAddress();" name="coupon_question" value="1">
                                         <span class="item-text"><b>Billing Address same as Shiiping Address</b></span>
                                   </div>
 
@@ -276,46 +293,46 @@
                                         <hr>
                                               <div class="col-xs-6 col-sm-6 col-md-6">
                                                  <div class="form-group">
-                                                     <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                     <input type="text" [disabled]="disableShip" [(ngModel)]="shipFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
                                                 </div>
                                  </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input type="text" [disabled]="disableShip" name="last_name" id="last_name" [(ngModel)]="shipLastName" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                 </div>
 
                                           <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Email id">
+                            <input type="text" name="first_name" [disabled]="disableShip" id="first_name" [(ngModel)]="shipEmail" class="form-control input-sm" placeholder="Email id">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                        <input type="text" [disabled]="disableShip" name="last_name" [(ngModel)]="shipMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
                                     </div>
                                 </div>
 
                                           <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                            <textarea class="form-control"  placeholder="Address">                                                
+                                            <textarea class="form-control" [disabled]="disableShip" [(ngModel)]="shipAddress" placeholder="Address">                                                
                                             </textarea>
                                     </div>
                                 </div>
 
                                           <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="country">
+                            <input type="text" name="first_name"  [disabled]="disableShip" id="first_name" [(ngModel)]="shipCountry" class="form-control input-sm" placeholder="country">
                                     </div>
                                 </div>
                                    <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="city">
+                            <input type="text" name="first_name" [disabled]="disableShip" id="first_name" [(ngModel)]="shipCity" class="form-control input-sm" placeholder="city">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="pincode">
+                                        <input type="text" [disabled]="disableShip" name="last_name" [(ngModel)]="shipPincode" id="last_name" class="form-control input-sm" placeholder="pincode">
                                     </div>
                                 </div>
                                   </div> 
@@ -404,7 +421,7 @@
 
                     <div class="panel-body">
                         <span>
-                            <div><strong>Jhon</strong>,your order will be shipped as soon as you complete your order.</div>
+                            <div><strong>{{name}}</strong>,your order will be shipped as soon as you complete your order.</div>
                         </span>
                         <span>
                             <div><strong>Estimate shipping date:</strong>within 24 hours.</div>
@@ -501,7 +518,7 @@
 
 <!--Order Reciept -->
 <div *ngIf="confirmationStep">
-<div *ngIf="itemRedemptionSuccess ;then showsuccess else showfailure">here is ignored</div>
+<div *ngIf="itemRedemptionSuccess; then showsuccess else showfailure">here is ignored</div>
     <ng-template #showsuccess>
             <div class="pageDiv">
                     
@@ -511,7 +528,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="row">
-                                        <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/50X50" alt="..." class="img-responsive" /></div>
+                                        <div class="col-sm-2 hidden-xs"><img src="assets/logo.png" alt="..." class="img-responsive" /></div>
                                         <div class="col-sm-7 text-center"><span> <strong>Thank you for order!</strong></span></div>
                                     </div>
                                 </div>
@@ -546,17 +563,28 @@
                                 <div class="row" style="width:90%;" >
                                     <div class="mailContent ">
                                         <span><strong>Billing information:</strong></span>
-                                            <div class="address"><span>John Doe
-                                                    35th Street
-                                                    Montreal, QC, J8J 2L2
-                                                    CANADA</span>
+                                            <div class="address"><span>
+                                                    {{billFirstName}}
+                                                    {{billLastName}}
+                                                    {{billMobile}}
+                                                    {{billAddress}}
+                                                    {{billCity}}
+                                                    {{billCountry}}
+                                                    {{billPincode}}
+                                                    {{billEmail}}
+                                            </span>
                                                 <br> </div>
                                         <span><strong>Shipping information:</strong></span>
                                              <div class="address">
-                                                        <span>John Doe
-                                                            35th Street
-                                                            Montreal, QC, J8J 2L2
-                                                            CANADA
+                                                        <span>{{shipFirstName}}
+                                                                {{shipFirstName}}
+                                                                {{shipLastName}}
+                                                                {{shipMobile}}
+                                                                {{shipAddress}}
+                                                                {{shipCity}}
+                                                                {{shipCountry}}
+                                                                {{shipPincode}}
+                                                                {{shipEmail}}
                                                         </span>
                                             </div>
                                     </div>
@@ -574,23 +602,23 @@
                     
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody *ngFor="let confirm of orderConfirmationProd">
+                                                <tr >
                                                     <td data-th="Product">
-                                                        <div class="row"  *ngFor="let item of cartProductList">
-                                                            <div class="col-sm-4 hidden-xs"><img src="{{item.url}}" alt="..."
-                                                                    class="img-responsive" /></div>
+                                                        <div class="row"  >
+                                                            <div class="col-sm-4 hidden-xs"><img src="{{confirm.url}}" alt="..."
+                                                                    class="img-responsive img-thumbnail" /></div>
                                                             <div class="col-sm-4">
-                                                                <h4 class="nomargin">{{item.name}}</h4>
-                                                                <p>{{item.ItemDescription}}</p>
+                                                                <h4 class="nomargin">{{confirm.name}}</h4>
+                                                                <p>{{confirm.ItemDescription}}</p>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td data-th="Points">{{item.price}}</td>
+                                                    <td data-th="Points">{{confirm.price}}</td>
                                                     <td data-th="Quantity" class="text-center">
-                                                        {{item.quantity}}
+                                                        {{confirm.quantity}}
                                                     </td>
-                                                    <td data-th="TotalPoints" class="text-center">{{item.quantity*item.price}}</td>
+                                                    <td data-th="TotalPoints" class="text-center">{{confirm.quantity*confirm.price}}</td>
                     
                                                 </tr>
                     
@@ -626,24 +654,16 @@
                      
                     
                     
-                    <div class="headerfooter">
-                        <span> You are receiving this email because you are subscribed to the COMPANY NAME newsletter.</span>
-                        <br>
                     
-                    
-                        <span>If you no longer wish to receive these emails, you can <a href="#">unsubscribe instantly.</a></span>
-                        <br>
-                    
-                    
-                        <span> If you have any trouble viewing this email please visit <a href="#">this link.</a></span>
-                    
-                    </div>
                  </div></div></div></div></div>
                     
                            
         </ng-template>
         <ng-template #showfailure>
-          <p>You don't have enough points for redemption</p>
+                <div class="alert alert-warning">
+                        <strong>Sorry! </strong>You don't have sufficient points for this redemption.
+                      </div> 
+         
         </ng-template>
     </div>
 </body></html>

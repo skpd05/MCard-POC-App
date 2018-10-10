@@ -3,13 +3,30 @@ import { CheckoutserviceService } from '../services/checkoutservice.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
+import { DataServiceService } from '../sharedServices/data-service.service';
 @Component({
   selector: 'app-cartdetails',
   templateUrl: './cartdetails.component.html',
   styleUrls: ['./cartdetails.component.css']
 })
 export class CartdetailsComponent implements OnInit {
+  public disableShip = false;
+  public shipFirstName;
+  public shipLastName;
+  public shipMobile;
+  public shipAddress;
+  public shipCity;
+  public shipCountry;
+  public shipPincode;
+  public billFirstName;
+  public billLastName;
+  public billMobile;
+  public billAddress;
+  public billCity;
+  public billCountry;
+  public billPincode;
   public orderDetails;
+  public orderConfirmationProd;
   public currentItemId;
   public itemRedemptionSuccess = false;
   public currentItemUrl;
@@ -27,7 +44,7 @@ export class CartdetailsComponent implements OnInit {
   public billingDetailsStep = false;
   public reviewOrderStep = false;
   public confirmationStep = false;
-  constructor(private _enroll: EnrolmentService,
+  constructor(private _data: DataServiceService,
      private _router: Router, private _checkoutService: CheckoutserviceService, private _userService: UserService) { }
   public ngOnInit(): void {
     this.initializeItemDetails();
@@ -145,15 +162,42 @@ export class CartdetailsComponent implements OnInit {
     this.confirmationStep  = false;
   }
 
+  public  doRedemption() {
+    console.log('order amount is', this._data.totalBalance);
+    console.log('order amount is', this.orderTotal);
+    if (this.orderTotal > this._data.totalBalance) {
+      console.log('in if');
+      this.itemRedemptionSuccess = false;
+      this.showDetailsStep = false;
+      this.showCartItemsStep = false;
+      this.billingDetailsStep  = false;
+      this.reviewOrderStep  = false;
+      this.confirmationStep  = true;
+    } else {
+      this.orderConfirmationProd = Object.assign([], this.cartProductList);
+      this.cartProductList.forEach(element => {
+        this._checkoutService.deleteProductFromCart(element.id);
+       });
+      this.cartProductList = this._checkoutService.getAllCartItemList();
+      console.log('in else', this.orderConfirmationProd);
+      this.itemRedemptionSuccess = true;
+      this.showDetailsStep = false;
+      this.showCartItemsStep = false;
+      this.billingDetailsStep  = false;
+      this.reviewOrderStep  = false;
+      this.confirmationStep  = true;
+      this.doRedemptionCallApi();
+    }
+  }
+
   public doRedemptionCallApi(): void {
     let itemInfo: any;
     let responseCode: any;
-    const now = new Date();
-    console.log('user id', this._userService.getCardNo());
+    console.log('user id', this._data.creditCardList[0]);
     console.log('user details', this._userService.getCustmerDetails());
     this.cartProductList.forEach(element => {
         itemInfo = ({
-          'cardnumber': this._userService.getCardNo(),
+          'cardnumber': this._data.creditCardList[0],
           'custid': '1',
           'quantity': element.quantity,
           'redeemeditem': element.name,
@@ -162,30 +206,23 @@ export class CartdetailsComponent implements OnInit {
           'vendorid': 'Mastercard'
         });
           this._checkoutService.saveTransaction(itemInfo).subscribe( data => {
+
             responseCode = data;
           },
           error => console.log(error));
         });
       }
 
-      public  doRedemption() {
-        console.log('order amount is', this._enroll.mypoints);
-        if (this.orderTotal > this._enroll.mypoints) {
-          this.itemRedemptionSuccess = false;
-          this.showDetailsStep = false;
-          this.showCartItemsStep = false;
-          this.billingDetailsStep  = false;
-          this.reviewOrderStep  = false;
-          this.confirmationStep  = true;
-        } else {
-          this.doRedemptionCallApi();
-          this.itemRedemptionSuccess = true;
-          this.showDetailsStep = false;
-          this.showCartItemsStep = false;
-          this.billingDetailsStep  = false;
-          this.reviewOrderStep  = false;
-          this.confirmationStep  = true;
-        }
+      public copyBillingAddress(): void {
+        alert('called');
+        this.disableShip = true;
+        this.shipFirstName = this.billFirstName;
+        this.shipLastName = this.billLastName;
+        this.shipMobile = this.billMobile;
+        this.shipAddress = this.billAddress;
+        this.shipCity = this.billCity;
+        this.shipCountry = this.billCountry;
+        this.shipPincode = this.billPincode;
       }
 }
 
@@ -197,4 +234,13 @@ interface RedemptionDetails {
   'itemquantity': number;
   'vendorid': number;
   'time': Date;
+}
+
+interface AddressDetails {
+  'firstName': string;
+  'lastName': string;
+  'phone': number;
+  'address': string;
+  'zipcode': number;
+
 }

@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
 export class UserService {
     cardno : any;
     customerDetails : any;
+    cardNo: any;
+    creditCardList: any;
+    username: string;
+    totalBalance = 0 ;
     hasLoggedIn(): boolean {
         if(localStorage.getItem('hasLoggedIn')){
             return true;
@@ -22,12 +26,13 @@ export class UserService {
     }
     async getCardNo(){
         return await localStorage.getItem('cardno');
-    }
+    } 
 
-    setCustomerDetails(data){        
+    setCustomerDetails(data){  
+        this.customerDetails = data;      
         localStorage.setItem('user', data);
     }
     getCustmerDetails(){
-        return localStorage.getItem('user');
+        return this.customerDetails;
     }
 }

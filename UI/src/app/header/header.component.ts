@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user-service';
 import { DataServiceService } from 'src/app/sharedServices/data-service.service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,20 +18,25 @@ export class HeaderComponent implements OnInit {
   public cartItemTotal = 0;
   isLogin: boolean = false;
   public itemList;
-  constructor(  private userService: UserService,
-                private userdata: DataServiceService,
-                public enrolmentService: EnrolmentService, private _router: Router, private _checkoutService: CheckoutserviceService) {  }
+  showSpinner : boolean = false;
+  constructor(  private userService: UserService, private dataService : DataServiceService,
+                public enrolmentService: EnrolmentService, private _router: Router, private _checkoutService: CheckoutserviceService) { 
+
+                  console.log("Yes")
+                 }
 
   async ngOnInit() {
-    this.itemList = await this._checkoutService.getItems();
-    this.cardNo = await this.userService.getCardNo();
-    await this.enrolmentService.getAccount(this.cardNo).then((data: any) => {
-        console.log(data);
-        this.getCardList(data.creditcardsList);
-        this.getBalancePoint(data.creditcardsList);
-        this.username = data.firstName;
-        this.userdata.changeMessage(this.username);
-      });
+    
+    if(this.userService.hasLoggedIn()){
+      this.showSpinner = true;
+      //this.itemList = await this._checkoutService.getItems();
+      this.cardNo = await this.userService.getCardNo();
+      //const customerDetails = this.userService.getCustmerDetails();
+      this.enrolmentService.getAccount(this.cardNo).then((data: any) => {
+        this.dataService.setUserInfo(data);  
+        this.showSpinner = false;
+      });         
+      
       await this._checkoutService.componentMethodCalled$.subscribe(
         () => {
           this.cartItemTotal = this._checkoutService.getCartItemTotal();
@@ -38,9 +44,10 @@ export class HeaderComponent implements OnInit {
       );
       await this._checkoutService.setCartItemTotal();
       this.cartItemTotal = await this._checkoutService.getCartItemTotalNo();
+      }
     // let temp:any = this.userService.getCustmerDetails();
   }
-
+/*
   getCardList(list): any  {
     this.creditCardList = [];
     list.forEach(element => {
@@ -53,7 +60,7 @@ export class HeaderComponent implements OnInit {
       this.totalBalance += Math.round(element.pointsTotal);
     });
   }
-
+*/
   public setCurrentCategory(parentCat, subCat) {
    this._checkoutService.setCurrentCatagory(parentCat, subCat);
    this._router.navigate(['catalog']);
@@ -65,8 +72,10 @@ export class HeaderComponent implements OnInit {
   }
 
   userLogout(){
+    this.username = null;
     this.userService.logoutUser();
-    this.userdata.changeMessage('');
+    this.dataService.changeMessage('');
+    this.dataService.clearData();
     this.isLogin = false;
     this._router.navigate(['/login']);
   }

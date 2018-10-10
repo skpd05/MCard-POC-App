@@ -20,7 +20,7 @@ export class CheckoutserviceService {
     Long sleeves.
     Boatneck.Material & Care
     58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
+    Machine wash.`, 'quantity': 0, 'price': 0, 'enableMinusButton': false,
     'itemType': 'electronic',
     'category': 'clothing',
     'subcategory': 'tops',
@@ -300,8 +300,8 @@ export class CheckoutserviceService {
   public componentMethodCalled$ = this._componentMethodCallSource.asObservable();
 
   // Service message commands
-  public callComponentMethod(): void {
-    this._componentMethodCallSource.next();
+  async callComponentMethod(){
+    await this._componentMethodCallSource.next();
   }
 
   constructor(private _http: HttpClient) { }
@@ -437,7 +437,7 @@ export class CheckoutserviceService {
   }
 
   // Get Cart Points Total
-  public resetCartTotal(): number {
+  resetCartTotal(){
     let cartTotal = 0;
     this.cartItemsArray.forEach(element => {
       cartTotal = cartTotal + element.quantity * element.price;
@@ -445,11 +445,11 @@ export class CheckoutserviceService {
     return cartTotal;
   }
 
-  public deleteProductFromCart(itemId): void {
-    const itemIndex = this.cartItemsArray.findIndex(product => product.id === itemId);
+  async deleteProductFromCart(itemId) {
+    const itemIndex = await this.cartItemsArray.findIndex(product => product.id === itemId);
     if (itemIndex !== -1) {
-      this.cartItemsArray.splice(itemIndex, 1);
-      this.updateQuantityProductList(itemId);
+      await this.cartItemsArray.splice(itemIndex, 1);
+      await this.updateQuantityProductList(itemId);
     }
   }
 
@@ -468,11 +468,11 @@ export class CheckoutserviceService {
     return this.gotToMyCart;
   }
 
-  public saveTransaction  (data): Observable<any> {
-    console.log(data)
-    const headers = new Headers({ 'Content-Type': 'application/json' });
+   saveTransaction  (data){
 
-      return this._http.post(this.saveRedemptionUrl,
+    const headers =  new Headers({ 'Content-Type': 'application/json' });
+
+      const response =  this._http.post(this.saveRedemptionUrl,
            data,
            {
              headers: new HttpHeaders()
@@ -482,7 +482,8 @@ export class CheckoutserviceService {
                .set('Accept', 'application/json'),
                 withCredentials: true
            }
-         );
+         ).pipe(catchError(this._handleError))
+         return response;
    }
 
    private _handleError(error: HttpErrorResponse): any {
@@ -502,9 +503,9 @@ export class CheckoutserviceService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  }
+}
 
-  public getRedemptionStatus(): any {
+  async getRedemptionStatus() {
     return this.redemptionSuccess;
   }
 
