@@ -214,15 +214,25 @@ export class CartdetailsComponent implements OnInit {
       }
 
       public copyBillingAddress(): void {
-        alert('called');
-        this.disableShip = true;
-        this.shipFirstName = this.billFirstName;
-        this.shipLastName = this.billLastName;
-        this.shipMobile = this.billMobile;
-        this.shipAddress = this.billAddress;
-        this.shipCity = this.billCity;
-        this.shipCountry = this.billCountry;
-        this.shipPincode = this.billPincode;
+        if ( this.disableShip) {
+        this.shipFirstName = '';
+        this.shipLastName = '';
+        this.shipMobile = '';
+        this.shipAddress = '';
+        this.shipCity = '';
+        this.shipCountry = '';
+        this.shipPincode = '';
+        this.disableShip = false;
+        } else {
+          this.disableShip = true;
+          this.shipFirstName = this.billFirstName;
+          this.shipLastName = this.billLastName;
+          this.shipMobile = this.billMobile;
+          this.shipAddress = this.billAddress;
+          this.shipCity = this.billCity;
+          this.shipCountry = this.billCountry;
+          this.shipPincode = this.billPincode;
+        }
       }
 }
 
