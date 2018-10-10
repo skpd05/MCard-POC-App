@@ -61,8 +61,7 @@
                                   <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                               </span>
-                              <input type="text" class="form-control input-number input-sm " value="{{currentItemQuantity}}" min="0"
-                                max="10">
+                              <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{currentItemQuantity}}" min="0" max="10">
                               <span class="input-group-btn" style="vertical-align: middle;">
                                 <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
                                   <span class="glyphicon glyphicon-plus"></span>
@@ -79,10 +78,13 @@
                         </ng-template></td>
                         <td>
                         <div>
-                          <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut</button>
-                        </div> </td><td>
-                         <div >
-                                <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();">Back To Catalog</button>
+                                <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();"> Back To Catalog</button>
+                          
+                        </div> </td><td><div>
+                                <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut </button>
+                            </div>
+                                <div >
+                                
                               </div>
                   </td>
               </tr>
@@ -102,82 +104,113 @@
 </div>
 
 <!-- Cart Product List Page-->
-<br>
-
 <div class="container" *ngIf="showCartItemsStep">
+   <div class="row bs-wizard" style="border-bottom:0;">
+                
+                    <div class="col-xs-3 bs-wizard-step active">
+                      <div class="text-center bs-wizard-stepnum">Step 1</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Review/Modify Cart</div>
+                    </div>
+                    
+                    <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                      <div class="text-center bs-wizard-stepnum">Step 2</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Shipping and billing Details</div>
+                    </div>
+                    
+                    <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                      <div class="text-center bs-wizard-stepnum">Step 3</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Review Order</div>
+                    </div>
+                    
+                    <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                      <div class="text-center bs-wizard-stepnum">Step 4</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Order Confirmation</div>
+                    </div>
+                </div>       
+           
+<br>
+       
     <div *ngIf="cartProductList.length > 0; else noItems" >
-  <table class="greyGridTable table-responsive">
-    <thead>
-      <tr>
-        <th><i>Items</i></th>
-        <th><i>Price</i></th>
-        <th><i>Quantity</i></th>
-        <th><i>Total</i></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cartProductList">
-        <td>
-          <img src="{{item.url}}"  class="img-thumbnail img-responsive" width="150" height="100">
-          <div><span> {{item.name}}</span></div>
-        </td>
-        <td>{{item.price}}</td>
-
-        <td>
-          <div class="row">
-              <div class="col-xs-6">
-                <div class="input-group">   
-                <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number btn-sm" data-type="minus" data-field="quant[1]"
-                  (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton">
-                  <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                </span>
-                <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
-                max="10">
-                <span class="input-group-btn" style="vertical-align: middle;">
-                <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
-                <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                </span>
-                </div>
-              </div>
-              <div class="col-xs-6">
-                <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id);"><i class="fa fa-trash-o" ></i></button>
-              </div>
-          </div>
-        </td>
-        <td>
-            {{item.price*item.quantity}} 
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3">
-          <span>Total Points Redeemed</span>
-        </td>
-        <td>
-          {{orderTotal}}
-        </td>
-      </tr>
-
-      <tr>
-            <td > 
-                    <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout</button>
-                </td>
-            <td colspan="2"> 
-            
-            </td>
-            <td>
-                    <button (click)="goBacktoCatalog();"   class="btn btn-warning">
-                        Go Back to Shopping</button>
-            </td>
-      </tr>
-    </tfoot>
-  </table>
-
- 
+  
+           <table class="table table-bordred table-striped">
+                    <thead>
+                        <th><i>Items</i></th>
+                        <th><i>Points to be redeemed</i></th>
+                        <th><i>Quantity</i></th>
+                        <th><i>Total</i></th>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let item of cartProductList">
+                              <td>
+                                <img src="{{item.url}}"  class="img-thumbnail img-responsive" width="150" height="100">
+                                <div><span> {{item.name}}</span></div>
+                              </td>
+                              <td>{{item.price}}</td>
+                      
+                              <td>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                      <div class="input-group">   
+                                      <span class="input-group-btn" style="vertical-align: middle;">
+                                      <button type="button" class="btn btn-default btn-number btn-sm" data-type="minus" data-field="quant[1]"
+                                        (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                      </button>
+                                      </span>
+                                      <input type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
+                                      max="10">
+                                      <span class="input-group-btn" style="vertical-align: middle;">
+                                      <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
+                                      <span class="glyphicon glyphicon-plus"></span>
+                                      </button>
+                                      </span>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                      <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id);"><i class="fa fa-trash-o" ></i></button>
+                                    </div>
+                                </div>
+                              </td>
+                              <td>
+                                  {{item.price*item.quantity}} 
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td colspan="2">
+                                
+                              </td>
+                               <td>
+                                <span>Total Points Redeemed</span>
+                              </td>
+                              <td>
+                                {{orderTotal}}
+                              </td>
+                            </tr>
+                      
+                            <tr>
+                                  <td > 
+                                        <button (click)="goBacktoCatalog();"   class="btn btn-accent">
+                                                <i class="fa fa-angle-left"></i>Go Back to Shopping</button>  
+                                      </td>
+                                  <td colspan="2"> 
+                                  
+                                  </td>
+                                  <td>
+                                          <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout<i class="fa fa-angle-right"></i></button>
+                                  </td>
+                            </tr>
+                          </tfoot>
+                </table>
 </div>
         <ng-template #noItems>
                 <div class="alert alert-warning">
@@ -189,6 +222,36 @@
 
 <!-- Shiiping & billing address Page-->
 <div class="container" *ngIf="billingDetailsStep">
+        <div class="row bs-wizard" style="border-bottom:0;">
+                
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <div class="text-center bs-wizard-stepnum">Step 1</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Review/Modify Cart</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 2</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Shipping and billing Details</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 3</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Review Order</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">Step 4</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Order Confirmation</div>
+                </div>
+            </div>   
     <div class="row" role="form" #userForm (ngSubmit)="reviewOrder();">
         <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
             <div>
@@ -381,7 +444,7 @@
                                 <td class="text-center"><strong>{{orderTotal}}</strong></td>
                             </tr>
                             <tr>
-                                <td><button class="btn btn-warning" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
+                                <td><button class="btn btn-accent" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
                                         Go Back to Shopping</button></td>
                                 <td colspan="1" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
@@ -415,6 +478,36 @@
 
 <!--Order Review Page-->
 <div class="container" *ngIf="reviewOrderStep">
+        <div class="row bs-wizard" style="border-bottom:0;">
+                
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <div class="text-center bs-wizard-stepnum">Step 1</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Review/Modify Cart</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 2</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Shipping and billing Details</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 3</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Review Order</div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">Step 4</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">Order Confirmation</div>
+                </div>
+            </div>   
         <div class="row">
             <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
                 <div class="panel panel-primary">
@@ -519,9 +612,39 @@
 <!--Order Reciept -->
 <div *ngIf="confirmationStep">
 <div *ngIf="itemRedemptionSuccess; then showsuccess else showfailure">here is ignored</div>
+
     <ng-template #showsuccess>
-            <div class="pageDiv">
+            
+            <div class="row bs-wizard" style="border-bottom:0;">
+                
+                    <div class="col-xs-3 bs-wizard-step complete">
+                      <div class="text-center bs-wizard-stepnum">Step 1</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Review/Modify Cart</div>
+                    </div>
                     
+                    <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
+                      <div class="text-center bs-wizard-stepnum">Step 2</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Shipping and billing Details</div>
+                    </div>
+                    
+                    <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
+                      <div class="text-center bs-wizard-stepnum">Step 3</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Review Order</div>
+                    </div>
+                    
+                    <div class="col-xs-3 bs-wizard-step complete"><!-- active -->
+                      <div class="text-center bs-wizard-stepnum">Step 4</div>
+                      <div class="progress"><div class="progress-bar"></div></div>
+                      <a href="#" class="bs-wizard-dot"></a>
+                      <div class="bs-wizard-info text-center">Order Confirmation</div>
+                    </div>
+                </div>   
                     <div class=container>
                     <div class="panel panel-primary border">
                         <div class=" panel-body ">
@@ -655,7 +778,7 @@
                     
                     
                     
-                 </div></div></div></div></div>
+                 </div></div></div></div>
                     
                            
         </ng-template>
