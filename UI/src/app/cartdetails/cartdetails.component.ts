@@ -143,13 +143,12 @@ export class CartdetailsComponent implements OnInit {
     this.confirmationStep  = false;
   }
 
-  public doRedemption(): void {
+  async doRedemption() {
     let itemInfo: any;
     let responseCode: any;
-    const now = new Date();
     console.log('user id', this._userService.getCardNo());
     console.log('user details', this._userService.getCustmerDetails());
-    this.cartProductList.forEach(element => {
+    await this.cartProductList.forEach(element => {
         itemInfo = ({
           'cardnumber': this._userService.getCardNo(),
           'custid': '1',
@@ -159,8 +158,8 @@ export class CartdetailsComponent implements OnInit {
           'redemptiontimestaamp': '1419038000',
           'vendorid': 'Mastercard'
         });
-          this._checkoutService.saveTransaction(itemInfo).subscribe( data => {
-            responseCode = data.status;
+          this._checkoutService.saveTransaction(itemInfo).then( data => {
+            responseCode = data;
           },
           error => console.log(error));
           if (this._checkoutService.getRedemptionStatus ) {

@@ -300,8 +300,8 @@ export class CheckoutserviceService {
   public componentMethodCalled$ = this._componentMethodCallSource.asObservable();
 
   // Service message commands
-  public callComponentMethod(): void {
-    this._componentMethodCallSource.next();
+  async callComponentMethod(){
+    await this._componentMethodCallSource.next();
   }
 
   constructor(private _http: HttpClient) { }
@@ -437,7 +437,7 @@ export class CheckoutserviceService {
   }
 
   // Get Cart Points Total
-  public resetCartTotal(): number {
+  resetCartTotal(){
     let cartTotal = 0;
     this.cartItemsArray.forEach(element => {
       cartTotal = cartTotal + element.quantity * element.price;
@@ -445,11 +445,11 @@ export class CheckoutserviceService {
     return cartTotal;
   }
 
-  public deleteProductFromCart(itemId): void {
-    const itemIndex = this.cartItemsArray.findIndex(product => product.id === itemId);
+  async deleteProductFromCart(itemId) {
+    const itemIndex = await this.cartItemsArray.findIndex(product => product.id === itemId);
     if (itemIndex !== -1) {
-      this.cartItemsArray.splice(itemIndex, 1);
-      this.updateQuantityProductList(itemId);
+      await this.cartItemsArray.splice(itemIndex, 1);
+      await this.updateQuantityProductList(itemId);
     }
   }
 
@@ -468,11 +468,11 @@ export class CheckoutserviceService {
     return this.gotToMyCart;
   }
 
-  public saveTransaction  (data): Observable<any> {
-    console.log(data)
-    const headers = new Headers({ 'Content-Type': 'application/json' });
+  async saveTransaction  (data){
 
-      return this._http.post(this.saveRedemptionUrl,
+    const headers = await new Headers({ 'Content-Type': 'application/json' });
+
+      const response = await this._http.post(this.saveRedemptionUrl,
            data,
            {
              headers: new HttpHeaders()
@@ -482,10 +482,11 @@ export class CheckoutserviceService {
                .set('Accept', 'application/json'),
                 withCredentials: true
            }
-         );
+         ).toPromise();
+         return response;
    }
 
-   private _handleError(error: HttpErrorResponse): any {
+   /*private _handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -498,13 +499,13 @@ export class CheckoutserviceService {
         if ( error.status === 200) {
           this.redemptionSuccess = true;
         }
-    }
+    }*/
     // return an observable with a user-facing error message
-    return throwError(
+    /*return throwError(
       'Something bad happened; please try again later.');
-  }
+}*/
 
-  public getRedemptionStatus(): any {
+  async getRedemptionStatus() {
     return this.redemptionSuccess;
   }
 

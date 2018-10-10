@@ -33,6 +33,7 @@ export class MyPointsComponent{
     cardDetailsList: any = [];
     temp_card_item: any = [];
     totalBalance = 0 ;
+    showSpinner : boolean = false;
     
     constructor(private httpService : HttpService, 
                 private enrolmentService: EnrolmentService, 
@@ -46,17 +47,20 @@ export class MyPointsComponent{
         //     console.log("here",data);
         // });
         this.cardNo = await this.userService.getCardNo();
-        
-        await this.enrolmentService.getAccount("5461237890123456008").then((data: any)=> {
+        this.showSpinner = true;
+        await this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
             console.log(data); 
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();
             this.getBalancePoint(data.creditcardsList);
+            this.showSpinner = false;
         })  
-        await this.enrolmentService.getMyPoints("5461237890123456008").then((data: any)=> {                        
+        this.showSpinner = true;
+        await this.enrolmentService.getMyPoints(this.cardNo).then((data: any)=> {                        
             console.log(data);
             this.items = data;     
             this.temp_item = data;
+            this.showSpinner = false;
         }, (error: any)=>{
             console.log(error);
             this.errorMessage = true;

@@ -67,10 +67,11 @@ export class LoginComponent implements OnInit {
    userLogindata: any ;
    userdata: any;
    cardno: any;
+   showSpinner : boolean = false;
 
 
  @ViewChild('f') form : any; 
-  constructor(public dataService : DataServiceService,private userService: UserService, public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
+  constructor(private dataService : DataServiceService,private userService: UserService, public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -81,6 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(data :any){
+    this.showSpinner = true;
     if(this.loginContainer){
 
         let validateData = {
@@ -109,24 +111,29 @@ export class LoginComponent implements OnInit {
           }else{
             this.checkUserDetail = true;
           }
+          this.showSpinner = false;
        },
        error => console.log(error));
-    }else{      
+    }else{  
+      this.showSpinner = true;    
         if(this.SSNValidator == data.ssn){          
           this.dataService.userData = this.userLogindata;          
           this.userService.setCustomerDetails(this.userdata);
           this.userService.setCardNo(this.cardno);    
           this.userService.loginUser();      
-          this.router.navigate(['/dashboard']);
+          this.enrolmentService.getAccount(this.cardno).then((data: any) => {
+            this.dataService.username = data.firstName;
+            this.dataService.setUserInfo(data);  
+            this.showSpinner = false;
+            this.router.navigate(['/dashboard']);
+          });         
+          
         }
         else{
             this.loginSSNError = true
         }
 
     }
-
-    
-
   }
   showLogin(){
     this.loginContainer = true;

@@ -3,12 +3,10 @@
  */
 package com.mc.demo.app.redeem.service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +46,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			Points point =new Points();
 			point.setCardNumber(transac.getCardNumber());
 			point.setOpertaion("minus");
-			point.setPointsvalue(transac.getRedeemedpoints()*Integer.parseInt(transac.getQuantity()));
+			point.setPointsvalue(transac.getRedeemedpoints());
 			
 			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
 			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
@@ -62,8 +60,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			Redemptiontransaction redeemObj = new Redemptiontransaction();
 			redeemObj.setCustid(transac.getCustid());
 			redeemObj.setAccountnumber(transac.getCardNumber());
-			Random r = new Random();
-			int inR = r.nextInt((99999999 - 2000) + 1) + 2000000;
+			int inR = ThreadLocalRandom.current().nextInt((99999999 - 2000) + 1) + 2000000;
 			redeemObj.setRedeemid(String.valueOf(inR));
 			redeemObj.setRedeemeditem(transac.getRedeemeditem());
 			redeemObj.setQuantity(transac.getQuantity());
