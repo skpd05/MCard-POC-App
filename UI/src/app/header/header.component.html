@@ -18,7 +18,9 @@
                 <a routerLink="/dashboard"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
               </li>
               <li>
-                  <a> Points Earned {{dataService.totalBalance}} <span class="glyphicon glyphicon-info-sign"></span></a>
+                  <a> Points Earned {{dataService.totalBalance}} 
+                      <span class="glyphicon glyphicon-info-sign"></span> </a>
+                      
                   
                 </li>
               <li class="dropdown">
@@ -32,7 +34,7 @@
                     <ul class="dropdown-menu">
                         <li><a routerLink="/mycards/all_cards">All Cards</a></li>                      
                         <li *ngFor="let card of dataService.creditCardList">
-                          <a routerLink="/mycards/{{card}}">{{card}}</a>
+                          <a routerLink="/mycards/{{card}}">{{card | creditCardMask:3}}</a>
                         </li>
                     </ul>
                   </li>

@@ -74,6 +74,9 @@ export class LoginComponent implements OnInit {
   constructor(private dataService : DataServiceService,private userService: UserService, public enrolmentService : EnrolmentService , private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
+    if(this.dataService.username!=null || this.dataService.username!=undefined){
+      this.router.navigate(['/dashboard']);
+    }
   }
   showRegister(){
     this.register = !this.register ;

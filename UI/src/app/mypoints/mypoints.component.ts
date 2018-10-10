@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../services/http-services';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
 import { UserService } from 'src/app/services/user-service';
+import { DataServiceService } from '../sharedServices/data-service.service';
+import { CreditCardGridTransformer } from '../pipe/credit-card-grid-transform';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class MyPointsComponent{
         {headerName: 'Item ', field: 'redeemeditem' ,width: 350},
         {headerName: 'Reedeemed Points', field: 'redeemedpoints',width: 160},
         {headerName: 'Quantity', field: 'quantity',width: 150 },
-        {headerName: 'Card Number', field: 'cardnumber'}
+        {headerName: 'Card Number', field: 'cardnumber', cellRendererFramework :CreditCardGridTransformer}
     ];
     rowData: any;
     cardDetailsList: any = [];
@@ -36,6 +38,7 @@ export class MyPointsComponent{
     showSpinner : boolean = false;
     
     constructor(private httpService : HttpService, 
+                private dataService : DataServiceService,
                 private enrolmentService: EnrolmentService, 
                 private userService: UserService){}   
     
@@ -49,7 +52,6 @@ export class MyPointsComponent{
         this.cardNo = await this.userService.getCardNo();
         this.showSpinner = true;
         await this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
-            console.log(data); 
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();
             this.getBalancePoint(data.creditcardsList);
@@ -57,7 +59,6 @@ export class MyPointsComponent{
         })  
         this.showSpinner = true;
         await this.enrolmentService.getMyPoints(this.cardNo).then((data: any)=> {                        
-            console.log(data);
             this.items = data;     
             this.temp_item = data;
             this.showSpinner = false;

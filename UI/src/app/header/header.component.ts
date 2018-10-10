@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user-service';
 import { DataServiceService } from 'src/app/sharedServices/data-service.service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
