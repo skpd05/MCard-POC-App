@@ -134,6 +134,7 @@ export class LoginComponent implements OnInit {
         }
         else{
             this.loginSSNError = true
+            this.showSpinner = false;
         }
 
     }
