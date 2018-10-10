@@ -5,6 +5,7 @@ import { EnrolmentService } from '../sharedServices/enrolment.service';
 import { UserService } from 'src/app/services/user-service';
 import { DataServiceService } from '../sharedServices/data-service.service';
 import { CreditCardGridTransformer } from '../pipe/credit-card-grid-transform';
+import { DateGridTransformer } from '../pipe/date-grid-transform';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class MyPointsComponent{
     errorMessage: boolean = false;
     
     columnDefs = [
-        {headerName: 'Date', field: 'redemptiontimestaamp',color: 'red',width: 200,type: ['dateColumn']},
+        {headerName: 'Date', field: 'redemptiontimestaamp',width: 200,type: ['dateColumn'],cellRendererFramework : DateGridTransformer},
         {headerName: 'Item ', field: 'redeemeditem' ,width: 350},
         {headerName: 'Reedeemed Points', field: 'redeemedpoints',width: 160},
         {headerName: 'Quantity', field: 'quantity',width: 150 },
@@ -50,13 +51,13 @@ export class MyPointsComponent{
         //     console.log("here",data);
         // });
         this.cardNo = await this.userService.getCardNo();
-        this.showSpinner = true;
+       /* this.showSpinner = true;
         await this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
             this.cardDetailsList = data.creditcardsList;
             this.temp_card_item = this.cardDetailsList.slice();
             this.getBalancePoint(data.creditcardsList);
             this.showSpinner = false;
-        })  
+        })  */
         this.showSpinner = true;
         await this.enrolmentService.getMyPoints(this.cardNo).then((data: any)=> {                        
             this.items = data;     

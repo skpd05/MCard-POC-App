@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/services/user-service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
+import { DataServiceService } from '../sharedServices/data-service.service';
+import { CreditCardGridTransformer } from '../pipe/credit-card-grid-transform';
 
 @Component({
     selector: 'mycards-component',
@@ -18,8 +20,9 @@ export class MyCardsComponent{
     cardNo: any;
     cardDetailsList: any = [];
     temp_card_item: any = [];
+    showSpineer : boolean = false;
     columnDefs = [
-        {headerName: 'Credit Card Number', field: 'credicardnumber' },
+        {headerName: 'Credit Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
         {headerName: 'Card Type', field: 'cardType'},
         {headerName: 'Bank Product Code', field: 'bankProductcode' },
         {headerName: 'Program ID', field: 'programID'},
@@ -28,8 +31,12 @@ export class MyCardsComponent{
         
     ];
     
-    constructor(  private route: ActivatedRoute, private userService: UserService, public enrolmentService : EnrolmentService){}
+    constructor(  private route: ActivatedRoute,
+         private userService: UserService, 
+         public enrolmentService : EnrolmentService,
+         public dataService : DataServiceService){}
     async ngOnInit(){
+        this.showSpineer = true;
         this.cardNo = await this.userService.getCardNo();
         this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
             console.log(data); 
@@ -40,7 +47,8 @@ export class MyCardsComponent{
             console.log(params.params.params);
             this.filter_by_card = params.params.params;
             this.update_filter(params.params.params)
-        })        
+        })   
+        this.showSpineer = false;     
     }
         
     update_filter(x){
