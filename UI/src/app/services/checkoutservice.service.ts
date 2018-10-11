@@ -20,7 +20,7 @@ export class CheckoutserviceService {
     Long sleeves.
     Boatneck.Material & Care
     58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 0, 'enableMinusButton': false,
+    Machine wash.`, 'quantity': 0, 'price': 15, 'enableMinusButton': false,
     'itemType': 'electronic',
     'category': 'clothing',
     'subcategory': 'tops',

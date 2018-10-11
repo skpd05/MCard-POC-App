@@ -9,7 +9,7 @@
     <title>Bootstrap Shop Cart</title>
 </head>
 <body>
-        <spinner *ngIf="showSpinner"></spinner>
+<spinner *ngIf="showSpinner"></spinner>
 <div class="container" *ngIf="showDetailsStep">
   <div class="row">
     <div class="col-sm-4">
@@ -62,7 +62,7 @@
                                   <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                               </span>
-                              <input disabled="true" type="text" name="quant[1]" class="form-control input-number input-sm" value="{{currentItemQuantity}}" min="0" max="10">
+                              <input disabled="true" type="text" class="form-control input-sm" value="{{currentItemQuantity}}" width="50px;" >
                               <span class="input-group-btn" style="vertical-align: middle;">
                                 <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantityDetail(currentItemId)">
                                   <span class="glyphicon glyphicon-plus"></span>
@@ -80,11 +80,11 @@
                         </td>
                         <td>
                         
-                                <button class="btn btn-accent btn-sm btn-primary-spacing " (click)="goBacktoCatalog();"> Back To Catalog</button>
+                                <button class="btn btn-primary btn-sm btn-primary-spacing " (click)="goBacktoCatalog();"> Back To Catalog</button>
                           
                          
                         
-                                <button class="btn btn-sm btn-success btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut </button>
+                                <button class="btn btn-sm btn-primary btn-primary-spacing " (click)="goToCartDetails();">Proceed to CheckOut </button>
                         
                     </td>  
                     <td>        
@@ -110,28 +110,28 @@
                     <div class="col-xs-3 bs-wizard-step active">
                       <div class="text-center bs-wizard-stepnum">Step 1</div>
                       <div class="progress"><div class="progress-bar"></div></div>
-                      <a href="#" class="bs-wizard-dot"></a>
+                      <li class="bs-wizard-dot"></li>
                       <div class="bs-wizard-info text-center">Review/Modify Cart</div>
                     </div>
                     
                     <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
                       <div class="text-center bs-wizard-stepnum">Step 2</div>
                       <div class="progress"><div class="progress-bar"></div></div>
-                      <a href="#" class="bs-wizard-dot"></a>
+                      <li  class="bs-wizard-dot"></li>
                       <div class="bs-wizard-info text-center">Shipping and billing Details</div>
                     </div>
                     
                     <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
                       <div class="text-center bs-wizard-stepnum">Step 3</div>
                       <div class="progress"><div class="progress-bar"></div></div>
-                      <a href="#" class="bs-wizard-dot"></a>
+                      <li class="bs-wizard-dot"></li>
                       <div class="bs-wizard-info text-center">Review Order</div>
                     </div>
                     
                     <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                       <div class="text-center bs-wizard-stepnum">Step 4</div>
                       <div class="progress"><div class="progress-bar"></div></div>
-                      <a href="#" class="bs-wizard-dot"></a>
+                      <li class="bs-wizard-dot"></li>
                       <div class="bs-wizard-info text-center">Order Confirmation</div>
                     </div>
                 </div>       
@@ -142,10 +142,10 @@
   
            <table class="table table-bordred table-striped">
                     <thead>
-                        <th><i>Items</i></th>
-                        <th><i>Points to be redeemed</i></th>
-                        <th><i>Quantity</i></th>
-                        <th><i>Total</i></th>
+                        <th>Items</th>
+                        <th>Points to be redeemed</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                     </thead>
                     <tbody>
                             <tr *ngFor="let item of cartProductList">
@@ -157,7 +157,7 @@
                       
                               <td>
                                 <div class="row">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                       <div class="input-group">   
                                       <span class="input-group-btn" style="vertical-align: middle;">
                                       <button type="button" class="btn btn-default btn-number btn-sm" data-type="minus" data-field="quant[1]"
@@ -165,8 +165,7 @@
                                         <span class="glyphicon glyphicon-minus"></span>
                                       </button>
                                       </span>
-                                      <input disabled="true" type="text" name="quant[1]" class="form-control input-number input-sm" value="{{item.quantity}}" min="0"
-                                      max="10">
+                                      <input disabled="true" type="text" class="form-control input-sm" value="{{item.quantity}}" >
                                       <span class="input-group-btn" style="vertical-align: middle;">
                                       <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
                                       <span class="glyphicon glyphicon-plus"></span>
@@ -190,7 +189,7 @@
                                 
                               </td>
                                <td>
-                                <span>Total Points Redeemed</span>
+                                <span>Total points to Redeem</span>
                               </td>
                               <td>
                                 {{orderTotal}}
@@ -199,14 +198,14 @@
                       
                             <tr>
                                   <td > 
-                                        <button (click)="goBacktoCatalog();"   class="btn btn-accent">
+                                        <button (click)="goBacktoCatalog();"   class="btn btn-primary">
                                                 <i class="fa fa-angle-left"></i>Go Back to Shopping</button>  
                                       </td>
                                   <td colspan="2"> 
                                   
                                   </td>
                                   <td>
-                                          <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Procced to Checkout<i class="fa fa-angle-right"></i></button>
+                                          <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Proceed to Checkout<i class="fa fa-angle-right"></i></button>
                                   </td>
                             </tr>
                           </tfoot>
@@ -222,33 +221,32 @@
 
 <!-- Shiiping & billing address Page-->
 <div class="container" *ngIf="billingDetailsStep">
-        <div class="row bs-wizard" style="border-bottom:0;">
-                
+        <div class="row bs-wizard" style="border-bottom:0;">       
                 <div class="col-xs-3 bs-wizard-step complete">
-                  <div class="text-center bs-wizard-stepnum">Step 1</div>
+                  <div class="text-center bs-wizard-stepnum"></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Review/Modify Cart</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Step 2</div>
+                  <div class="text-center bs-wizard-stepnum"></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li href="#" class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Shipping and billing Details</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Step 3</div>
+                  <div class="text-center bs-wizard-stepnum"></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li href="#" class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Review Order</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-                  <div class="text-center bs-wizard-stepnum">Step 4</div>
+                  <div class="text-center bs-wizard-stepnum"></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li href="#" class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Order Confirmation</div>
                 </div>
             </div>   
@@ -281,15 +279,126 @@
                         <label>
                             <input type="radio" name="optradio">FEDEX (1 business day) - $40.00</label>
                     </div>
-                    <div class="text-muted">
-                        Note: This is a note that adds some details to the list
-                    </div>
                 </div>
             </div>
             <div>
                 <h5><b>Shipping address</b></h5>
             </div>
+            <div class="panel panel-primary" style="width:99%">
+                <div class="panel-body">
+                    
+                        <div class="col-md-12  col-sm-12  col-xs-8 " style="background:#fff;">
 
+                            
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h3 class="text-center">Billing Address</h3>
+                         
+                                        <hr>
+
+                                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                                 <div class="form-group">
+                                                     <input type="text" required  [(ngModel)]="billFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                </div>
+                                 </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" required [(ngModel)]="billLastName"  id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                            <input type="email" name="first_name" required [(ngModel)]="billEmail" id="first_name" class="form-control input-sm" placeholder="Email id">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" required name="last_name" [(ngModel)]="billMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        
+                                        <textarea required class="form-control" [(ngModel)]="billAddress" placeholder="Address">                                                
+                                            </textarea>
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" required id="first_name" [(ngModel)]="billCountry" class="form-control input-sm" placeholder="country">
+                                    </div>
+                                </div>
+                                   <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" required id="first_name" [(ngModel)]="billCity" class="form-control input-sm" placeholder="city">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <input type="number" name="last_name" required [(ngModel)]="billPincode" id="last_name" class="form-control inputsm" placeholder="pincode">
+                                    </div>
+                                </div>
+                                               <input class="coupon_question" type="checkbox"  (change)="copyBillingAddress();" name="coupon_question" value="1">
+                                        <span class="item-text"><b>Shipping Address same as Billing Address</b></span>
+                                  </div>
+
+
+                                  <div class="col-md-6 shipping col-sm-6 col-xs-12">
+                                        <h3 class="text-center">Shipping Address</h3>
+
+                                        <hr>
+                                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                                 <div class="form-group">
+                                                     <input type="text"  required [disabled]="disableShip" [(ngModel)]="shipFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                                </div>
+                                 </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" required [disabled]="disableShip" name="last_name" id="last_name" [(ngModel)]="shipLastName" class="form-control input-sm" placeholder="Last Name">
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                            <input type="email" required name="first_name" [disabled]="disableShip" id="first_name" [(ngModel)]="shipEmail" class="form-control input-sm" placeholder="Email id">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" required [disabled]="disableShip" name="last_name" [(ngModel)]="shipMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                            <textarea class="form-control" required [disabled]="disableShip" [(ngModel)]="shipAddress" placeholder="Address">                                                
+                                            </textarea>
+                                    </div>
+                                </div>
+
+                                          <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name"  required [disabled]="disableShip" id="first_name" [(ngModel)]="shipCountry" class="form-control input-sm" placeholder="country">
+                                    </div>
+                                </div>
+                                   <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" required [disabled]="disableShip" id="first_name" [(ngModel)]="shipCity" class="form-control input-sm" placeholder="city">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" required [disabled]="disableShip" name="last_name" [(ngModel)]="shipPincode" id="last_name" class="form-control input-sm" placeholder="pincode">
+                                    </div>
+                                </div>
+                                  </div> 
+                               
+                              
+                    </div>
+                </div>
+            </div>
             <div>
                 <h5><b>Summary</b></h5>
             </div>
@@ -330,11 +439,11 @@
                                 <td class="text-center"><strong>{{orderTotal}}</strong></td>
                             </tr>
                             <tr>
-                                <td><button class="btn btn-accent" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
+                                <td><button class="btn btn-primary" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
                                         Go Back to Shopping</button></td>
                                 <td colspan="1" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
-                                <td><button type="sumbit" class="btn btn-success btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
+                                <td><button type="sumbit" class="btn btn-primary btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -369,28 +478,28 @@
                 <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum">Step 1</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Review/Modify Cart</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Step 2</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Shipping and billing Details</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Step 3</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Review Order</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Step 4</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Order Confirmation</div>
                 </div>
             </div>   
@@ -464,11 +573,11 @@
                                     <td class="text-center"><strong>150.00</strong></td>
                                 </tr>
                                 <tr>
-                                    <td><button (click)="goBacktoCatalog();"  href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+                                    <td><button (click)="goBacktoCatalog();"  href="#" class="btn btn-primary"><i class="fa fa-angle-left"></i>
                                             Go Back to Shopping</button></td>
                                     <td colspan="1" class="hidden-xs"></td>
                                     <td></td>
-                                    <td><button class="btn btn-success btn-block" (click)="doRedemption();">Place Order <i class="fa fa-angle-right" ></i></button></td>
+                                    <td><button class="btn btn-primary btn-block" (click)="doRedemption();">Place Order <i class="fa fa-angle-right" ></i></button></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -549,7 +658,7 @@
                                                 your
                                                 records. You will be receiving a copy of this page by e-mail shortly. When contacting us
                                                 regarding
-                                                this order, please use this Order Number as a reference:
+                                                this order, please use this Order Number as a reference
                                             </span>
                                         </div>
                                  </div>                        
@@ -648,7 +757,8 @@
                     
                                             </tfoot>
                                         </table>
-                    
+                                       <button class="btn btn-primary" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
+                                        Go Back to Shopping</button>
                                 </div>
                                 <div class="row " style="width:90%;"><span><strong>Thanks!</strong></span></div>
                                 <div class="row mailContent"style="width:90%;"><span>Thanks so much for being one of our beloved customers. If you believe we
