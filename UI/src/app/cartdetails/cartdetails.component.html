@@ -289,121 +289,7 @@
             <div>
                 <h5><b>Shipping address</b></h5>
             </div>
-            <div class="panel panel-primary" style="width:99%">
-                <div class="panel-body">
-                    
-                        <div class="col-md-12  col-sm-12  col-xs-8 " style="background:#fff; padding:30px;">
 
-                            
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h3 class="text-center">Billing Address</h3>
-                         
-                                        <hr>
-
-                                              <div class="col-xs-6 col-sm-6 col-md-6">
-                                                 <div class="form-group">
-                                                     <input type="text" required  [(ngModel)]="billFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
-                                                </div>
-                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" required [(ngModel)]="billLastName"  id="last_name" class="form-control input-sm" placeholder="Last Name">
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                            <input type="email" name="first_name" required [(ngModel)]="billEmail" id="first_name" class="form-control input-sm" placeholder="Email id">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="number" required name="last_name" [(ngModel)]="billMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        
-                                        <textarea required class="form-control" [(ngModel)]="billAddress" placeholder="Address">                                                
-                                            </textarea>
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                            <input type="text" name="first_name" required id="first_name" [(ngModel)]="billCountry" class="form-control input-sm" placeholder="country">
-                                    </div>
-                                </div>
-                                   <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                            <input type="text" name="first_name" required id="first_name" [(ngModel)]="billCity" class="form-control input-sm" placeholder="city">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                                        <input type="number" name="last_name" required [(ngModel)]="billPincode" id="last_name" class="form-control input-sm" placeholder="pincode">
-                                    </div>
-                                </div>
-                                               <input class="coupon_question" type="checkbox"  (change)="copyBillingAddress();" name="coupon_question" value="1">
-                                        <span class="item-text"><b>Shipping Address same as Billing Address</b></span>
-                                  </div>
-
-
-                                  <div class="col-md-6 shipping col-sm-6 col-xs-12">
-                                        <h3 class="text-center">Shipping Address</h3>
-
-                                        <hr>
-                                              <div class="col-xs-6 col-sm-6 col-md-6">
-                                                 <div class="form-group">
-                                                     <input type="text"  required [disabled]="disableShip" [(ngModel)]="shipFirstName" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
-                                                </div>
-                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" required [disabled]="disableShip" name="last_name" id="last_name" [(ngModel)]="shipLastName" class="form-control input-sm" placeholder="Last Name">
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                            <input type="email" required name="first_name" [disabled]="disableShip" id="first_name" [(ngModel)]="shipEmail" class="form-control input-sm" placeholder="Email id">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="number" required [disabled]="disableShip" name="last_name" [(ngModel)]="shipMobile" id="last_name" class="form-control input-sm" placeholder="Mobile no">
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                            <textarea class="form-control" required [disabled]="disableShip" [(ngModel)]="shipAddress" placeholder="Address">                                                
-                                            </textarea>
-                                    </div>
-                                </div>
-
-                                          <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                            <input type="text" name="first_name"  required [disabled]="disableShip" id="first_name" [(ngModel)]="shipCountry" class="form-control input-sm" placeholder="country">
-                                    </div>
-                                </div>
-                                   <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                            <input type="text" name="first_name" required [disabled]="disableShip" id="first_name" [(ngModel)]="shipCity" class="form-control input-sm" placeholder="city">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" required [disabled]="disableShip" name="last_name" [(ngModel)]="shipPincode" id="last_name" class="form-control input-sm" placeholder="pincode">
-                                    </div>
-                                </div>
-                                  </div> 
-                               
-                              
-                    </div>
-                </div>
-            </div>
             <div>
                 <h5><b>Summary</b></h5>
             </div>
@@ -514,7 +400,7 @@
 
                     <div class="panel-body">
                         <span>
-                            <div><strong>{{name}}</strong>,your order will be shipped as soon as you complete your order.</div>
+                            <div><strong>{{shipFirstName}}</strong>Your order will be shipped as soon as you complete your order.</div>
                         </span>
                         <span>
                             <div><strong>Estimate shipping date:</strong>within 24 hours.</div>
@@ -659,7 +545,7 @@
                                 <div class="row" style="width:90%;">
                                         <div class="mailContent ">
                                             <span>
-                                                You've successfully placed your order with BrandName -- please print (or save) this page for
+                                                You've successfully placed your order with us -- please print (or save) this page for
                                                 your
                                                 records. You will be receiving a copy of this page by e-mail shortly. When contacting us
                                                 regarding
@@ -670,10 +556,10 @@
                                                                                                                                 
                                 <div class="row" style="width:90%;">
                                     <div class="mailContent" >
-                                        <span><strong>Order Number:</strong>219998
+                                        <span><strong>Order Number: </strong> {{orderNum}}
                                         </span>
                                         <br>
-                                        <span><strong>Order Number:</strong>June 21, 2011</span>
+                                        <span><strong>Order Date: </strong> {{orderDate}}</span>
                                     </div>
                                 </div>
                     

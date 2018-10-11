@@ -4,12 +4,15 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user-service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
 import { DataServiceService } from '../sharedServices/data-service.service';
+
 @Component({
   selector: 'app-cartdetails',
   templateUrl: './cartdetails.component.html',
   styleUrls: ['./cartdetails.component.css']
 })
 export class CartdetailsComponent implements OnInit {
+  public orderNum;
+  public orderDate;
   public disableShip = false;
   public shipFirstName;
   public shipLastName;
@@ -165,7 +168,11 @@ export class CartdetailsComponent implements OnInit {
     this.billingDetailsStep  = false;
     this.reviewOrderStep  = true;
     this.confirmationStep  = false;
-  } 
+  }
+
+  randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
 
   public  doRedemption() {
     if (this.orderTotal > this._data.totalBalance) {
@@ -176,6 +183,8 @@ export class CartdetailsComponent implements OnInit {
       this.reviewOrderStep  = false;
       this.confirmationStep  = true;
     } else {
+      this.orderNum = this.randomInt(11111, 99999);
+      this.orderDate = new Date().toLocaleDateString();
       this.orderConfirmationProd = Object.assign([], this.cartProductList);
       this.cartProductList.forEach(element => {
         this._checkoutService.deleteProductFromCart(element.id);
