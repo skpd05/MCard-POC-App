@@ -10,27 +10,14 @@
 </head>
 <body>
 <spinner *ngIf="showSpinner"></spinner>
-<div class="container" *ngIf="showDetailsStep">
+<div class="container" style="" *ngIf="showDetailsStep">
   <div class="row">
     <div class="col-sm-4">
       <div class="product-image">
-        <div class="view hm-zoom z-depth-2" style="cursor: pointer">
-          <img src="{{currentItemUrl}}"  class="img-fluid rounded img-responsive img-thumbnail">
+        <div class="col-sm-10" style="cursor: pointer">
+          <img src="{{currentItemUrl}}"  class="img-fluid rounded img-responsive ">
         </div>
-        <div class="" style="margin-top:15px">
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product Price</h6>
-              </div>
-              <span class="text-muted" style="color:crimson !important">{{currentItemPrice}} points</span>
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
+    </div>
 
     </div>
     <div class="col-sm-8">
@@ -46,6 +33,15 @@
               <th scope="row">Product Description</th>
               <td>{{currentItemDescription}}</td>
             </tr>
+            <tr>
+                <th scope="row">Points to be Redeemed</th>
+                <td>{{currentItemPrice}} points</td>
+            </tr>  
+            <tr>
+                <th>                   
+                </th>
+                <td></td>
+            </tr>          
           </tbody>
           <tfoot>
               <tr>
@@ -103,9 +99,10 @@
   </div>
 </div>
 
+
 <!-- Cart Product List Page-->
-<div class="container" *ngIf="showCartItemsStep">
-   <div class="row bs-wizard" style="border-bottom:0;">
+<div class="containerItemDetails" *ngIf="showCartItemsStep">
+   <div class="row bs-wizard" style="border-bottom:0; margin-top:2px;">
                 
                     <div class="col-xs-3 bs-wizard-step active">
                       <div class="text-center bs-wizard-stepnum">Step 1</div>
@@ -140,76 +137,79 @@
        
     <div *ngIf="cartProductList.length > 0; else noItems" >
   
-           <table class="table table-bordred table-striped">
-                    <thead>
-                        <th>Items</th>
-                        <th>Points to be redeemed</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+           <table  class="table table-responsive" style="background-color: white; border: none; text-align: left;">
+                    <thead >
+                        <th style="padding: 4px 4px 4px 4px; text-align: center;font-size: 16px; ">My Cart</th>     
                     </thead>
-                    <tbody>
-                            <tr *ngFor="let item of cartProductList">
-                              <td>
-                                <img src="{{item.url}}"  class="img-thumbnail img-responsive" width="150" height="100">
-                                <div><span> {{item.name}}</span></div>
+                    <tbody *ngFor="let item of cartProductList">
+                            <tr class="col-sm-3" >
+                              <td rowspan="4" style="float: left; ">
+                                <div>
+                                    <img src="{{item.url}}"  class="img-thumbnail img-responsive" width="80" height="80"   >
+                                </div>
                               </td>
-                              <td>{{item.price}}</td>
-                      
+                             </tr>
+                              <tr class="col-sm-9">
+                                  <td colspan="2">
+                                    {{item.name}}
+                                  </td>
+                             </tr>
+                             <tr class="col-sm-9">
                               <td>
-                                <div class="row">
-                                    <div class="col-xs-4">
+                                <div style="width:80px;">
+                                    <div>
                                       <div class="input-group">   
                                       <span class="input-group-btn" style="vertical-align: middle;">
                                       <button type="button" class="btn btn-default btn-number btn-sm" data-type="minus" data-field="quant[1]"
-                                        (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton">
+                                        (click)="decreaseQuantity(item.id)" [disabled]="item.enableMinusButton" >
                                         <span class="glyphicon glyphicon-minus"></span>
                                       </button>
                                       </span>
-                                      <input disabled="true" type="text" class="form-control input-sm" value="{{item.quantity}}" >
+                                      <input disabled="true" type="text" class="form-control input-sm " value="{{item.quantity}}"  style="text-align: center; border:none; padding:0px; width:30px;">
                                       <span class="input-group-btn" style="vertical-align: middle;">
-                                      <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" (click)="increaseQuantity(item.id)">
+                                      <button type="button" class="btn btn-default btn-number btn-sm" data-type="plus" data-field="quant[1]" 
+                                      (click)="increaseQuantity(item.id)">
                                       <span class="glyphicon glyphicon-plus"></span>
                                       </button>
                                       </span>
                                       </div>
+                                      
                                     </div>
-                                    <div class="col-xs-6">
-                                      <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id);"><i class="fa fa-trash-o" ></i></button>
-                                    </div>
+                                    
                                 </div>
                               </td>
                               <td>
-                                  {{item.price*item.quantity}} 
+                                    <div style="float: right; margin-left:10px; ">
+                                            <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id);"><i class="fa fa-trash-o" ></i></button>
+                                    </div>
+                              </td>
+                            </tr>
+                              <tr class="col-sm-9">
+                              <td colspan="2">
+                                  <h4>{{item.price*item.quantity}}  Points </h4>
                               </td>
                             </tr>
                           </tbody>
                           <tfoot>
-                            <tr>
-                              <td colspan="2">
-                                
+                            <tr class="col-sm-9" >
+                              <td colspan="4">
+                                    <span>Total points to Redeem {{orderTotal}} </span>
                               </td>
-                               <td>
-                                <span>Total points to Redeem</span>
-                              </td>
-                              <td>
-                                {{orderTotal}}
-                              </td>
-                            </tr>
-                      
-                            <tr>
-                                  <td > 
-                                        <button (click)="goBacktoCatalog();"   class="btn btn-primary">
-                                                <i class="fa fa-angle-left"></i>Go Back to Shopping</button>  
-                                      </td>
+                               </tr>
+                            <tr class="col-sm-9">
                                   <td colspan="2"> 
-                                  
-                                  </td>
-                                  <td>
-                                          <button class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Proceed to Checkout<i class="fa fa-angle-right"></i></button>
+                                      
+                                      </td>
+                                  <td></td>
+                                  <td colspan="2" >
+                                         
                                   </td>
                             </tr>
                           </tfoot>
                 </table>
+                <button style="float:right;" class="btn btn-primary btn-primary-spacing" (click)="proceedToShipping();">Proceed to Checkout<i class="fa fa-angle-right"></i></button>
+                <button (click)="goBacktoCatalog();"   class="btn btn-primary">
+                        <i class="fa fa-angle-left" style="float:left;"></i>Go Back to Shopping</button>  
 </div>
         <ng-template #noItems>
                 <div class="alert alert-warning">
@@ -220,8 +220,8 @@
 
 
 <!-- Shiiping & billing address Page-->
-<div class="container" *ngIf="billingDetailsStep">
-        <div class="row bs-wizard" style="border-bottom:0;">       
+<div class="containerShippingDetails" *ngIf="billingDetailsStep">
+        <div class="row bs-wizard" style="border-bottom:0; margin-top:2px;">       
                 <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum"></div>
                   <div class="progress"><div class="progress-bar"></div></div>
@@ -249,36 +249,36 @@
                   <li href="#" class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Order Confirmation</div>
                 </div>
-            </div>   
-    <div class="row" role="form" #userForm (ngSubmit)="reviewOrder();">
-        <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+            </div>   <br><br>
+    <div class="row" style="align-content: center">
+        <div >
             <div>
                 <h5><b>Shipping options</b></h5>
             </div>
             <div class="panel panel-primary">
 
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 10px;">
                     <div>
                         <label>
                             Please choose one of the shipping options below:
                         </label>
                     </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">1 business day shipping</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Standard shipping (4-5 business days)</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">UPS (1-2 business days) - $25.00</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">FEDEX (1 business day) - $40.00</label>
-                    </div>
+                    <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" checked>
+                            <label class="custom-control-label" for="defaultUnchecked"> 1 business day shipping</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" >
+                                <label class="custom-control-label" for="defaultUnchecked"> Standard shipping (4-5 business days)</label>
+                              </div>
+                              <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" >
+                                    <label class="custom-control-label" for="defaultUnchecked"> UPS (1-2 business days) - $25.00</label>
+                                  </div>
+                                  <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" >
+                                        <label class="custom-control-label" for="defaultUnchecked"> FEDEX (1 business day) - $40.00</label>
+                                      </div>
                 </div>
             </div>
             <div>
@@ -452,19 +452,7 @@
             </div>
         </div>
 
-        <div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
-            <div class="panel panel-primary">
-
-                <div class="panel-body">
-                    <div> Questions? Comments?</div>
-                    <div>We are open 24/7.</div>
-                    <div> 1-800-HELP-ME</div>
-                    <div> We are happy to answer all your questions.</div>
-                </div>
-            </div>
-        </div>
-
-
+        
 
     </div>
 
@@ -472,8 +460,8 @@
 
 
 <!--Order Review Page-->
-<div class="container" *ngIf="reviewOrderStep">
-        <div class="row bs-wizard" style="border-bottom:0;">
+<div class="containerShippingDetails" *ngIf="reviewOrderStep">
+        <div class="row bs-wizard" style="border-bottom:0; margin-top:2px;">
                 
                 <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum">Step 1</div>
@@ -502,9 +490,9 @@
                   <li class="bs-wizard-dot"></li>
                   <div class="bs-wizard-info text-center">Order Confirmation</div>
                 </div>
-            </div>   
+            </div>   <br><br>
         <div class="row">
-            <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+            <div>
                 <div class="panel panel-primary">
 
                     <div class="panel-body">
@@ -586,18 +574,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
-                <div class="panel panel-primary">
-
-                    <div class="panel-body">
-                        <div> Questions? Comments?</div>
-                        <div>We are open 24/7.</div>
-                        <div> 1-800-HELP-ME</div>
-                        <div> We are happy to answer all your questions.</div>
-                    </div>
-                </div>
-            </div>
-
+          
 
 
         </div>
@@ -609,8 +586,8 @@
 <div *ngIf="itemRedemptionSuccess; then showsuccess else showfailure">here is ignored</div>
 
     <ng-template #showsuccess>
-            
-            <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="containerConfirmationDetails" >
+            <div class="row bs-wizard" style="border-bottom:0; margin-top:2px;">
                 
                     <div class="col-xs-3 bs-wizard-step complete">
                       <div class="text-center bs-wizard-stepnum">Step 1</div>
@@ -640,10 +617,11 @@
                       <div class="bs-wizard-info text-center">Order Confirmation</div>
                     </div>
                 </div>   
-                    <div class=container>
+                   <br><br>
                     <div class="panel panel-primary border">
-                        <div class=" panel-body ">
-                            <div class="container">
+                        <div style="padding:10px;">
+                        <div class=" panel-body " >
+                            
                                 <div class="row">
                                     <div class="row">
                                         <div class="col-sm-2 hidden-xs"><img src="assets/logo.png" alt="..." class="img-responsive" /></div>
@@ -651,19 +629,19 @@
                                     </div>
                                 </div>
 
-                                <div class="row" style="width:90%;">
-                                        <div class="mailContent ">
-                                            <span>
+                                <div class="row" >
+                                        <div class=" ">
+                                            <p>
                                                 You've successfully placed your order with us -- please print (or save) this page for
                                                 your
                                                 records. You will be receiving a copy of this page by e-mail shortly. When contacting us
                                                 regarding
                                                 this order, please use this Order Number as a reference
-                                            </span>
+                                            </p>
                                         </div>
                                  </div>                        
                                                                                                                                 
-                                <div class="row" style="width:90%;">
+                                <div class="row">
                                     <div class="mailContent" >
                                         <span><strong>Order Number: </strong> {{orderNum}}
                                         </span>
@@ -672,13 +650,13 @@
                                     </div>
                                 </div>
                     
-                                <div class="row" style="width:90%;">
+                                <div class="row" >
                                     <div class="mailContent ">
                                         <span><strong>Billing & Shipping Information</strong></span>
                                     </div>
                                 </div>
                     
-                                <div class="row" style="width:90%;" >
+                                <div class="row"  >
                                     <div class="mailContent ">
                                         <span><strong>Billing information:</strong></span>
                                             <div class="address"><span>
@@ -707,7 +685,7 @@
                                     </div>
                                 </div>
                     
-                                <div class="row mailContent" style="width:90%;">
+                                <div class="row mailContent">
                                      <span><strong>Your Order Detail:</strong></span>
                                         <table id="cart" class="table table-hover table-condensed  table-responsive ">
                                             <thead>
@@ -724,7 +702,7 @@
                                                     <td data-th="Product">
                                                         <div class="row"  >
                                                             <div class="col-sm-4 hidden-xs"><img src="{{confirm.url}}" alt="..."
-                                                                    class="img-responsive img-thumbnail" /></div>
+                                                                    width="100px"  height="150px;"/></div>
                                                             <div class="col-sm-4">
                                                                 <h4 class="nomargin">{{confirm.name}}</h4>
                                                                 <p>{{confirm.ItemDescription}}</p>
@@ -757,11 +735,11 @@
                     
                                             </tfoot>
                                         </table>
-                                       <button class="btn btn-primary" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
+                                       <button style="float: right;" class="btn btn-primary" (click)="goBacktoCatalog();"><i class="fa fa-angle-left" ></i>
                                         Go Back to Shopping</button>
                                 </div>
-                                <div class="row " style="width:90%;"><span><strong>Thanks!</strong></span></div>
-                                <div class="row mailContent"style="width:90%;"><span>Thanks so much for being one of our beloved customers. If you believe we
+                                <div class="row " ><span><strong>Thanks!</strong></span></div>
+                                <div class="row mailContent"><span>Thanks so much for being one of our beloved customers. If you believe we
                                         can help you in any manner, please contact our friendly support team and we'll try to sort any
                                         problems you might have.</span>
                                 </div>

@@ -3,6 +3,52 @@
     padding: 10px;
     font-weight: 500;
   }
+
+.container{
+min-height: 70vh; /* will cover the 100% of viewport */
+min-width: 70vh;
+overflow: hidden;
+display: block;
+position: relative;
+padding-bottom: 0px;
+}
+
+.containerItemDetails{
+  min-height: 70vh; /* will cover the 100% of viewport */
+  width: 85%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 0px;
+  padding-left: 15%;
+align-content: center; 
+  }
+
+  .containerShippingDetails{
+    min-height: 70vh; /* will cover the 100% of viewport */
+    width: 85%;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 0px;
+    padding-left: 15%;
+    margin-top: 10px;
+  align-content: center; 
+    }
+  
+    .containerConfirmationDetails{
+      min-height: 70vh; /* will cover the 100% of viewport */
+      width: 85%;
+      overflow: hidden;
+      display: block;
+      position: relative;
+      padding-bottom: 0px;
+      padding-left: 15%;
+      margin-top: 10px;
+    align-content: center; 
+      }
+
+    
   
   .product-detail .table th {
     width: 152px;
@@ -254,6 +300,8 @@ input[type=text]{
   
 
 .mailContent {
+  text-align: left;
+  text-overflow: inherit;
   margin-top: 30px;
 }
 

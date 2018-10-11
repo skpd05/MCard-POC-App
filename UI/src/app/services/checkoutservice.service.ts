@@ -13,7 +13,7 @@ export class CheckoutserviceService {
   public itemArray: CatalogItem[] = [
   {
     'id': 1,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
+    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee 100% Cotton Blended Material',
     'url': 'assets/product-list/clothing/tops/1.jpg',
     'ItemDescription': `A cotton-modal blend that drapes perfectly.
     Softest Supima cotton and modal knit.
