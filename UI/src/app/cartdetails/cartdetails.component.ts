@@ -82,7 +82,6 @@ export class CartdetailsComponent implements OnInit {
     this._checkoutService.addItems(itemId, false);
     this.cartProductList = this._checkoutService.getAllCartItemList();
     this.initializeItemDetails();
-    this._checkoutService.callComponentMethod();
   }
 
   public goBacktoCatalog(): void {
@@ -155,6 +154,7 @@ export class CartdetailsComponent implements OnInit {
     this._checkoutService.deleteProductFromCart(itemId);
     this.cartProductList = this._checkoutService.getAllCartItemList();
     this.initializeItemDetails();
+    this.orderTotal = this._checkoutService.resetCartTotal();
   }
 
   public reviewOrder(): void {
@@ -166,7 +166,6 @@ export class CartdetailsComponent implements OnInit {
   } 
 
   public  doRedemption() {
-    this.showSpinner = true;
     if (this.orderTotal > this._data.totalBalance) {
       this.itemRedemptionSuccess = false;
       this.showDetailsStep = false;
@@ -189,7 +188,7 @@ export class CartdetailsComponent implements OnInit {
     console.log('user id', this._data.creditCardList[0]);
     console.log('user details', this._userService.getCustmerDetails());
     this.showSpinner = true;
-    this.cartProductList.forEach(element => {
+    this.orderConfirmationProd.forEach(element => {
         itemInfo = ({
           'cardnumber': this._data.creditCardList[0],
           'custid': '1',
@@ -215,6 +214,7 @@ export class CartdetailsComponent implements OnInit {
                 this.billingDetailsStep  = false;
                 this.reviewOrderStep  = false;
                 this.confirmationStep  = true;
+                
                 this.showSpinner = false;
             })
           },

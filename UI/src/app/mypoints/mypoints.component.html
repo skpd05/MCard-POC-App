@@ -3,66 +3,20 @@
     <spinner *ngIf="showSpinner"></spinner>
         <div class="row">
             <div class="posi-rel">
-            
             <div class="col-xs-12">
-                <ul class="list-inline tableHeaderCls">
-                    <li>
-                        <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
-                            <option value="all_cards">All Cards</option>
-                            <option *ngFor="let cardNumber of dataService.creditCardList" value="{{cardNumber}}">{{cardNumber | creditCardMask:3}}</option>                             
-                        </select>
-                    </li>
-                    <!--<li>
-                            Points Earned <strong>{{totalBalance}} </strong>
-                    </li>-->
-                   <!-- <li>
-                            <span class="addcardCls"><i class="fa fa-plus-circle"></i> Add Card</span>
-                    </li>-->
-                    <!--<li>
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
-                                    Learn more
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">							
-                                <div class="col-md-2">
-                                    <div style="width:200px;">								
-                                        <p>Reward points balance information</p>                                                                                
-                                        <p><b>Current exchange rates:</b></p>                                        
-                                        <p>Each 10 reward points can be redeemed for $10</p>                                        
-                                        <p>Each $10.20 spent will earn 10 reward points.</p>                                        
-                                        <b>Balance Limitation:</b>                                        
-                                        <p>Balance is capped at 1000 reward points.</p>                                        
-                                        <p>Each earned reward points records expires in 30 days.</p>                                        
-                                        <p>Refer to reward points history to see if a specific record expires and when.</p>
-                                    </div>               									       
-                                </div>															
-                            </div>
-
-                    </li>
-                   -->
-                </ul>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                                <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
+                                        <option value="all_cards">All Cards</option>
+                                        <option *ngFor="let cardNumber of dataService.creditCardList" value="{{cardNumber}}">{{cardNumber | creditCardMask:3}}</option>                             
+                                    </select>
+                        </div>
+                    </div>
+                    <div class="row"><br></div>
                 
                 <div class="AccCls">
                     <label>Redemption History</label>
-                    <!-- <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Date</th>                        
-                            <th scope="col">Transaction Description</th>
-                            <th scope="col">Transaction Amount($)</th>
-                            <th scope="col">Earned Points</th>
-                            <th scope="col">Card Type</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of temp_item ">                                    
-                                <td>{{item.date}}</td>
-                                <td>{{item.trans_description}}</td>
-                                <td>{{item.trans_amount}}</td>
-                                <td>{{item.earned_points}}</td>
-                                <td>{{item.card_type}}</td>
-                            </tr>
-                        </tbody>
-                    </table>  -->
                     <ag-grid-angular *ngIf="!errorMessage"  style="width:100%;"
                     class="ag-theme-balham"
                     [enableSorting]="true"
@@ -72,9 +26,9 @@
                     rowSelection="multiple"
                 >
                 </ag-grid-angular>
-                <div  *ngIf="errorMessage">
+                <!--<div  *ngIf="errorMessage">
                     <h2>No data returned from Server</h2>
-                </div>   
+                </div>   -->
                 </div>                
             </div>   
         </div>

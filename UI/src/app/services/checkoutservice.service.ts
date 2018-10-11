@@ -316,7 +316,7 @@ export class CheckoutserviceService {
     productInfo = this.getItemDetails(item);
     productInfo.quantity = 0;
     this.cartItemsArray.push(productInfo);
-    this.increaseQuantity(item, allowZero);
+    this.increaseQuantity(item, allowZero); 
   }
 
   public getItemDetails(itemId): Array<CatalogItem>  {
@@ -444,11 +444,11 @@ export class CheckoutserviceService {
     return cartTotal;
   }
 
-  async deleteProductFromCart(itemId) {
-    const itemIndex = await this.cartItemsArray.findIndex(product => product.id === itemId);
+  deleteProductFromCart(itemId) {
+    const itemIndex = this.cartItemsArray.findIndex(product => product.id === itemId);
     if (itemIndex !== -1) {
-      await this.cartItemsArray.splice(itemIndex, 1);
-      await this.updateQuantityProductList(itemId);
+      this.cartItemsArray.splice(itemIndex, 1);
+      this.updateQuantityProductList(itemId);
     }
   }
 

@@ -22,12 +22,12 @@ export class MyCardsComponent{
     temp_card_item: any = [];
     showSpinner : boolean = false;
     columnDefs = [
-        {headerName: 'Credit Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
+        {headerName: 'Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
         {headerName: 'Card Type', field: 'cardType'},
         {headerName: 'Bank Product Code', field: 'bankProductcode' },
-        {headerName: 'Program ID', field: 'programID'},
+        {headerName: 'Program', field: 'programID'},
         {headerName: 'Total Points', field: 'pointsTotal' },
-        {headerName: 'Account Status ID', field: 'accountStatusID' }
+        {headerName: 'Account Status',  valueGetter: function() {return 'Active';} }
         
     ];
     

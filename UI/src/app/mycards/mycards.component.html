@@ -4,23 +4,23 @@
         <spinner *ngIf="showSpinner"></spinner>
         <div class="row">
             <div class="posi-rel">
-            
             <div class="col-xs-12">
-                <ul class="list-inline tableHeaderCls">
-                    <li>
+                <div class="row"><br></div>
+                <div class="row">
+                    <div class="col-xs-3">
                         <select class="form-control"  (change)="update_filter(filter_by_card)"  [(ngModel)]="filter_by_card">
-                            <option value="all_cards">All Cards</option>
+                           <option value="all_cards">All Cards</option>
                              <option *ngFor="let cardNumber of dataService.creditCardList" value="{{cardNumber}}">{{cardNumber| creditCardMask:3}}</option>                             
                         </select> 
-                    </li>
+                    </div>
+                </div>
+                <div class="row"><br></div>
                     <!-- <li>
                             <span class="addcardCls"><i class="fa fa-plus-circle"></i> Add Card</span>
                     </li> -->
-                   
-                </ul>
                 
                 <div class="AccCls">
-                    <label>Accumulation Details</label>
+                    <label>Card Details</label>
                     <!-- <table class="table">
                         <thead class="thead-dark">
                             <tr>

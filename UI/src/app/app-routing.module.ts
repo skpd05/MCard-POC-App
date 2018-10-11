@@ -23,8 +23,8 @@ const appRoutes : Routes = [
  { path: 'mycards', component:MyCardsComponent, canActivate: [AuthGuard] },
  { path: 'mycards/:params', component:MyCardsComponent, canActivate: [AuthGuard] },
  { path: 'reactive', component:ReactiveDrivenComponent, canActivate: [AuthGuard] }, 
- { path: 'buynow' ,component:CartdetailsComponent},
- { path: 'catalog' ,component:CatalogComponent}
+ { path: 'buynow' ,component:CartdetailsComponent,canActivate: [AuthGuard] },
+ { path: 'catalog' ,component:CatalogComponent,canActivate: [AuthGuard] }
 ]
 
 @NgModule({

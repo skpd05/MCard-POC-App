@@ -97,6 +97,22 @@ export class LoginComponent implements OnInit {
     this.userValues.mobile = "";
     this.userValues.rePassword = "";
     this.userValues.cardNo = "";
+   
+   /* Remove this if face difficulty before demo*/
+    this.dateError = false;
+    this.userError = "";
+    this.passwordError = "";
+    this.confirmError = false;
+    this.SeqError =false;
+    this.emailError = false;
+    this.mobileNoError =false
+    this.loginSSNError = false;
+    this.cardNoError = false;
+    this.accalreadyError = false;
+    this.invalidDataError = false;
+    this.checkUserDetail = false;
+
+    /* End Remove this if face difficulty before demo*/
   }
 
   loginUser(data :any){
@@ -108,17 +124,11 @@ export class LoginComponent implements OnInit {
         pswd : data.pass
       }
 
-    console.log(data);
      this.enrolmentService.userLogin(validateData)
 	     .subscribe( data => {
-          console.log(data.authenticated);
           this.userLogindata = data;
-          console.log(this.userLogindata);
           if(data.authenticated)
           {
-              //this.router.navigate(['dashboard']);
-              console.log('----------->',this.userLogindata);
-              console.log('----------->',data.cardnumber);
              this.SSNContainer = true;
              this.loginContainer = false
              this.SSNValidator = data.ssn;
@@ -190,8 +200,6 @@ export class LoginComponent implements OnInit {
       this.cardNoError = false
       this.isValid = true     
     }
-
-    console.log(getFIrstCahr)
   }
 
   validDate(date){
@@ -289,8 +297,6 @@ export class LoginComponent implements OnInit {
       this.SeqError = false;
       this.isValid = true;
     }
-    console.log(this.form.controls.seq1.value)
-    console.log(data)
   }
 
   validateEmail(data){
@@ -327,10 +333,6 @@ export class LoginComponent implements OnInit {
 
   goToStep(step,  form : any){
     if(step==2){
-
-      //card no
-      console.log(form)
-      console.log("-----form value -----------------")
       let validateData = {
         cardnumber : form.cardNo.toString(),
         ssn : form.SSN.toString(),
@@ -348,11 +350,9 @@ export class LoginComponent implements OnInit {
 	     .subscribe( data => {
         if(data!=null){
           this.invalidDataError = false;
-          console.log(data)
           this.enrollAlready = data.enrolledAlready
 
           if(this.enrollAlready){
-            console.log("Already login")
             this.accalreadyError = true 
           }else{
             this.firstStep = false;
@@ -424,7 +424,6 @@ export class LoginComponent implements OnInit {
     this.enrolmentService.createProfile(this.getUserFOrmDetails)
       .subscribe( data => {
          
-         console.log(data)
          this.toastr.success('Your profile is created successfuly please login with your credentials ');
          this.firstStep = false;
          this.secondStep = false;
@@ -435,7 +434,6 @@ export class LoginComponent implements OnInit {
         // this.router.navigate(['/login']);
       },
       error => console.log(error));
-      console.log(this.getUserFOrmDetails)
   }
 
   goToPrevious(step){

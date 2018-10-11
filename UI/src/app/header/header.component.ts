@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   constructor(  private userService: UserService, private dataService : DataServiceService,
                 public enrolmentService: EnrolmentService, private _router: Router, private _checkoutService: CheckoutserviceService) { 
 
-                  console.log("Yes")
                  }
 
   async ngOnInit() {

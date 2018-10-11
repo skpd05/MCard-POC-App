@@ -172,7 +172,7 @@
                 </div>
 
                 <div class="btnSubmitCls">
-                  <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(1)">Previous</button>
+                  <button type="button" class="btn btn-primary" (click)="goToPrevious(1)">Previous</button>
                   <button type="button" class="btn btn-primary" (click)="showRegister()">Cancel</button>
                   <button type="button" class="btn btn-primary" id="userLevel" [disabled]="!f.form.valid || !isValid" (click)="goToStep(4, f.value)">Next</button>
                 </div>
@@ -231,9 +231,9 @@
                
 
                 <div class="btnSubmitCls">
-                    <button type="button" class="btn btn-primary prevCls" (click)="goToPrevious(2)">Previous</button>
-                    <button type="button" class="btn btn-primary prevCls" (click)="showRegister()">Cancel</button>
-                  <button type="button" class="btn btn-primary prevCls" [disabled]="!f.form.valid || !isValid" (click)="doRegister(5, f.value || !isValid)" >Sign Up</button>
+                    <button type="button" class="btn btn-primary" (click)="goToPrevious(2)">Previous</button>
+                    <button type="button" class="btn btn-primary" (click)="showRegister()">Cancel</button>
+                  <button type="button" class="btn btn-primary" [disabled]="!f.form.valid || !isValid" (click)="doRegister(5, f.value || !isValid)" >Sign Up</button>
                 </div>
 
               </div>
@@ -242,7 +242,7 @@
 
                   <div class="form-group" style="text-align: center">
                       <h4>Congratulations! <br><br> Registration is successful. <br><br>
-                      You Can proceed to <a>Login</a></h4>
+                      You Can proceed to <a (click)="showRegister()">Login</a></h4>
                       
                   </div>
   
