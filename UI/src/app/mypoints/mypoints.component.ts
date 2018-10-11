@@ -26,7 +26,7 @@ export class MyPointsComponent{
     errorMessage: boolean = false;
     
     columnDefs = [
-        {headerName: 'Date', field: 'redemptiontimestaamp',width: 200,type: ['dateColumn'],cellRendererFramework : DateGridTransformer},
+        {headerName: 'Date', field: 'redemptiontimestaamp',width: 200,cellRendererFramework : DateGridTransformer,sort: ['desc']},
         {headerName: 'Item ', field: 'redeemeditem', width: 428},
         {headerName: 'Reedeemed Points', field: 'redeemedpoints',width: 160},
         {headerName: 'Quantity', field: 'quantity',width: 150 },
