@@ -35,21 +35,24 @@
                   </li>
             </ul>
             
-            <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">
+            <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">            
                 <li>
-                    <a  style="cursor:auto;">{{dataService.username}}</a>
-                </li>              
+                    <a> Balance Points <span class="label label-success" style="font-size: 12px; margin-left: 4px">{{dataService.totalBalance}}</span> </a>
+                </li>
                 <li><a (click)="goToCart()" >
                     <i class="fa fa-shopping-cart" ></i>
                     <sup class="badge badge-pill">{{_checkoutService.cartItemsArray.length}}</sup>
                   </a>
                 </li>
-                <li>
-                  <a> Balance Points <span class="label label-success" style="font-size: 12px; margin-left: 4px">{{dataService.totalBalance}}</span> </a>
-                </li>
-                <li>
-                    <a (click)="userLogout()">Logout</a>
-                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{dataService.username}} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li> <a (click)="userLogout()">Logout</a></li> 
+                    </ul>
+                  </li>
               </ul>
               <ul class="nav navbar-nav navbar-right"  *ngIf="!dataService.username">
                   <li>

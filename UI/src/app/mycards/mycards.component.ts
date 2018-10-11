@@ -25,7 +25,7 @@ export class MyCardsComponent{
         {headerName: 'Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
         {headerName: 'Card Type', field: 'cardType'},
         {headerName: 'Bank Product Code', field: 'bankProductcode' },
-        {headerName: 'Program', field: 'programID'},
+        {headerName: 'Program', field: 'programID', width: 138},
         {headerName: 'Total Points', field: 'pointsTotal' },
         {headerName: 'Account Status',  valueGetter: function() {return 'Active';} }
         

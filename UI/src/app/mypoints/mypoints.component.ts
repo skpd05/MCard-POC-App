@@ -27,7 +27,7 @@ export class MyPointsComponent{
     
     columnDefs = [
         {headerName: 'Date', field: 'redemptiontimestaamp',width: 200,type: ['dateColumn'],cellRendererFramework : DateGridTransformer},
-        {headerName: 'Item ', field: 'redeemeditem' ,width: 350},
+        {headerName: 'Item ', field: 'redeemeditem', width: 428},
         {headerName: 'Reedeemed Points', field: 'redeemedpoints',width: 160},
         {headerName: 'Quantity', field: 'quantity',width: 150 },
         {headerName: 'Card Number', field: 'cardnumber', cellRendererFramework :CreditCardGridTransformer}
