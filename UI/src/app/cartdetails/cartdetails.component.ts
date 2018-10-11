@@ -18,6 +18,8 @@ export class CartdetailsComponent implements OnInit {
   public shipCity;
   public shipCountry;
   public shipPincode;
+  public shipEmail;
+  public billEmail;
   public billFirstName;
   public billLastName;
   public billMobile;
@@ -214,9 +216,8 @@ export class CartdetailsComponent implements OnInit {
                 this.billingDetailsStep  = false;
                 this.reviewOrderStep  = false;
                 this.confirmationStep  = true;
-                
                 this.showSpinner = false;
-            })
+            });
           },
          );
         });
@@ -231,6 +232,7 @@ export class CartdetailsComponent implements OnInit {
         this.shipCity = '';
         this.shipCountry = '';
         this.shipPincode = '';
+        this.shipEmail = '';
         this.disableShip = false;
         } else {
           this.disableShip = true;
@@ -241,6 +243,7 @@ export class CartdetailsComponent implements OnInit {
           this.shipCity = this.billCity;
           this.shipCountry = this.billCountry;
           this.shipPincode = this.billPincode;
+          this.shipEmail = this.billEmail;
         }
       }
 }
