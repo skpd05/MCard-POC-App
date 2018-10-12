@@ -65,8 +65,8 @@
                 <span class="pull-right"> <a routerLink="/forgotUser"><label>Forgot Userid?</label></a></span>
               </div>
               <div class="btnSubmitCls">
-                  <button type="button" *ngIf="SSNContainer" class="btn btn-primary" (click)="showLogin()">Cancel</button>
-                <button type="submit" class="btn btn-primary"  [disabled]="!loginFrm.valid">Submit</button>
+                  <button type="submit" class="btn btn-primary"  [disabled]="!loginFrm.valid">Submit</button>  
+                <button type="button" *ngIf="SSNContainer" class="btn btn-primary" (click)="showLogin()">Cancel</button>
               </div>
             </form>
           </div>

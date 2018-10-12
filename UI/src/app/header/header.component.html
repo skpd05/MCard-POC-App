@@ -6,11 +6,11 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-					</button>
+          </button>
+          
           <a routerLink="/" class="navbar-brand header-logo-text">
-            
-          <p style="margin-top:0px">Loyalty Program</p>
-          <img src="assets/logo.png" style="display: block,block;margin-top: -26px;margin-left: 20px">
+            <img src="assets/logo.png" style="margin-top: -15px;"/>
+            <h3 style="margin-top: -36px;margin-left: 107px;"> Loyalty Program</h3>
           </a><br>
           
         </div>
@@ -41,7 +41,8 @@
                 </li>
                 <li><a (click)="goToCart()" >
                     <i class="fa fa-shopping-cart" ></i>
-                    <sup class="badge badge-pill">{{_checkoutService.cartItemsArray.length}}</sup>
+                    <span class="label label-primary" style="font-size: 12px; margin-left: 4px">{{_checkoutService.cartItemsArray.length}}</span>
+                    <!--<sup class="badge badge-pill"></sup>-->
                   </a>
                 </li>
                 
@@ -54,11 +55,11 @@
                     </ul>
                   </li>
               </ul>
-              <ul class="nav navbar-nav navbar-right"  *ngIf="!dataService.username">
+              <!--<ul class="nav navbar-nav navbar-right"  *ngIf="!dataService.username">
                   <li>
                       <a routerLink="/">Login</a>
                   </li>              
-              </ul>
+              </ul>-->
           </div>
   </div><!-- /.container-fluid -->
 </nav>
