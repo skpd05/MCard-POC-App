@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
    SSNContainer :any  = false;
    loginSSNError: any = false;
    cardNoError : any = false;
+   invalidZipError : boolean = false;
    accalreadyError :any = false;
    invalidDataError : boolean = false;
    userLogindata: any ;

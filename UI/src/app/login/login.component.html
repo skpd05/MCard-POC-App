@@ -142,8 +142,9 @@
                 <div class="form-group">
                   <label for="zip">Zipcode<span class="red">*</span></label>
                    <input type="text" required name="zip" [(ngModel)]="userValues.zip"
-                    class="form-control" id="zip" placeholder="Zipcode" pattern="\d*" (keypress)="onlyNumberKey($event)" maxlength="6" autocomplete="false">
-                   <div class="error" *ngIf="!dateError">please enter valid zipcode</div>
+                    class="form-control" id="zip" placeholder="Zipcode" pattern="\d*" (keypress)="onlyNumberKey($event)" maxlength="6" autocomplete="false" #zipcode="ngModel" minlength="5">
+                    
+                   <div class="error" *ngIf="zipcode.errors && zipcode.errors.minlength">please enter valid zipcode</div>
                 </div>
 
                 <div class="btnSubmitCls">

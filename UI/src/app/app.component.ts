@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {
   transition,trigger,query,style,animate,group,animateChild
 } from '@angular/animations';
@@ -40,5 +40,11 @@ export class AppComponent {
   title = 'poc';
   getPage(outlet) {
   return outlet.activatedRouteData['page'] || 'one';
+}
+
+@HostListener('window:beforeunload', ['$event'])
+public doSomething($event) {
+    localStorage.clear();
+    return "true";
 }
 }
