@@ -433,16 +433,28 @@
                                 <td data-th="TotalPoints" class="text-center">{{products.quantity*products.price}}</td>
                                
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="hidden-xs text-right">Sub Total</td>
+                                <td data-th="TotalPoints" class="hidden-xs text-center"><strong> {{orderTotal}}</strong></td>
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="hidden-xs text-right">
+                                    <strong>Total</strong>
+                                </td>
+                                <td data-th="TotalPoints" class="hidden-xs text-center"><strong> {{orderTotal}}</strong></td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                            <tr class="visible-xs">
-                                <td class="text-center"><strong>{{orderTotal}}</strong></td>
-                            </tr>
                             <tr>
                                 <td><button class="btn btn-primary" (click)="goBacktoCatalog();">
                                     <i class="fa fa-angle-left" style="padding-right: 3px;padding-top: 2px;"></i> Go Back to Shopping</button></td>
                                 <td colspan="1" class="hidden-xs"></td>
-                                <td class="hidden-xs text-center"><strong>{{orderTotal}}</strong></td>
+                                <td class="hidden-xs text-center"></td>
                                 <td><button type="sumbit" class="btn btn-primary btn-block" (click)="reviewOrder();">Proceed to Checkout <i class="fa fa-angle-right"></i></button></td>
                             </tr>
                         </tfoot>
