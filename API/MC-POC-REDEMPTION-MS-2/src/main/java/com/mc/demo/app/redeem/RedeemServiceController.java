@@ -39,6 +39,23 @@ public class RedeemServiceController {
 		}
 		return new ResponseEntity<String>("{\"response\":\"unsuccessful\"}", HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/savetransactions", method = RequestMethod.POST)
+	public ResponseEntity<String> redeemPointsList(@RequestBody @Validated List<RedemptionTransaction> redeem,
+			@RequestHeader(name = "uuid", required = true) String uuid,
+			@RequestHeader(name = "client_id", required = true) String clientId,
+			@RequestHeader(name = "Accept", required = true) String accept) {
+		try {
+			if (redeemService.saveAll(redeem)) {
+				
+				return new ResponseEntity<String>("{\"response\":\"successful\"}", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity<String>("{\"response\":\"unsuccessful\"}", HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/historybycard/{cardnumber}", method = RequestMethod.GET)
 	public ResponseEntity<List<RedemptionTransaction>> getHistorybyCardNumber(@PathVariable String cardnumber,

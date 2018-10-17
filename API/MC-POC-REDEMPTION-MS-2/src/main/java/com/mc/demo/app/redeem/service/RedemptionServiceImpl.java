@@ -79,6 +79,53 @@ public class RedemptionServiceImpl implements RedemptionService {
 		
 		return true;
 	}
+	
+	
+	@Override
+	public boolean saveAll(List<RedemptionTransaction> transcations) throws Exception {
+				
+		for(RedemptionTransaction transac : transcations) {
+			
+			try {
+				
+				Points point =new Points();
+				point.setCardNumber(transac.getCardNumber());
+				point.setOpertaion("minus");
+				point.setPointsvalue(transac.getRedeemedpoints());
+				
+				String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+				//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
+				RestTemplate restTemplate = new RestTemplate();
+				ResponseEntity<String> response = restTemplate.postForEntity(url,point,
+						String.class);
+				System.out.println("customer/adjustpoints:::"+response.getBody().toString());
+				if("unsuccessful".equalsIgnoreCase(response.getBody().toString())){
+					return false;
+				}
+				Redemptiontransaction redeemObj = new Redemptiontransaction();
+				redeemObj.setCustid(transac.getCustid());
+				redeemObj.setAccountnumber(transac.getCardNumber());
+				int inR = ThreadLocalRandom.current().nextInt((99999999 - 2000) + 1) + 2000000;
+				redeemObj.setRedeemid(String.valueOf(inR));
+				redeemObj.setRedeemeditem(transac.getRedeemeditem());
+				redeemObj.setQuantity(transac.getQuantity());
+				redeemObj.setRedeemedpoints(transac.getRedeemedpoints());
+				redeemObj.setRedemptointimestaamp(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+				redeemObj.setVendorid(transac.getVendorid());
+				redeemObj.setCreated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+				redeemObj.setUpdated_at(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+				System.out.println("Prinitn raw redeemObj"+redeemObj);
+				redeemRepo.save(redeemObj);
+			} catch (Exception exc) {
+				exc.printStackTrace();
+				return false;
+			}
+		}
+		
+		
+		return true;
+	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -139,5 +186,6 @@ public class RedemptionServiceImpl implements RedemptionService {
 
 		return RedeemhistoryList;
 	}
+
 
 }

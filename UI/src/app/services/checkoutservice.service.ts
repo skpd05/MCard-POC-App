@@ -294,6 +294,7 @@ export class CheckoutserviceService {
   public subCatagory = '';
   public gotToMyCart = false;
   public saveRedemptionUrl = `https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/savetransaction`;
+  public saveMultipleRedemptionsUrl = `https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/savetransactions`;
   // Observable string sources
   private _componentMethodCallSource = new Subject<DashboardHeaderComponent>();
   // Observable string streams
@@ -471,7 +472,7 @@ export class CheckoutserviceService {
 
     const headers = new Headers({ 'Content-Type': 'application/json' });
 
-      const response =  this._http.post(this.saveRedemptionUrl,
+      const response =  this._http.post(this.saveMultipleRedemptionsUrl,
            data,
            {
              headers: new HttpHeaders()

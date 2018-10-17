@@ -709,8 +709,8 @@
                     
                                                 </tr>
                                             </thead>
-                                            <tbody *ngFor="let confirm of orderConfirmationProd">
-                                                <tr >
+                                            <tbody >
+                                                <tr *ngFor="let confirm of orderConfirmationProd">
                                                     <td data-th="Product">
                                                         <div class="row"  >
                                                             <div class="col-sm-4 hidden-xs"><img src="{{confirm.url}}" alt="..."

@@ -153,7 +153,7 @@ p.someTxt {
     background: url('assets/login-bg2.png');
     width:100%;
     background-size: cover; 
-    min-height: 542px;
+   
 }
 
 .login-frm {
@@ -162,7 +162,8 @@ p.someTxt {
     border-radius: 11px;
     padding: 24px;
     box-shadow: 1px 3px 13px #888888;
-   background: #eec341b3;
+    background: #eec341b3;
+    min-height: 327px;
 }
 .login-frm h2{
     margin-top: 0;
@@ -261,7 +262,7 @@ span.registerCls {
 }
 
 .registertxt {
-    padding: 50px;
+    padding: 5px;
     color: #333;
     font-size: 16px;
 }

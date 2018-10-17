@@ -11,6 +11,8 @@ public interface RedemptionService {
 	
 	public boolean save(RedemptionTransaction transcation) throws Exception;
 	
+	public boolean saveAll(List<RedemptionTransaction> transcations) throws Exception;
+	
 	@Query("SELECT * FROM Redemptiontransaction r where r.redeemid = :cardnumber")
 	public List<RedemptionTransaction> getHistoryByCard(@Param("cardnumber") String cardnumber);
 	

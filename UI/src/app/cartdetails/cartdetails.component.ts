@@ -186,9 +186,6 @@ export class CartdetailsComponent implements OnInit {
       this.orderNum = this.randomInt(11111, 99999);
       this.orderDate = new Date().toLocaleDateString();
       this.orderConfirmationProd = Object.assign([], this.cartProductList);
-      this.cartProductList.forEach(element => {
-        this._checkoutService.deleteProductFromCart(element.id);
-       });
       this.doRedemptionCallApi();
     }
   }
@@ -196,9 +193,9 @@ export class CartdetailsComponent implements OnInit {
   public doRedemptionCallApi(): void {
     let itemInfo: any;
     let responseCode: any;
-    console.log('user id', this._data.creditCardList[0]);
-    console.log('user details', this._userService.getCustmerDetails());
     this.showSpinner = true;
+    const itemInfoList = [];
+    
     this.orderConfirmationProd.forEach(element => {
         itemInfo = ({
           'cardnumber': this._data.creditCardList[0],
@@ -209,8 +206,10 @@ export class CartdetailsComponent implements OnInit {
           'redemptiontimestaamp': '1419038000',
           'vendorid': 'Mastercard'
         });
-
-          this._checkoutService.saveTransaction(itemInfo).subscribe( data => {
+        this._checkoutService.deleteProductFromCart(element.id);
+        itemInfoList.push(itemInfo);
+      });
+          this._checkoutService.saveTransaction(itemInfoList).subscribe( data => {
 
             responseCode = data;
             console.log(responseCode);
@@ -229,7 +228,7 @@ export class CartdetailsComponent implements OnInit {
             });
           },
          );
-        });
+        
       }
 
       public copyBillingAddress(): void {

@@ -3,18 +3,17 @@
     <spinner *ngIf="showSpinner"></spinner>
     <div class="row">
       <div class="bgCls" *ngIf="!register">
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-4" style="padding-top:45px">
           <div class="login-frm">
-            <h2>Login</h2>
-
+            <div style="font-weight: bold;font-size: 24px; padding-bottom: 12px;">Login</div>
             <div class="alert alert-danger" *ngIf="checkUserDetail" >Username password did not match</div> 
             <form (ngSubmit)="loginUser(loginFrm.value)" #loginFrm="ngForm">
 
 
               <div class="form-group" *ngIf="SSNContainer">
-                <label for="email">SSN No last 4 digits:</label>
+                <label for="email" style="padding-top: 26px;">SSN No last 4 digits:</label>
                 <input        
-                type="text"         
+                type="password"         
                 class="form-control" 
                 id="ssn" 
                 placeholder="Enter last 4 digits of your SSN no" 
@@ -71,7 +70,11 @@
             </form>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-8">
+        <div class="col-xs-12 col-sm-8" style="margin: 50px auto;
+        border: 1px solid #e6e6e6;
+        border-radius: 11px;
+        box-shadow: 1px 3px 13px #888888;
+        background: #ffffff9d;margin-top: 93px">
           <div class="registertxt">
             <div class="register-header">Register to Loyalty Program</div>
             <p>
