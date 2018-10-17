@@ -29,7 +29,7 @@
                   </li>
                   <li><a routerLink="/mypoints">My Points</a></li>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Redeem Points <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Balance Points <span class="label label-success" style="font-size: 12px; margin-left: 4px;padding: 3px; margin-right: 3px">{{dataService.totalBalance}}</span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a routerLink="/catalog">Use Points for Shopping</a></li>                     
                     </ul>
@@ -38,11 +38,11 @@
             
             <ul class="nav navbar-nav navbar-right"  *ngIf="dataService.username">            
                 <li>
-                    <a> Balance Points <span class="label label-success" style="font-size: 12px; margin-left: 4px">{{dataService.totalBalance}}</span> </a>
+                    <a></a>
                 </li>
                 <li><a (click)="goToCart()" >
                     <i class="fa fa-shopping-cart" ></i>
-                    <span class="label label-primary" style="font-size: 12px; margin-left: 4px">{{_checkoutService.cartItemsArray.length}}</span>
+                    <span class="label label-primary" style="font-size: 12px; margin-left: 4px; padding-bottom: 2px">{{_checkoutService.cartItemsArray.length}}</span>
                     <!--<sup class="badge badge-pill"></sup>-->
                   </a>
                 </li>

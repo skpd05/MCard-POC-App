@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
     //  this.toastr.success('Hello world!', 'Toastr fun!');
     //this.cardNo = this.userService.getCardNo();
     // this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
-    //   console.log(data); 
     //   this.cardDetailsList = data.creditcardsList;     
     // })
   }

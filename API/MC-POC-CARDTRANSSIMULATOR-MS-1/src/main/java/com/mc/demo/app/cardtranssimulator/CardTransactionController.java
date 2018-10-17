@@ -1,5 +1,6 @@
 package com.mc.demo.app.cardtranssimulator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mc.demo.app.cardtranssimulator.exception.ObjectNotFoundException;
 import com.mc.demo.app.cardtranssimulator.model.Cardtransaction;
 import com.mc.demo.app.cardtranssimulator.service.CardTransactionService;
 
@@ -33,14 +33,29 @@ public class CardTransactionController {
 		
 		return new ResponseEntity<List<Cardtransaction>>(transactions, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/transactions", method = RequestMethod.POST)
+	public ResponseEntity<List<Cardtransaction>> getTransactionsByCardNumbers(
+			@RequestBody  List<String>cardNumbers,
+			@RequestHeader(name = "uuid", required = true) String uuid,
+			@RequestHeader(name = "client_id", required = true) String clientId,
+			@RequestHeader(name = "Accept", required = true) String accept) {
+		List<Cardtransaction> transactions = new ArrayList<>();
+		for(String cardNumber : cardNumbers) {
+			transactions.addAll(transService.getTransactionHistory(cardNumber));
+		}
+		
+		return new ResponseEntity<List<Cardtransaction>>(transactions, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/savetransaction", method = RequestMethod.POST)
-	public String saveTransaction(@RequestBody @Validated CreditCardTransaction transaction,
+	public ResponseEntity<String> saveTransaction(@RequestBody @Validated CreditCardTransaction transaction,
 			@RequestHeader(name = "uuid", required = true) String uuid,
 			@RequestHeader(name = "client_id", required = true) String clientId,
 			@RequestHeader(name = "Accept", required = true) String accept) {
 		transService.saveTransaction(transaction);
-		return "Success";
+		return new ResponseEntity<String>("{\"response\":\"successful\"}", HttpStatus.OK);
 	}
 
 }

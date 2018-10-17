@@ -84,7 +84,6 @@ export class LoginComponent implements OnInit {
   showRegister(){
     this.register = !this.register ;
     this.btnTxt = 'Login'; 
-    console.log(this.register);
     this.firstStep = true;
     this.secondStep = false;
     this.thirdStep = false;
@@ -229,10 +228,6 @@ export class LoginComponent implements OnInit {
   }
 
   checkUserId (data) {
-
-    console.log(data)
-
-
      let userValidation =  /[A-Za-z0-9@]*/
 
      if(!userValidation.test(data) && data){
@@ -246,7 +241,6 @@ export class LoginComponent implements OnInit {
 
        this.enrolmentService.checkUserID(data)
 	     .subscribe( responseData => {
-         console.log(responseData)
           if(responseData != "available"){
             this.userExist = true
              this.form.controls.userId.invalid;

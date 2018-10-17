@@ -15,10 +15,8 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(forgotFrm: NgForm){
-    console.log(forgotFrm);    
+  onSubmit(forgotFrm: NgForm){ 
     this.showConfirm = true;
-    
   }
   
 }

@@ -212,7 +212,6 @@ export class CartdetailsComponent implements OnInit {
           this._checkoutService.saveTransaction(itemInfoList).subscribe( data => {
 
             responseCode = data;
-            console.log(responseCode);
             const cardNo = this._userService.getCardNo();
             this.enrolmentService.getAccount(cardNo).then((userdata: any)=> {
                 this._data.setUserInfo(userdata);

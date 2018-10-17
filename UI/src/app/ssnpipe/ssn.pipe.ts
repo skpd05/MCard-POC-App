@@ -12,8 +12,6 @@ export class SsnPipe implements PipeTransform {
         if (value.match(/[^0-9]/)) {
             return value;
         }
-
-        console.log(value.length);
         var aaa, gg, cccc;
 
         if(value.length == 9) {                      

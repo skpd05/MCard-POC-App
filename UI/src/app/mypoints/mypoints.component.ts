@@ -80,7 +80,6 @@ export class MyPointsComponent{
         this.temp_item = [];
         /*this.enrolmentService.getMyPoints(x).subscribe((data: any)=> {                        
             this.items = data 
-            console.log(data); 
             if(x == 'all_cards'){
                 this.rowData = (this.items).slice();
             }else{        
@@ -91,7 +90,6 @@ export class MyPointsComponent{
                 }) 
             }
         }, (error: any)=>{
-            console.log(error);
             this.errorMessage = true;
         });     
         */

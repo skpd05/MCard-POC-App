@@ -15,7 +15,6 @@ export class ForgotuserComponent implements OnInit {
   }
 
   onSubmit(forgotFrm: NgForm){
-    console.log(forgotFrm);
     this.showConfirm = true;
   }
 

@@ -512,7 +512,6 @@ export class CheckoutserviceService {
   public setCurrentCatagory(parentCat, subCat) {
     this.parentCatagory = parentCat;
     this.subCatagory = subCat;
-    console.log('subcategory', subCat);
     this.setActiveCatagory();
   }
 

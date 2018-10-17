@@ -44,7 +44,6 @@ export class DataServiceService {
   getBalancePoint(list): any {
     this.totalBalance = 0;
     list.forEach(element => {
-      console.log(element);
       this.totalBalance += Math.round(element.pointsTotal);
     });
   }

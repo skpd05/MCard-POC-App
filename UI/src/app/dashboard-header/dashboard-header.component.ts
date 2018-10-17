@@ -26,7 +26,6 @@ export class DashboardHeaderComponent implements OnInit {
     this.itemList = await this._checkoutService.getItems();
     this.cardNo = await this.userService.getCardNo();
     await this.enrolmentService.getAccount(this.cardNo).then((data: any) => {
-        console.log(data);
         this.getCardList(data.creditcardsList);
         this.getBalancePoint(data.creditcardsList);
         this.username = data.firstName;
