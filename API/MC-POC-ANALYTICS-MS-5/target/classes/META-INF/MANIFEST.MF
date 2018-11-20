@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: analytics-mock-ms
 Implementation-Version: 0.1
-Built-By: Wipro
+Built-By: KI20018806
 Implementation-Vendor-Id: com.skpd.demo
-Build-Jdk: 1.8.0_51
+Build-Jdk: 1.8.0_161
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/analyticsmock
 Created-By: Maven Integration for Eclipse

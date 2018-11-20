@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.analytics.model.Merctranscategory;
 import com.example.demo.analytics.service.AnalyticsService;
 import com.example.demo.analytics.service.CustomerProfile;
+import com.example.demo.analytics.service.MerchantService;
 
 @RestController
 @RequestMapping("/api/v1/analytics")
@@ -19,6 +21,14 @@ public class AnalyticsMockController {
 
 	@Autowired
 	AnalyticsService analyticsService;
+	
+	@Autowired
+	MerchantService merchantService;
+	
+	@GetMapping("/get-merchants")
+	public ResponseEntity<Iterable<Merctranscategory>> getAllMerchants() {
+		return new ResponseEntity<>(merchantService.getAvailableMerchants(), HttpStatus.OK);
+	}
 
 	@GetMapping("/analyzetransaction")
 	public ResponseEntity<List<CustomerProfile>> analyzeTransaction() {
