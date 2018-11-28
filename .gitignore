@@ -1,0 +1,3 @@
+/API/MC-POC-ANALYTICS-MS-5/target/**
+/API/**/target/**
+API/**/.classpath
