@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  analytics_api:'https://analytics.apps.dev.pcf-aws.com',
-  customer_api:'https://customer.apps.dev.pcf-aws.com',
-  dummydata_api:'https://dummydata.apps.dev.pcf-aws.com',
-  enrollment_api:'https://enrollment.apps.dev.pcf-aws.com',
-  redemption_api:'https://redemption.apps.dev.pcf-aws.com',
-  transaction_api:'https://transactionsilumator.apps.dev.pcf-aws.com',
+  analytics_api:'http://localhost:8080',
+  customer_api:'http://localhost:8082',
+  dummydata_api:'http://localhost:8083',
+  enrollment_api:'http://localhost:8084',
+  redemption_api:'http://localhost:8085',
+  transaction_api:'http://localhost:8086',
 };
 
 /*

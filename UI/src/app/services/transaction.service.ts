@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { CheckoutserviceService } from './checkoutservice.service';
 import { DataServiceService } from '../sharedServices/data-service.service';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class TransactionService {
   constructor(private http: HttpClient, private _checkoutService: CheckoutserviceService,
     private dataService: DataServiceService) { }
 
-  trasactionApiUrl = "https://transactionsilumator.apps.dev.pcf-aws.com/api/v1/simulate/card";
+  trasactionApiUrl = environment.transaction_api+"/api/v1/simulate/card";
 
   async getTransactionsHistory() {
     const data = this.dataService.creditCardList;

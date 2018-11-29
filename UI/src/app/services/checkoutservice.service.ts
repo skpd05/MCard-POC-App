@@ -5,6 +5,7 @@ import { Headers,  } from '@angular/http';
 import { Observable, throwError  } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -293,8 +294,8 @@ export class CheckoutserviceService {
   public parentCatagory = '';
   public subCatagory = '';
   public gotToMyCart = false;
-  public saveRedemptionUrl = `https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/savetransaction`;
-  public saveMultipleRedemptionsUrl = `https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/savetransactions`;
+  public saveRedemptionUrl = environment.redemption_api+`/api/v1/loyalty/redemption/savetransaction`;
+  public saveMultipleRedemptionsUrl = environment.redemption_api+`/api/v1/loyalty/redemption/savetransactions`;
   // Observable string sources
   private _componentMethodCallSource = new Subject<DashboardHeaderComponent>();
   // Observable string streams

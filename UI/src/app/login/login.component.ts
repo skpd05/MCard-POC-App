@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import {DataServiceService} from '../sharedServices/data-service.service'
 import { UserService } from 'src/app/services/user-service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
  thirdStep : boolean = false;
  fourtStep : boolean = false;
  finalStep : boolean = false;
+ customer_api : string = environment.customer_api;
 
  enrollAlready : boolean ;
  userExist : any = false;
@@ -80,6 +82,7 @@ export class LoginComponent implements OnInit {
     if(this.dataService.username!=null || this.dataService.username!=undefined){
       this.router.navigate(['/dashboard']);
     }
+    console.log(this.customer_api);
   }
   showRegister(){
     this.register = !this.register ;

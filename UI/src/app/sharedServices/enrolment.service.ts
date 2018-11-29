@@ -8,6 +8,7 @@ import {RequestOptions, Request, RequestMethod} from '@angular/http';
 import { Observable, throwError  } from 'rxjs';
 
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -16,7 +17,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class EnrolmentService {
 
-  apiURL : any = "https://enrollment.apps.dev.pcf-aws.com/api/v1/";
+  apiURL : any = environment.enrollment_api+"/api/v1/";
   validateCard : any =  this.apiURL + "loyalty/enroll/validateCard";
   checkUserIDUrl : any = this.apiURL + "loyalty/enroll/checkUserID" ;
   createProfileUrl : any = this.apiURL + "loyalty/enroll/createProfile";
@@ -122,7 +123,7 @@ getvalidateCard  (data): Observable<any> {
     }
     async getAccount(cardno) {
       // let url = this.accountUrl + cardno +'/accountsummary'
-      const url = await "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/"+ cardno + "/accountsummary";
+      const url = await environment.customer_api+"/api/v1/creditcard/customer/"+ cardno + "/accountsummary";
       const response = await this.http.get(url,
             {
               headers: new HttpHeaders()
@@ -140,7 +141,7 @@ getvalidateCard  (data): Observable<any> {
        return response;
     }
   async getMyPoints(cardno){    
-    let url = await "https://redemption.apps.dev.pcf-aws.com/api/v1/loyalty/redemption/historybycard/"+ cardno ;
+    let url = await environment.redemption_api+"/api/v1/loyalty/redemption/historybycard/"+ cardno ;
     const response = await this.http.get(url,
           {
             headers: new HttpHeaders()
