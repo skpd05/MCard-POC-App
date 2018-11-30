@@ -26,6 +26,8 @@ export class MyCardsComponent{
     transactionHistory = [];
     transactionAmout = "";
     transactionError = "";
+    merchantsList = [];
+    merchantId="nomerchant";
     columnDefs = [
         {headerName: 'Card Number', field: 'credicardnumber',cellRendererFramework :CreditCardGridTransformer },
         {headerName: 'Card Type', field: 'cardType'},
@@ -70,6 +72,17 @@ export class MyCardsComponent{
             this.showSpinner = false;
             this.transactionHistory = data;
         });
+
+        this._transactionService.getMerchants().then((data: any)=> {
+            this.showSpinner = false;
+            this.merchantsList = data;
+            
+ 
+        });
+
+//        filterItem(value){
+            
+  //       }
     }
         
     update_filter(x){
@@ -94,16 +107,25 @@ export class MyCardsComponent{
         }
         else if(this.filter_by_card != "all_cards" && ( this.transactionAmout=="" || this.transactionAmout=="0")){
             this.transactionError = "Please enter amount more than 0.";
+        }else if(this.merchantId == "nomerchant"){
+            this.transactionError = "Please select merchant name.";
         }else{
             this.transactionError = "";
             this.showSpinner = true;
-            await this._transactionService.makeTransactionSimulation(this.filter_by_card,this.transactionAmout);
+            await this._transactionService.makeTransactionSimulation(this.filter_by_card,this.transactionAmout,this.merchantId);
             await this._transactionService.getTransactionsHistory().then((data: any)=> {
                 this.showSpinner = false;
+                this.filter_by_card="all_cards";
+                this.transactionAmout="";
+                this.merchantId="nomerchant";
                 this.transactionHistory = data;
             });
         }
     }
+
+    /*getMerchantDetails(event){
+        this.merchantId = event;
+    }*/
 
     onlyNumberKey(event) {
         // Allow to enter only numbers (0-9) in text filed

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user-service';
 import { EnrolmentService } from '../sharedServices/enrolment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +12,12 @@ import { EnrolmentService } from '../sharedServices/enrolment.service';
 export class DashboardComponent implements OnInit {
   //cardNo: any;
   // cardDetailsList: any = [];
+  analytics_api : string = environment.analytics_api;
+
   constructor(private toastr: ToastrService,  private userService: UserService,public enrolmentService : EnrolmentService) { }
 
   ngOnInit() {
+    console.log(this.analytics_api);
     //  this.toastr.success('Hello world!', 'Toastr fun!');
     //this.cardNo = this.userService.getCardNo();
     // this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {

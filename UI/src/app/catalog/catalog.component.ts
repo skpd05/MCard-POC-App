@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -12,11 +13,13 @@ export class CatalogComponent implements OnInit {
   public itemid = 9;
   public itemArray;
   public showquantitybar = 0;
-  constructor(private _router: Router, private  _checkoutService: CheckoutserviceService) {
+  constructor(private _router: Router, private _http: HttpClient,
+    private  _checkoutService: CheckoutserviceService) {
   }
-  public ngOnInit(): void {
-    this.itemArray =  this._checkoutService.getItems();
-    this._checkoutService.setCurrentCatagory('clothing','tops');
+  async ngOnInit(){
+    await this._checkoutService.getItems();
+    await this._checkoutService.setCurrentCatagory('clothing','tops');
+    this.itemArray = this._checkoutService.itemArray;
   }
 
   public showProductDetails(item): void {
@@ -49,6 +52,19 @@ export class CatalogComponent implements OnInit {
 
   public selectFromSideMenu(parentCategory, subCategory){
     this._checkoutService.setCurrentCatagory(parentCategory, subCategory);
-    this.itemArray = this._checkoutService.getItems();
+    this.itemArray = this._checkoutService.itemArray;
   }
+}
+interface CatalogItem {
+  'id': number;
+  'name': string;
+  'url': string;
+  'ItemDescription': string;
+  'quantity': number;
+  'price': number;
+  'enableMinusButton': boolean;
+  'itemType': string;
+  'category': string;
+  'subcategory': string;
+  'activeCategory': boolean;
 }

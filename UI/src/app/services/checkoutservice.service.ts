@@ -1,288 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Headers,  } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Observable, throwError  } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 import { environment } from 'src/environments/environment.prod';
+import { map } from "rxjs/operators";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutserviceService {
-  public itemArray: CatalogItem[] = [
-  {
-    'id': 1,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee 100% Cotton Blended Material',
-    'url': 'assets/product-list/clothing/tops/1.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 15, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 2,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/2.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 3,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/3.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 4,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/4.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 5,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/5.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 6,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/6.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 7,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/7.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 8,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/8.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 9,
-    'name': 'GAP Women Grey Modern Long Sleeve Boatneck Tee',
-    'url': 'assets/product-list/clothing/tops/9.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'tops',
-    'activeCategory': false,
-  },
-  {
-    'id': 10,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/10.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 11,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/11.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 12,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/12.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 13,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/13.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 14,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/14.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 15,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/15.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 16,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/16.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 17,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/17.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  {
-    'id': 18,
-    'name': 'High Star Women White Slim Fit Mid-Rise Clean Look Stretchable Jeans',
-    'url': 'assets/product-list/clothing/bottoms/18.jpg',
-    'ItemDescription': `A cotton-modal blend that drapes perfectly.
-    Softest Supima cotton and modal knit.
-    Long sleeves.
-    Boatneck.Material & Care
-    58% Pima Cotton, 39% Modal, 3% Spandex.
-    Machine wash.`, 'quantity': 0, 'price': 30, 'enableMinusButton': false,
-    'itemType': 'electronic',
-    'category': 'clothing',
-    'subcategory': 'bottoms',
-    'activeCategory': false,
-  },
-  ];
+  public itemArray: CatalogItem[] = [];
   public cartItemsArray = new Array;
   public cartTotalItem = 0;
   public redemptionSuccess = false;
@@ -306,10 +37,14 @@ export class CheckoutserviceService {
     await this._componentMethodCallSource.next();
   }
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) { 
+  }
 
-  public getItems(): Array<CatalogItem> {
-    return this.itemArray;
+  async getItems() {
+    await this.getJSON().then((data: any)=> {
+      this.itemArray = data as CatalogItem[];
+      console.log(data)
+    });
   }
 
   public addItems(item: CatalogItem, allowZero: boolean): void {
@@ -513,10 +248,12 @@ export class CheckoutserviceService {
   public setCurrentCatagory(parentCat, subCat) {
     this.parentCatagory = parentCat;
     this.subCatagory = subCat;
-    this.setActiveCatagory();
+    this.setActiveCatagory(parentCat,subCat);
   }
 
-  public setActiveCatagory(): void {
+  public setActiveCatagory(parentCat,subCat): void {
+    console.log(parentCat);
+    console.log(this.parentCatagory);
     this.itemArray.forEach(element => {
       if (element.category === this.parentCatagory) {
         if (this.subCatagory === 'notselected') {
@@ -538,6 +275,18 @@ export class CheckoutserviceService {
     });
   }
 
+  async getJSON(){
+    let response = await this._http.get('assets/product-list/lifestyle.json').toPromise();
+    return response;
+  }
+  private _url= 'assets/product-list/lifestyle.json';
+  getHerbs () {
+
+    this._http.get(this._url).pipe(map(data => {
+      this.itemArray = data as CatalogItem[];
+    }))
+
+  }
 }
 
 interface CatalogItem {

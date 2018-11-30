@@ -14,6 +14,12 @@
                         </select> 
                     </div>
                     <div class="col-xs-3">
+                        <select class="form-control"  [(ngModel)]="merchantId">
+                           <option value="nomerchant">Select Merchant</option>
+                             <option *ngFor="let merchantVal of merchantsList" value="{{merchantVal.merchantid}}">{{merchantVal.classification}} : {{merchantVal.merchantname}}</option>                             
+                        </select> 
+                    </div>
+                    <div class="col-xs-3">
                         <input type="text" class="form-control"  [(ngModel)]="transactionAmout" placeholder="Transaction Amount" (keypress)="onlyNumberKey($event)"/>
                     </div>
                     <div class="col-xs-3">
