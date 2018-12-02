@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class CardTransactionServiceImpl implements CardTransactionService {
 
 	@Autowired
 	CardTransacRepository transRepo;
+	
+	@Value("${loyalty.customer.app.url}")
+	private String customerAppUrl;
 
 
 	@Override
@@ -51,7 +55,7 @@ public class CardTransactionServiceImpl implements CardTransactionService {
 			point.setOpertaion("add");
 			point.setPointsvalue(transObj.getPointscaluclated());
 			RestTemplate restTemplate = new RestTemplate();
-			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+			String url = customerAppUrl+"/api/v1/creditcard/customer/adjustpoints";
 			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
 			
 			ResponseEntity<String> response = restTemplate.postForEntity(url,point,

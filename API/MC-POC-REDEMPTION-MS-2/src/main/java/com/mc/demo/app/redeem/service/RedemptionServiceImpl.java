@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class RedemptionServiceImpl implements RedemptionService {
 	@Autowired
 	RedemptionRepository redeemRepo;
 	
+	@Value("${loyalty.customer.app.url}")
+	private String customerAppUrl;
+	
 
 
 	/*
@@ -48,7 +52,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 			point.setOpertaion("minus");
 			point.setPointsvalue(transac.getRedeemedpoints());
 			
-			String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+			String url = customerAppUrl+"/api/v1/creditcard/customer/adjustpoints";
 			//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<String> response = restTemplate.postForEntity(url,point,
@@ -93,7 +97,7 @@ public class RedemptionServiceImpl implements RedemptionService {
 				point.setOpertaion("minus");
 				point.setPointsvalue(transac.getRedeemedpoints());
 				
-				String url = "https://customer.apps.dev.pcf-aws.com/api/v1/creditcard/customer/adjustpoints";
+				String url = customerAppUrl+"/api/v1/creditcard/customer/adjustpoints";
 				//String url = "https://localhost:8081/api/v1/creditcard/customer/adjustpoints";
 				RestTemplate restTemplate = new RestTemplate();
 				ResponseEntity<String> response = restTemplate.postForEntity(url,point,

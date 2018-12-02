@@ -320,7 +320,7 @@
         "price":45,
         "enableMinusButton":false,
         "itemType":"electronic",
-        "category":"electronic",
+        "category":"electronics",
         "subcategory":"irons",
         "activeCategory":false
      },
@@ -333,21 +333,8 @@
         "price":30,
         "enableMinusButton":false,
         "itemType":"electronic",
-        "category":"electronic",
+        "category":"electronics",
         "subcategory":"irons",
-        "activeCategory":false
-     },
-     {
-        "id":27,
-        "name":"Hd3151 Hair Dryer",
-        "url":"assets/images/shop-products/electronics/hairdryer1.jpg",
-        "ItemDescription":"Dry and style together with the havells compact hair dryer which comes with a powerful motar that keeps hair beautiful.",
-        "quantity":0,
-        "price":30,
-        "enableMinusButton":false,
-        "itemType":"electronic",
-        "category":"electronic",
-        "subcategory":"dryer",
         "activeCategory":false
      },
      {
@@ -359,7 +346,20 @@
         "price":30,
         "enableMinusButton":false,
         "itemType":"electronic",
-        "category":"electronic",
+        "category":"electronics",
+        "subcategory":"dryer",
+        "activeCategory":false
+     },
+     {
+        "id":27,
+        "name":"Hd3151 Hair Dryer",
+        "url":"assets/images/shop-products/electronics/hairdryer1.jpg",
+        "ItemDescription":"Dry and style together with the havells compact hair dryer which comes with a powerful motar that keeps hair beautiful.",
+        "quantity":0,
+        "price":30,
+        "enableMinusButton":false,
+        "itemType":"electronic",
+        "category":"electronics",
         "subcategory":"dryer",
         "activeCategory":false
      },
@@ -372,7 +372,7 @@
         "price":30,
         "enableMinusButton":false,
         "itemType":"electronic",
-        "category":"electronic",
+        "category":"electronics",
         "subcategory":"pendrive",
         "activeCategory":false
      },
@@ -385,7 +385,7 @@
         "price":30,
         "enableMinusButton":false,
         "itemType":"electronic",
-        "category":"electronic",
+        "category":"electronics",
         "subcategory":"pendrive",
         "activeCategory":false
      }
