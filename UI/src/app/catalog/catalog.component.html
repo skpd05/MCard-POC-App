@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" role="button" (click)="selectFromSideMenu('clothing','notselected');">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" role="button" (click)="selectFromSideMenu('lifestyle','notselected');">
                             Clothing</a>
                         </h4>
                     </div>
@@ -16,32 +16,32 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a role="button" (click)="selectFromSideMenu('clothing','tops');">Tops</a>
+                                        <a role="button" (click)="selectFromSideMenu('lifestyle','tops');">Tops</a>
                                     </td>
                                 </tr>
                                <!-- <tr>
                                     <td>
-                                        <a role="button" (click)="selectFromSideMenu('clothing','shirts');">Shirts</a>
+                                        <a role="button" (click)="selectFromSideMenu('lifestyle','shirts');">Shirts</a>
                                     </td>
                                 </tr>-->
                                 <tr>
                                     <td>
-                                        <a role="button" (click)="selectFromSideMenu('clothing','bottoms');">Pants</a>
+                                        <a role="button" (click)="selectFromSideMenu('lifestyle','bottoms');">Pants</a>
                                     </td>
                                 </tr>
                                 <!--<tr>
                                     <td>
-                                        <a role="button" (click)="selectFromSideMenu('clothing','ties');">Ties</a>
+                                        <a role="button" (click)="selectFromSideMenu('lifestyle','ties');">Ties</a>
                                     </td>
                                 </tr>-->
                             </table>
                         </div>
                     </div>
                 </div>
-                <!--<div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" role="button" (click)="selectFromSideMenu('electronics','notselected');">Electronics</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" role="button" (click)="selectFromSideMenu('travel','notselected');">Travel</a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
@@ -49,22 +49,17 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                            <a role="button" (click)="selectFromSideMenu('electronics','harddisk');">Hard Disks</a>
+                                            <a role="button" (click)="selectFromSideMenu('travel','electronics');">Electronics</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                            <a role="button" (click)="selectFromSideMenu('electronics','powerbank');">Power Banks</a>
+                                            <a role="button" (click)="selectFromSideMenu('travel','accessories');">Accessories</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                            <a role="button" (click)="selectFromSideMenu('electronics','pendrive');">Pendrives</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('electronics','bluetooth');">Bluetooth</a>
+                                            <a role="button" (click)="selectFromSideMenu('travel','bags');">Bags</a>
                                     </td>
                                 </tr>
                             </table>
@@ -72,94 +67,48 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" role="button" (click)="selectFromSideMenu('accessories','notselected');">Accessories</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('accessories','necklaces');">Necklaces</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('accessories','earrings');">Earrings</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('accessories','rings');">Rings</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('accessories','bracelets');">
-                                            Bracelets</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" role="button" (click)="selectFromSideMenu('electronic','notselected');">Electronics</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                                <a role="button" (click)="selectFromSideMenu('travel','electronics');">Electronics</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                                <a role="button" (click)="selectFromSideMenu('travel','accessories');">Accessories</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                                <a role="button" (click)="selectFromSideMenu('travel','bags');">Bags</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" role="button" (click)="selectFromSideMenu('footwear','notselected');">FootWear</a>
-                        </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('footwear','pumps');">Pumps</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('footwear','peeptoes');">Peep Toes</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('footwear','shoes');">Shoes</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                            <a role="button" (click)="selectFromSideMenu('footwear','ballerinas');">Ballerinas</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
         <div class="col-sm-9 col-md-9">
             <div class="well">
               <div class="row product-list">
                 <div class="col-md-4" *ngFor="let item of itemArray">
-                
                 <section class="panel" *ngIf="item.activeCategory">
                   <div class="pro-img-box">
                       <img src="{{item.url}}" alt="" >
-                     
                   </div>
-                  
-                  
                   <div class="bottons">
-
                       <div *ngIf="item.quantity>0 ;then content else other_content">here is ignored</div>    
                       <ng-template #content>
                           <div class="addToCartButton">
-                            
                               <div class="input-group">
-                               
                                     <span class="input-group-btn" style="vertical-align: middle;">
                                         <button type="button" class="btn btn-default btn-number btn-sm" [disabled]="item.enableMinusButton" data-type="minus" data-field="quant[1]" (click)="decreaseQuantity(item.id)">
                                             <span class="glyphicon glyphicon-minus"  ></span>
@@ -172,7 +121,7 @@
                                         </button>
                                     </span>
                                 </div>
-                             
+
                             </div>
                       </ng-template>
                       <ng-template #other_content>
@@ -185,23 +134,13 @@
                                  <span class="badge badge-secondary">{{item.price}} pts</span>
                           </button>
                       </div>
-                      
-                      
                     </div>    
-                    
                 </section>
               </div>
             </div>
             <section class="panel">
                 <div>
                   <div class="pull-right">
-                    <!--<ul class="pagination pagination-sm pro-page-list">
-            
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">»</a></li>
-                    </ul>-->
                   </div>
                 </div>
               </section>

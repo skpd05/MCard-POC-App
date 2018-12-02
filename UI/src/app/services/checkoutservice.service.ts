@@ -43,7 +43,6 @@ export class CheckoutserviceService {
   async getItems() {
     await this.getJSON().then((data: any)=> {
       this.itemArray = data as CatalogItem[];
-      console.log(data)
     });
   }
 
@@ -248,12 +247,10 @@ export class CheckoutserviceService {
   public setCurrentCatagory(parentCat, subCat) {
     this.parentCatagory = parentCat;
     this.subCatagory = subCat;
-    this.setActiveCatagory(parentCat,subCat);
+    this.setActiveCatagory();
   }
 
-  public setActiveCatagory(parentCat,subCat): void {
-    console.log(parentCat);
-    console.log(this.parentCatagory);
+  public setActiveCatagory(): void {
     this.itemArray.forEach(element => {
       if (element.category === this.parentCatagory) {
         if (this.subCatagory === 'notselected') {

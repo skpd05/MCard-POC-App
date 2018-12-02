@@ -18,7 +18,7 @@ export class CatalogComponent implements OnInit {
   }
   async ngOnInit(){
     await this._checkoutService.getItems();
-    await this._checkoutService.setCurrentCatagory('clothing','tops');
+    await this._checkoutService.setCurrentCatagory('lifestyle','tops');
     this.itemArray = this._checkoutService.itemArray;
   }
 
@@ -52,7 +52,7 @@ export class CatalogComponent implements OnInit {
 
   public selectFromSideMenu(parentCategory, subCategory){
     this._checkoutService.setCurrentCatagory(parentCategory, subCategory);
-    this.itemArray = this._checkoutService.itemArray;
+    this.itemArray = this._checkoutService.itemArray.filter(item => item.activeCategory === true);
   }
 }
 interface CatalogItem {
