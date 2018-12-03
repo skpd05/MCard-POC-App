@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { UserService } from '../services/user-service';
+import { AnalyticsService } from '../services/analytics.service';
 
 
 @Component({
@@ -13,13 +15,44 @@ export class CatalogComponent implements OnInit {
   public itemid = 9;
   public itemArray;
   public showquantitybar = 0;
+
+  @ViewChild('clothing')
+  private clothingElement: ElementRef;
+
+  @ViewChild('travel')
+  private travelElement: ElementRef;
+
+  @ViewChild('electronics')
+  private electronicsElement: ElementRef;
+
   constructor(private _router: Router, private _http: HttpClient,
-    private  _checkoutService: CheckoutserviceService) {
+    private  _checkoutService: CheckoutserviceService, private _userService : UserService,
+    private _analyticsService: AnalyticsService ) {
   }
   async ngOnInit(){
+    //await this._analyticsService.analyseCustomerTransactions(this._userService.customerDetails.custid);
     await this._checkoutService.getItems();
-    await this._checkoutService.setCurrentCatagory('lifestyle','tops');
+    
+
+    let transactions: any = await this._analyticsService.analyseCustomerTransactions("6541238");
+    let majorTrans : string = transactions.profiles[0].transClassification[0].classType;
+    
+    if(majorTrans==="Electronics"){
+      await this._checkoutService.setCurrentCatagory('electronics','notselected');
+      let el: HTMLElement = this.electronicsElement.nativeElement as HTMLElement;
+      el.click();
+    }else if(majorTrans==="Travel&Leisure"){
+      await this._checkoutService.setCurrentCatagory('travel','notselected');
+      let el: HTMLElement = this.travelElement.nativeElement as HTMLElement;
+      el.click();
+    }else{
+      await this._checkoutService.setCurrentCatagory('lifestyle','tops');
+      let el: HTMLElement = this.clothingElement.nativeElement as HTMLElement;
+      el.click();
+    }
+
     this.itemArray = this._checkoutService.itemArray;
+    console.log(this.itemArray);
   }
 
   public showProductDetails(item): void {

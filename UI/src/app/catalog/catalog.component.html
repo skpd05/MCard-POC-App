@@ -7,11 +7,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" role="button" (click)="selectFromSideMenu('lifestyle','notselected');">
+                            <a data-toggle="collapse" #clothing data-parent="#accordion"  href="#collapseOne" role="button" (click)="selectFromSideMenu('lifestyle','notselected');">
                             Clothing</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -41,7 +41,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" role="button" (click)="selectFromSideMenu('travel','notselected');">Travel</a>
+                            <a data-toggle="collapse" #travel data-parent="#accordion" href="#collapseTwo" role="button" (click)="selectFromSideMenu('travel','notselected');">Travel</a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
@@ -69,7 +69,7 @@
                 <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" role="button" (click)="selectFromSideMenu('electronics','notselected');">Electronics</a>
+                                <a data-toggle="collapse" #electronics data-parent="#accordion" href="#collapseThree" role="button" (click)="selectFromSideMenu('electronics','notselected');">Electronics</a>
                             </h4>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
