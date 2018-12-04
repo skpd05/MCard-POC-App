@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
     if(this.dataService.username!=null || this.dataService.username!=undefined){
       this.router.navigate(['/dashboard']);
     }
-    console.log(this.customer_api);
   }
   showRegister(){
     this.register = !this.register ;

@@ -15,7 +15,7 @@ export class CatalogComponent implements OnInit {
   public itemid = 9;
   public itemArray;
   public showquantitybar = 0;
-
+  showSpinner : boolean = false;
   @ViewChild('clothing')
   private clothingElement: ElementRef;
 
@@ -33,7 +33,7 @@ export class CatalogComponent implements OnInit {
     //await this._analyticsService.analyseCustomerTransactions(this._userService.customerDetails.custid);
     await this._checkoutService.getItems();
     
-
+    this.showSpinner = true;
     let transactions: any = await this._analyticsService.analyseCustomerTransactions("6541238");
     let majorTrans : string = transactions.profiles[0].transClassification[0].classType;
     
@@ -41,18 +41,20 @@ export class CatalogComponent implements OnInit {
       await this._checkoutService.setCurrentCatagory('electronics','notselected');
       let el: HTMLElement = this.electronicsElement.nativeElement as HTMLElement;
       el.click();
+      this.showSpinner = false;
     }else if(majorTrans==="Travel&Leisure"){
       await this._checkoutService.setCurrentCatagory('travel','notselected');
       let el: HTMLElement = this.travelElement.nativeElement as HTMLElement;
       el.click();
+      this.showSpinner = false;
     }else{
       await this._checkoutService.setCurrentCatagory('lifestyle','tops');
       let el: HTMLElement = this.clothingElement.nativeElement as HTMLElement;
       el.click();
+      this.showSpinner = false;
     }
 
     this.itemArray = this._checkoutService.itemArray;
-    console.log(this.itemArray);
   }
 
   public showProductDetails(item): void {

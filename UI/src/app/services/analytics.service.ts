@@ -23,7 +23,6 @@ export class AnalyticsService {
                withCredentials: true
           }
         ).toPromise();
-        console.log(response);
       return response;
   }
 }

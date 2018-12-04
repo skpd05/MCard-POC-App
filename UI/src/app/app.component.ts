@@ -42,9 +42,9 @@ export class AppComponent {
   return outlet.activatedRouteData['page'] || 'one';
 }
 
-/*@HostListener('window:beforeunload', ['$event'])
+@HostListener('window:beforeunload', ['$event'])
 public doSomething($event) {
     localStorage.clear();
     return "true";
-}*/
+}
 }

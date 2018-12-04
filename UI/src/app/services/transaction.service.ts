@@ -35,7 +35,6 @@ export class TransactionService {
 
   async makeTransactionSimulation(creditCardNumber, amount, merchantid) {
     let merchantDetails = this.getMerchantDetails(merchantid)
-    console.log(merchantDetails);
     if (creditCardNumber != "all_cards") {
       const data = ({
         'city': 'NewYork',

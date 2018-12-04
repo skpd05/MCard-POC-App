@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   constructor(private toastr: ToastrService,  private userService: UserService,public enrolmentService : EnrolmentService) { }
 
   ngOnInit() {
-    console.log(this.analytics_api);
     //  this.toastr.success('Hello world!', 'Toastr fun!');
     //this.cardNo = this.userService.getCardNo();
     // this.enrolmentService.getAccount(this.cardNo).subscribe((data: any)=> {
