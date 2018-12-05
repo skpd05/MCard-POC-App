@@ -44,6 +44,7 @@ export class CheckoutserviceService {
     await this.getJSON().then((data: any)=> {
       this.itemArray = data as CatalogItem[];
     });
+
   }
 
   public addItems(item: CatalogItem, allowZero: boolean): void {

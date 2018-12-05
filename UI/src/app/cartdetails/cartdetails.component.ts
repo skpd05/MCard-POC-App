@@ -122,10 +122,11 @@ export class CartdetailsComponent implements OnInit {
     this._checkoutService.callComponentMethod();
   }
 
-  public initializeItemDetails(): void {
+  async initializeItemDetails() {
     this._checkoutService.callComponentMethod();
     this.currentItemId = this._checkoutService.getCurrentItem();
-    this.allProductList = this._checkoutService.getItems();
+    await this._checkoutService.getItems();
+    this.allProductList = this._checkoutService.itemArray;
     this.orderTotal = this._checkoutService.resetCartTotal();
     this.allProductList.forEach(element => {
      if ( element.id === this.currentItemId ) {

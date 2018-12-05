@@ -71,8 +71,8 @@ export class CatalogComponent implements OnInit {
 
   public addToCart(itemId): void {
     this._checkoutService.addItems(itemId, true);
-    this.itemArray = this._checkoutService.getItems();
-    this._checkoutService.callComponentMethod();
+    //this.itemArray = this._checkoutService.getItems();
+   // this._checkoutService.callComponentMethod();
   }
 
   public goToCart(): void {
@@ -82,14 +82,14 @@ export class CatalogComponent implements OnInit {
 
   public decreaseQuantity(itemId): void {
     this._checkoutService.decreaseQuantity(itemId, true);
-    this.itemArray = this._checkoutService.getItems();
-    this._checkoutService.callComponentMethod();
+ //   this.itemArray = this._checkoutService.getItems();
+  //  this._checkoutService.callComponentMethod();
   }
 
   public increaseQuantity(itemId): void {
     this._checkoutService.increaseQuantity(itemId, true);
-    this.itemArray = this._checkoutService.getItems();
-    this._checkoutService.callComponentMethod();
+    //this.itemArray = this._checkoutService.getItems();
+    //this._checkoutService.callComponentMethod();
   }
 
   public selectFromSideMenu(parentCategory, subCategory){

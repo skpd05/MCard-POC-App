@@ -73,11 +73,10 @@ export class MyCardsComponent{
             this.transactionHistory = data;
         });
 
+        this.showSpinner = true;
         this._transactionService.getMerchants().then((data: any)=> {
             this.showSpinner = false;
             this.merchantsList = data;
-            
- 
         });
 
 //        filterItem(value){
@@ -121,6 +120,14 @@ export class MyCardsComponent{
                 this.transactionHistory = data;
             });
         }
+        this.showSpinner = true;
+        await this.enrolmentService.getAccount(this.cardNo).then((data: any)=> {
+            this.cardDetailsList = data.creditcardsList;
+            this.dataService.setUserInfo(data);  
+            //this.temp_card_item = this.cardDetailsList.slice();
+            this.update_filter(this.filter_by_card);
+            this.showSpinner = false;
+        });
     }
 
     /*getMerchantDetails(event){
