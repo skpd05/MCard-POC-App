@@ -16,7 +16,8 @@
                     <div class="col-xs-3">
                         <select class="form-control"  [(ngModel)]="merchantId">
                            <option value="nomerchant">Select Merchant</option>
-                             <option *ngFor="let merchantVal of merchantsList" value="{{merchantVal.merchantid}}">{{merchantVal.classification}} : {{merchantVal.merchantname}}</option>                             
+                             <option *ngFor="let merchantVal of merchantsList" value="{{merchantVal.merchantid}}">
+                                 <p>{{merchantVal.classification}} : {{merchantVal.merchantname}}</p></option>                             
                         </select> 
                     </div>
                     <div class="col-xs-3">

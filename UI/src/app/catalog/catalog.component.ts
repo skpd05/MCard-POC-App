@@ -43,7 +43,7 @@ export class CatalogComponent implements OnInit {
         let el: HTMLElement = this.electronicsElement.nativeElement as HTMLElement;
         el.click();
         this.showSpinner = false;
-      }else if(majorTrans==="Travel&Leisure"){
+      }else if(majorTrans==="Travel"){
         await this._checkoutService.setCurrentCatagory('travel','notselected');
         let el: HTMLElement = this.travelElement.nativeElement as HTMLElement;
         el.click();
